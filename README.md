@@ -36,12 +36,12 @@ LoopMe will be a web application that will allow people to input a starting loca
   * Access to all features of Public role
   * Sign In / Log Out
   * View account information
-    * Home location
     * Email (username)
     * Home location (Auto start location)
     * Account picture
   * Set account information
-    * Account picture
+    * Change email (username)
+    * Change account picture
     * Change password
     * Change home location
   * Delete Account (their own)
