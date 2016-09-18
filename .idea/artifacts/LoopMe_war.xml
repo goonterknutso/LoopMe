@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="LoopMe:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="tempArtifactId.war">
+      <element id="artifact" artifact-name="LoopMe:war exploded" />
+    </root>
+  </artifact>
+</component>
