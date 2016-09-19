@@ -53,6 +53,6 @@ LoopMe will be a web application that will allow people to input a starting loca
   * Create, read, update, delete all data stored in database
 
 ### Design
-* [Screen Design] (https://github.com/goonterknutso/LoopMe)
-* [Database Design] (https://github.com/goonterknutso/LoopMe)
+* [Screen Design] (https://github.com/goonterknutso/LoopMe/tree/master/design/screens)
+* [Database Design] (https://github.com/goonterknutso/LoopMe/tree/master/design/database)
 * [Flow Diagram] (https://github.com/goonterknutso/LoopMe.git)

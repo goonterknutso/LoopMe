@@ -1,5 +1,15 @@
 <html>
+
+<%@include file="header.jsp"%>
+
 <body>
-<h2>Hello World!</h2>
+
+<%@include file="navigation.jsp"%>
+
+<div id="main_content">
+
+
+</div>
+
 </body>
 </html>

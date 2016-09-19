@@ -8,9 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>LoopMe</title>
+    <link rel="stylesheet" type="text/css" href="resources/styles/navigation.css">
+    <link rel="stylesheet" type="text/css" href="resources/styles/body.css">
 </head>
-<body>
-
-</body>
 </html>
