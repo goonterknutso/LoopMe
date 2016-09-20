@@ -8,7 +8,7 @@
 
 
 <div id="navigation">
-    <ul class="nav_item nav_item_link">
+    <ul>
         <li id="logo"><a href="index.jsp">LoopMe</a></li>
 
         <li><a href="account_settings.jsp">Account</a></li>

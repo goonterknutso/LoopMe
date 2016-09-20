@@ -1,3 +1,5 @@
+
+
 <%--
   Created by IntelliJ IDEA.
   User: gunther
@@ -9,7 +11,6 @@
 <html>
 <head>
     <title>LoopMe</title>
-    <link rel="stylesheet" type="text/css" href="resources/styles/navigation.css">
-    <link rel="stylesheet" type="text/css" href="resources/styles/body.css">
+    <link rel="stylesheet" type="text/css" href="resources/styles/navigation.jsp">
 </head>
 </html>
