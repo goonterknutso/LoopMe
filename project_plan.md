@@ -9,33 +9,28 @@
 ### Week 2
 - [X] Document application flow - wireframes have clickable links in the online version.
 - [X] Complete screen design (on paper)
-- [ ] Create project structure in IntelliJ
-- [ ] Add project to repository
+- [X] Create project structure in IntelliJ
+- [X] Add project to repository
 - [X] Complete database design
 
 ### Week 3
-- [ ] Begin creating JSPs
+- [X] Begin creating JSPs
 - [X] Add in bootstrap
-- [ ] Create database and all tables/columns locally
-- [ ] Create SQL statements to generate entire database
+- [X] Create database and all tables/columns locally
+- [X] Create SQL statements to generate entire database
 - [X] Determine independent research topic
 - [ ] Create class diagram
-- [ ] Complete project plan. Based on the design should be able to lay out
-more detail.
 - [ ] Create application flow
-
-- [X] Weekly journal entry
 
 ### Week 4
 - [ ] Finish creating JSP
-- [ ] Add Hibernate config
-- [ ] Create DAO for user crud
+- [X] Add Hibernate config
+- [X] Create DAO for user crud
 - [ ] Add unit tests for DAO
-- [ ] Add Maven for building
-- [ ] Set up logging
-- [ ] Set up unit testing
+- [X] Add Maven for building
+- [X] Set up logging
+- [X] Set up unit testing
 
-- [ ] Weekly journal entry
 
 ### Week 5
 - [ ] Create JAVA classes (User, com.loopme.entity.Route, Waypoint, com.loopme.entity.Address,

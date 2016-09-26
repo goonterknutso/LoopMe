@@ -16,15 +16,28 @@ LoopMe will be a web application that will allow people to input a starting loca
 * Custom naming of routes
 
 ### Technologies
-* Database (MySQL and Hibernate)
+* Database (MySQL/Firebase and Hibernate)
   * Store users
+  * Store accounts
   * Store saved routes
   * Store saved legs of routes
-  * Store way points of routes
   * Store addresses
 * Independent Research Topic
-  * Google Maps API
-  * Angular.js
+  * Bootstrap
+  * Firebase (possibly)
+  * Angular.js (possibly later on)
+* Web Services and APIs
+  * Google Maps Geocoding API
+  * Google Maps Roads API
+  * Google Maps Distance Matrix API
+  * Google Maps Directions API
+  * Google Maps Elevation API
+* Logging
+  * Log4J
+* Unit Testing
+  * JUnit Tests
+  * At least 60% code coverage
+
 
 ### Roles
 * Public
