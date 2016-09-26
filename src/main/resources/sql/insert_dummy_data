@@ -1,0 +1,30 @@
+USE LOOP_ME_DATA;
+
+INSERT INTO addresses VALUES(DEFAULT, "111 Apple St", "Almond", "AL", "11111");
+INSERT INTO addresses VALUES(DEFAULT, "222 Burbon St", "Bixby", "BA", "22222");
+INSERT INTO addresses VALUES(DEFAULT, "333 Charles St", "Crimson", "CO", "33333");
+INSERT INTO addresses VALUES(DEFAULT, "444 Drumlin St", "Duckland", "DE", "44444");
+INSERT INTO addresses VALUES(DEFAULT, "555 Edgar St", "Epper", "EL", "55555");
+INSERT INTO addresses VALUES(DEFAULT, "666 Finfall St", "Fylan", "FE", "66666");
+
+INSERT INTO users VALUES(DEFAULT, "Allen", "Alexander", "aa@email.com", 0);
+INSERT INTO users VALUES(DEFAULT, "Bob", "Brixtion", "bb@email.com", 1);
+INSERT INTO users VALUES(DEFAULT, "Cam", "Cristson", "cc@email.com", 2);
+INSERT INTO users VALUES(DEFAULT, "Donald", "Duffy", "dd@email.com", 3);
+INSERT INTO users VALUES(DEFAULT, "El", "Elver", "ee@email.com", 4);
+INSERT INTO users VALUES(DEFAULT, "Franny", "Frong", "ff@email.com", 5);
+
+INSERT INTO accounts VALUES(DEFAULT, "aausername", "aapassword", 0);
+INSERT INTO accounts VALUES(DEFAULT, "bbusername", "bbpassword", 1);
+INSERT INTO accounts VALUES(DEFAULT, "ccusername", "ccpassword", 2);
+INSERT INTO accounts VALUES(DEFAULT, "ddusername", "ddpassword", 3);
+INSERT INTO accounts VALUES(DEFAULT, "eeusername", "eepassword", 4);
+INSERT INTO accounts VALUES(DEFAULT, "ffusername", "ffpassword", 5);
+
+INSERT INTO routes VALUES(DEFAULT, "Route 1", 1.1, "miles", 11.1, "feet", 0, 0);
+INSERT INTO routes VALUES(DEFAULT, "Route 1", 2.2, "kilometers", 22.2, "meters", 1, 1);
+INSERT INTO routes VALUES(DEFAULT, "Route 3", 3.3, "miles", 33.3, "feet", 2, 2);
+INSERT INTO routes VALUES(DEFAULT, "Route 4", 4.4, "kilometers", 44.4, "meters", 3, 3);
+INSERT INTO routes VALUES(DEFAULT, "Route 5", 5.5, "miles", 55.5, "feet", 4, 4);
+INSERT INTO routes VALUES(DEFAULT, "Route 6", 6.6, "kilometers", 66.6, "meters", 5, 5);
+

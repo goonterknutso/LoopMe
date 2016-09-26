@@ -1,3 +1,5 @@
+package com.loopme.entity;
+
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
@@ -11,6 +13,9 @@ import javax.persistence.*;
 @Table(name = "users")
 public class User {
 
+    @Id
+    @GeneratedValue(generator="increment")
+    @GenericGenerator(name="increment", strategy = "increment")
     @Column(name = "user_id")
     private int userId;
 
@@ -24,77 +29,119 @@ public class User {
     private String email;
 
     @Column(name = "address_home")
-    private Address homeAddress;
+    private int homeAddressId;
 
     /**
-     * Constructor (empty) for a new User.
+     * Constructor (empty) for a new User
      */
     public User(){
     }
 
     /**
-     * Constructor (with parameters including homeAddress) for a new User.
+     * Constructor (with parameters) for a new User
      *
      * @param firstName   the first name
      * @param lastName    the last name
      * @param email       the email
      */
     public User(String firstName, String lastName, String email){
-
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
     }
 
     /**
-     * Constructor (with parameters including homeAddress) for a new User.
+     * Constructor (with parameters including homeAddressId) for a new User
      *
      * @param firstName   the first name
      * @param lastName    the last name
      * @param email       the email
-     * @param homeAddress the home address
+     * @param homeAddressId the home address
      */
-    public User(String firstName, String lastName, String email, Address homeAddress){
+    public User(String firstName, String lastName, String email, int homeAddressId){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.homeAddress = homeAddress;
+        this.homeAddressId = homeAddressId;
     }
 
+    /**
+     * Gets user id
+     * @return the user id
+     */
     public int getUserId() {
         return userId;
     }
 
+    /**
+     * Sets the user id
+     * @param userId the user id
+     */
     public void setUserId(int userId) {
         this.userId = userId;
     }
 
+    /**
+     * Gets first name
+     * @return the first name
+     */
     public String getFirstName() {
         return firstName;
     }
 
+    /**
+     * Sets the first name
+     * @param firstName the first name
+     */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+    /**
+     * Gets last name
+     * @return the last name
+     */
     public String getLastName() {
         return lastName;
     }
 
+    /**
+     * Sets the last name
+     * @param lastName the last name
+     */
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+    /**
+     * Gets the email
+     * @return the email
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * Sets the email
+     * @param email the email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public Address getHomeAddress() {
-        return homeAddress;
+    /**
+     * Gets home address
+     * @return the home address
+     */
+    public int getHomeAddressId() {
+        return homeAddressId;
     }
 
-    public void setHomeAddress(Address homeAddress) {
-        this.homeAddress = homeAddress;
+    /**
+     * Sets the home address
+     * @param homeAddressId the home address
+     */
+    public void setHomeAddressId(int homeAddressId) {
+        this.homeAddressId = homeAddressId;
     }
 }

@@ -38,7 +38,7 @@ more detail.
 - [ ] Weekly journal entry
 
 ### Week 5
-- [ ] Create JAVA classes (User, Route, Waypoint, Address,
+- [ ] Create JAVA classes (User, com.loopme.entity.Route, Waypoint, com.loopme.entity.Address,
 
 
 ### Week 6

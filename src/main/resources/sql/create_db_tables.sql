@@ -1,3 +1,7 @@
+DROP DATABASE IF EXISTS LOOP_ME_DATA;
+CREATE DATABASE LOOP_ME_DATA;
+USE LOOP_ME_DATA;
+
 SET foreign_key_checks = 0;
 DROP TABLE IF EXISTS accounts;
 DROP TABLE IF EXISTS users;
@@ -61,11 +65,11 @@ CREATE TABLE legs
   elevation DOUBLE,
   elevation_unit VARCHAR(30),
 
-  address_start INT(10),
-  address_end INT(10),
+  address_start_id INT(10),
+  address_end_id INT(10),
   route_id INT(10),
 
-  FOREIGN KEY (address_start) REFERENCES addresses(address_id),
-  FOREIGN KEY (address_end) REFERENCES addresses(address_id),
+  FOREIGN KEY (address_start_id) REFERENCES addresses(address_id),
+  FOREIGN KEY (address_end_id) REFERENCES addresses(address_id),
   FOREIGN KEY (route_id) REFERENCES  routes(route_id)
 );
