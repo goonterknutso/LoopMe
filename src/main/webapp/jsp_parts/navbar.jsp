@@ -20,12 +20,40 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Create Loop</a></li>
-                <li><a href="#how_it_works">How it Works</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#account_settings">Account</a></li>
+                <li id="navCreateLoop"><a href="#">Create Loop</a></li>
+                <li>|</li>
+                <li id="navHowItWorks"><a href="#how_it_works">How it Works</a></li>
+                <li>|</li>
+                <li id="navAbout"><a href="#about">About</a></li>
+                <li>|</li>
+                <li id="navContact"><a href="#contact">Contact</a></li>
+                <li>|</li>
+                <li id="navAccountSettings"><a href="#account_settings">Account</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </div>
+
+<script type="text/javascript">
+    if(document.URL.contains("index")){
+        document.getElementById("navCreateLoop").class = "active";
+    }
+    else if(document.URL.contains("createloop")){
+        document.getElementById("navCreateLoop").class = "active";
+    }
+    else if(document.URL.contains("index")){
+        document.getElementById("navHowItWorks").class = "active";
+    }
+    else if(document.URL.contains("index")){
+        document.getElementById("navAbout").class = "active";
+    }
+    else if(document.URL.contains("index")){
+        document.getElementById("navContact").class = "active";
+    }
+    else if(document.URL.contains("index")){
+        document.getElementById("navAccountSettings").class = "active";
+    }
+
+
+
+</script>

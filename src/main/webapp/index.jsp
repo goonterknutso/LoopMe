@@ -4,6 +4,7 @@
 
 <head>
     <%@include file = "jsp_parts/head.jsp" %>
+    <title>Create Loop</title>
 </head>
 
 <body>
@@ -11,7 +12,7 @@
 <!-- NAVBAR -->
 <%@ include file ="jsp_parts/navbar.jsp" %>
 
-
+<!-- MAIN CONTENT -->
 <div class="container">
 
     <div class="starter-template">
@@ -23,6 +24,7 @@
 </div><!-- /.container -->
 
 
+<!-- BOOTSTRAP SCRIPTS -->
 <%@ include file="jsp_parts/bootstrap_scripts.jsp" %>
 
 </body>
