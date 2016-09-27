@@ -1,4 +1,3 @@
-<style>
 body{
     background-image: url("../images/map.png");
 }
@@ -11,15 +10,7 @@ body{
 
 }
 
-@font-face{
-    font-family: Milkshake;
-    src: url("../fonts/milkshake.otf") format("opentype");
-}
-@font-face {
-    font-family: Milkshake;
-    font-weight: bold;
-    src: url("../fonts/milkshake.otf") format("opentype");
-}
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -56,5 +47,3 @@ li span{
 li a:hover {
     background-color: #111;
 }
-
-</style>

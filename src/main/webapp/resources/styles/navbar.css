@@ -1,0 +1,23 @@
+body{
+    background-image: url("../images/map.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+#logo{
+    font-family: Milkshake;
+    font-size: 60px;
+    float: left;
+}
+.navbar{
+    padding: 20px;
+}
+
+li a{
+    font-family: Milkshake;
+    font-size: 26px;
+}
+.navbar-nav{
+    text-align: center;
+    float: right;
+}
