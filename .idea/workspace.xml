@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="73feabe7-5df4-4ed1-9882-a3ffb326f0c6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project_documents/code_reviews/code_review_1/code_review_aaron.md" afterPath="$PROJECT_DIR$/project_documents/code_reviews/code_review_1/code_review_aaron.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project_documents/code_reviews/code_review_1/code_review_sandi.md" afterPath="$PROJECT_DIR$/project_documents/code_reviews/code_review_1/code_review_sandi.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project_documents/code_reviews/code_review_1/code_review_vang.md" afterPath="$PROJECT_DIR$/project_documents/code_reviews/code_review_1/code_review_vang.md" />
     </list>
     <ignored path="LoopMe.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,11 +33,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="code_review_aaron.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="code_review_aaron.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project_documents/code_reviews/code_review_1/code_review_aaron.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="710">
-              <caret line="60" column="84" selection-start-line="60" selection-start-column="84" selection-end-line="60" selection-end-column="84" />
+            <state relative-caret-position="98">
+              <caret line="26" column="47" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="code_review_sandi.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/project_documents/code_reviews/code_review_1/code_review_sandi.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1080">
+              <caret line="60" column="83" selection-start-line="60" selection-start-column="83" selection-end-line="60" selection-end-column="83" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="code_review_vang.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project_documents/code_reviews/code_review_1/code_review_vang.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1080">
+              <caret line="60" column="80" selection-start-line="60" selection-start-column="80" selection-end-line="60" selection-end-column="80" />
               <folding />
             </state>
           </provider>
@@ -66,8 +87,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/navigation.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/resources/styles/body.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/header.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/test.html" />
         <option value="$PROJECT_DIR$/pom.xml" />
@@ -117,6 +136,8 @@
         <option value="$PROJECT_DIR$/project_documents/code_reviews/code_review_sandi" />
         <option value="$PROJECT_DIR$/project_documents/code_reviews/code_review_aaron" />
         <option value="$PROJECT_DIR$/project_documents/code_reviews/code_review_1/code_review_aaron.md" />
+        <option value="$PROJECT_DIR$/project_documents/code_reviews/code_review_1/code_review_sandi.md" />
+        <option value="$PROJECT_DIR$/project_documents/code_reviews/code_review_1/code_review_vang.md" />
       </list>
     </option>
   </component>
@@ -1324,7 +1345,7 @@
       <workItem from="1474855936299" duration="6148000" />
       <workItem from="1474993670106" duration="62000" />
       <workItem from="1474997146343" duration="3299000" />
-      <workItem from="1475167998468" duration="1851000" />
+      <workItem from="1475167998468" duration="1944000" />
     </task>
     <servers />
   </component>
@@ -1361,7 +1382,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54848000" />
+    <option name="totallyTimeSpent" value="54941000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
@@ -1453,15 +1474,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="29" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Waypoint.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/loopme/entity/Route.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -1800,8 +1812,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/project_documents/code_reviews/code_review_1/code_review_aaron.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="710">
-          <caret line="60" column="84" selection-start-line="60" selection-start-column="84" selection-end-line="60" selection-end-column="84" />
+        <state relative-caret-position="98">
+          <caret line="26" column="47" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project_documents/code_reviews/code_review_1/code_review_vang.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1080">
+          <caret line="60" column="80" selection-start-line="60" selection-start-column="80" selection-end-line="60" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project_documents/code_reviews/code_review_1/code_review_sandi.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1080">
+          <caret line="60" column="83" selection-start-line="60" selection-start-column="83" selection-end-line="60" selection-end-column="83" />
           <folding />
         </state>
       </provider>
