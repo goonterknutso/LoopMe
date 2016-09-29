@@ -27,11 +27,11 @@ LoopMe will be a web application that will allow people to input a starting loca
   * Firebase (possibly)
   * Angular.js (possibly later on)
 * Web Services and APIs
-  * Google Maps Geocoding API
-  * Google Maps Roads API
-  * Google Maps Distance Matrix API
-  * Google Maps Directions API
-  * Google Maps Elevation API
+  * [Google Maps Geocoding API] (https://developers.google.com/maps/documentation/geocoding/intro)
+  * [Google Maps Roads API] (https://developers.google.com/maps/documentation/roads/intro)
+  * [Google Maps Distance Matrix API] (https://developers.google.com/maps/documentation/distance-matrix/intro)
+  * [Google Maps Directions API] (https://developers.google.com/maps/documentation/directions/intro)
+  * [Google Maps Elevation API] (https://developers.google.com/maps/documentation/elevation/intro)
 * Logging
   * Log4J
 * Unit Testing
