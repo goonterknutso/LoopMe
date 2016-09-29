@@ -65,7 +65,10 @@ LoopMe will be a web application that will allow people to input a starting loca
   * Access to all features of User role
   * Create, read, update, delete all data stored in database
 
-### Design
-* [Screen Design] (https://github.com/goonterknutso/LoopMe/tree/master/design/screens)
-* [Database Design] (https://github.com/goonterknutso/LoopMe/tree/master/design/database)
+### Project Documents
+* [Time Log] (https://github.com/goonterknutso/LoopMe/tree/master/project_documents/time_log.md)
+* [Project Plan] (https://github.com/goonterknutso/LoopMe/tree/master/project_documents/project_plan.md)
+* [Screen Design] (https://github.com/goonterknutso/LoopMe/tree/master/project_documents/design/screens)
+* [Database Design] (https://github.com/goonterknutso/LoopMe/tree/master/project_documents/design/database)
+* [Code Reviews] (https://github.com/goonterknutso/LoopMe/tree/master/project_documents/code_reviews)
 * [Flow Diagram] (https://github.com/goonterknutso/LoopMe.git)
