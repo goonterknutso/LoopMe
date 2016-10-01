@@ -5,7 +5,7 @@ package com.loopme.loopgenerator;
  */
 public class LoopGeneratorDriver {
     public static void main(String[] args){
-        LoopGenerator test = new LoopGenerator(100, 25, 2, null);
+        LoopGenerator test = new LoopGenerator(4, 5, null);
         test.generateLoops();
     }
 }
