@@ -11,122 +11,147 @@ import java.util.ArrayList;
  */
 public class LoopGenerator {
 
-    private final int ROUTE_DISTANCE = 40;
-    private int X_MID;
-    private int Y_MID;
-    private int X_MAX;
-    private int X_MIN;
-    private int Y_MAX;
-    private int Y_MIN;
+    private int routeDistance;
+
+    private int xMax;
+    private int xMin;
+    private int xMid;
+
+    private int yMax;
+    private int yMin;
+    private int yMid;
 
     private int legLength;
     private int numberOfLoops;
     private File file;
     private String[][] routeGrid;
 
-    ArrayList<ArrayList> loops;
-    ArrayList<Coordinate> loop;
+    ArrayList<Loop> loops;
+    Loop loop;
 
-    public LoopGenerator(int legLength, int numberOfLoops, String fileLocation){
+    public LoopGenerator(int routeDistance, int legLength, int numberOfLoops, String fileLocation){
+        this.routeDistance = routeDistance;
         this.legLength = legLength;
         this.numberOfLoops = numberOfLoops;
         //this.file = new File(fileLocation);
 
-        X_MID = ROUTE_DISTANCE/2;
-        Y_MID = ROUTE_DISTANCE/2;
+        xMid = this.routeDistance /2;
+        yMid = this.routeDistance /2;
 
-        X_MAX = ROUTE_DISTANCE;
-        X_MIN = 0;
-        Y_MAX = ROUTE_DISTANCE;
-        Y_MIN = 0;
+        xMax = this.routeDistance;
+        xMin = 0;
+        yMax = this.routeDistance;
+        yMin = 0;
 
-        routeGrid = new String[ROUTE_DISTANCE][ROUTE_DISTANCE];
-        loops = new ArrayList<ArrayList>();
+        routeGrid = new String[this.routeDistance][this.routeDistance];
+        loops = new ArrayList<Loop>;
 
     }
 
     public void generateLoops(){
         System.out.println("Generating loops....");
 
-        boolean moreLoops = true;
-        boolean moreLegs = true;
+        boolean generateLoops = true;
+        boolean generateLegs;
         int randomDirection;
 
 
         //Run until the number of loops we want is generated
-        while(moreLoops){
+        while(generateLoops){
             //System.out.println("new loop");
 
-            loop = new ArrayList<Coordinate>();
+            loop = new Loop();
 
             //Push first coordinate
-            int xCurrent = X_MID;
-            int yCurrent = Y_MID;
-            loop.add(new Coordinate(xCurrent,yCurrent));
+            int xCurrent = xMid;
+            int yCurrent = yMid;
+            //loop.add(new Coordinate(xCurrent,yCurrent));
 
-            moreLegs = true;
-            int previousDirection = 99;
+            generateLegs = true;
+            int oppositeDirection = 99;
 
             //Keep looking for route until we reach max distance
-            while(moreLegs){
+            while(generateLegs){
                 //System.out.println("new leg....");
 
                 randomDirection = (int) (Math.random()*4);
 
                 //GO UP
                 if(randomDirection == 0){
-                    if(((yCurrent + legLength) >= Y_MAX) || (randomDirection == previousDirection)){ //Test for out of bounds
+                    if((yCurrent + legLength) >= yMax){ //Test for out of bounds
+                        break;
+                    }else if(randomDirection == oppositeDirection){ //Test for double back
+                        break;
+                    }else if(isACoordinate(loop, xCurrent, yCurrent + legLength)) { //Test for already a point
                         break;
                     }else{ //No out of bounds error
+                        //System.out.println("UP");
+
                         yCurrent += legLength;
-                        loop.add(new Coordinate(xCurrent,yCurrent));
-                        previousDirection = 1;
+                        loop.addCoordinate(new Coordinate(xCurrent,yCurrent));
+                        oppositeDirection = 1;
                     }
 
                 //GO DOWN
                 }else if(randomDirection == 1){
-                    if(((yCurrent - legLength) <= Y_MIN) || (randomDirection == previousDirection)){ //Test for out of bounds
-                        break; //Restart loop, try new random direction
+                    if((yCurrent - legLength) <= yMin){ //Test for out of bounds
+                        break;
+                    }else if(randomDirection == oppositeDirection){ //Test for double back
+                        break;
+                    }else if(isACoordinate(loop, xCurrent, yCurrent - legLength)) { //Test for already a point
+                        break;
                     }else{ //No out of bounds error
+                        //System.out.println("DOWN");
+
                         yCurrent -= legLength;
                         loop.add(new Coordinate(xCurrent,yCurrent));
-                        previousDirection = 0;
+                        oppositeDirection = 0;
                     }
 
                 //GO LEFT
-                }else if(randomDirection == 2){ //test for out of bounds
-                    if(((xCurrent - legLength) <= X_MIN) || (randomDirection == previousDirection)){
-                        break; //Restart loop, try new random direction
+                }else if(randomDirection == 2){
+                    if((xCurrent - legLength) <= xMin){ //Test for out of bonds
+                        break;
+                    }else if(randomDirection == oppositeDirection){ //Test for double back
+                        break;
+                    }else if(isACoordinate(loop, xCurrent - legLength, yCurrent)) { //Test for already a point
+                        break;
                     }else{ //No out of bounds error
+                        //System.out.println("LEFT");
+
                         xCurrent -= legLength;
-                        loop.add(new Coordinate(xCurrent,yCurrent));
-                        previousDirection = 3;
+                        loop.addCoordinate(new Coordinate(xCurrent,yCurrent));
+                        oppositeDirection = 3;
                     }
 
                 //GO RIGHT
                 }else if(randomDirection == 3){
-                    if(((xCurrent + legLength) >= X_MAX)|| (randomDirection == previousDirection)){ //Test for out of bounds
-                        break; //Restart loop, try new random direction
+                    if((xCurrent + legLength) >= xMax){ //Test for out of bounds
+                        break;
+                    }else if(randomDirection == oppositeDirection){ //Test for double back
+                        break;
+                    }else if(isACoordinate(loop, xCurrent + legLength, yCurrent)) { //Test for already a point
+                        break;
                     }else{ //No out of bounds error
+                        //System.out.println("RIGHT");
                         xCurrent += legLength;
-                        loop.add(new Coordinate(xCurrent,yCurrent));
-                        previousDirection = 2;
+                        loop.addCoordinate(new Coordinate(xCurrent,yCurrent));
+                        oppositeDirection = 2;
                     }
 
                 }
 
                 //Check to see if were back to the starting point (we have a loop)
-                if((xCurrent == X_MID && yCurrent == Y_MID) && ((loop.size() - 1) * legLength == ROUTE_DISTANCE)){
-                    System.out.println("Printing loop:");
-                    System.out.println();
-                    writeLoopToFile(loop);
+                if((xCurrent == xMid && yCurrent == yMid) && ((loop.size()) * legLength == routeDistance)){
+                    //System.out.println("Printing loop:");
+                    //writeLoopToFile(loop);
                     loops.add(loop);
-                    moreLegs = false;
+                    generateLegs = false;
                 }
 
                 //Check to see if we have reached max distance for current route
-                if((loop.size() - 1) * legLength > ROUTE_DISTANCE){
-                    moreLegs = false;
+                if(loop.getDistance(legLength) > routeDistance){
+                    generateLegs = false;
                 }
 
 
@@ -134,16 +159,24 @@ public class LoopGenerator {
 
             //Check to see if we have generated the number of loops we wanted
             if(loops.size() == numberOfLoops){
-                moreLoops = false;
+                generateLoops = false;
             }
 
         } //end while(moreLoops)
 
-        //writeLoopsToFile();
+        writeLoopsToFile();
 
     } //end method
 
 
+    private Boolean isACoordinate(Loop loop, int x, int y){
+        for(int c = 0; c < loop.getNumLegs(); c++){
+            if(loop.getCoordinate(c).getX() == x && loop.getCoordinate(c).getY() == y){
+                return true;
+            }
+        }
+        return false;
+    }
 
     private void writeLoopsToFile(){
         //For each loop
@@ -152,21 +185,25 @@ public class LoopGenerator {
         }
     }
 
-    private void writeLoopToFile(ArrayList<Coordinate> loop){
+    private void writeLoopToFile(Loop loop){
         setUpRouteGrid();
 
         //Print Coordinates
-        for(int c = 0; c < loop.size(); c++){
-            System.out.print(loop.get(c).toString());
-            routeGrid[loop.get(c).getX()][loop.get(c).getY()] = Integer.toString(c)+" ";
+        for(int c = 0; c < loop.getNumLegs(); c++){
+            System.out.print(loop.getCoordinate(c).toString());
+            if(c < 10) {
+                routeGrid[loop.getCoordinate(c).getX()][loop.getCoordinate(c).getY()] = Integer.toString(c) + "  ";
+            }else{
+                routeGrid[loop.getCoordinate(c).getX()][loop.getCoordinate(c).getY()] = Integer.toString(c) + " ";
+            }
         }
 
         System.out.println();
         System.out.println();
 
         //Print grid
-        for(int y = Y_MIN; y < Y_MAX; y++){
-            for(int x = X_MIN; x < X_MAX; x++){
+        for(int y = yMax -1; y > yMin; y--){
+            for(int x = xMin; x < xMax; x++){
                 System.out.print(routeGrid[x][y]);
             }
             System.out.println();
@@ -177,9 +214,9 @@ public class LoopGenerator {
     }
 
     private void setUpRouteGrid(){
-        for(int y = Y_MIN; y < Y_MAX; y++){
-            for(int x = X_MIN; x < X_MAX; x++){
-                routeGrid[x][y] = ". ";
+        for(int y = yMin; y < yMax; y++){
+            for(int x = xMin; x < xMax; x++){
+                routeGrid[x][y] = ".  ";
             }
         }
     }
