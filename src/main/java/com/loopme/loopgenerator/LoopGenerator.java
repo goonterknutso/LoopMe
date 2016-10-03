@@ -2,10 +2,13 @@ package com.loopme.loopgenerator;
 
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 /**
  * LoopGenerator class is used to randomly generate loops.
@@ -34,8 +37,7 @@ public class LoopGenerator {
     private File file;
     private String[][] routeGrid;
 
-    ArrayList<Loop> loops;
-    Loop loop;
+    Loops loops;
 
     public LoopGenerator(int routeDistance, int legLength, int numberOfLoops, String fileLocation){
         this.routeDistance = routeDistance;
@@ -52,7 +54,7 @@ public class LoopGenerator {
         yMin = 0;
 
         routeGrid = new String[this.routeDistance][this.routeDistance];
-        loops = new ArrayList<Loop>();
+        loops = new Loops();
 
     }
 
@@ -62,6 +64,7 @@ public class LoopGenerator {
         boolean generateLoops = true;
         boolean generateLegs;
         int randomDirection;
+        Loop loop;
 
         //Run until the number of loops we want is generated
         while(generateLoops){
@@ -83,7 +86,7 @@ public class LoopGenerator {
                 randomDirection = (int) (Math.random()*4);
 
                 //Checks the random direction, adds point if passes certain conditionals (see check direction)
-                if(checkDirection(randomDirection, xCurrent, yCurrent)) {
+                if(checkDirection(loop, randomDirection, xCurrent, yCurrent)) {
                     switch(randomDirection){
                         case UP: yCurrent += legLength; break;
                         case DOWN: yCurrent -= legLength; break;
@@ -99,7 +102,7 @@ public class LoopGenerator {
 
                 //Loop complete with correct route distance
                 if(atStart(xCurrent,yCurrent) && (loop.getDistance(legLength) == routeDistance)){
-                    loops.add(loop);
+                    loops.addLoop(loop);
                     generateLegs = false;
                 }
 
@@ -110,13 +113,15 @@ public class LoopGenerator {
             }
 
             //Check to see if we have generated the number of loops we wanted
-            if(loops.size() == numberOfLoops){
+            if(loops.getLoops().size() == numberOfLoops){
                 generateLoops = false;
             }
 
         }
 
         writeLoopsToTerminal();
+
+        //System.out.println(generateJSON());
     }
 
     /**
@@ -142,7 +147,7 @@ public class LoopGenerator {
      * @param yCurrent
      * @return
      */
-    private Boolean checkDirection(int randomDirection, int xCurrent, int yCurrent){
+    private Boolean checkDirection(Loop loop, int randomDirection, int xCurrent, int yCurrent){
         /*
         if (randomDirection == oppositeDirection) {
             return false;
@@ -185,42 +190,36 @@ public class LoopGenerator {
         return false;
     }
 
-    /*
+
     private String generateJSON(){
-        JSONObject obj = new JSONObject();
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            // Convert object to JSON string and save into a file directly
+            //mapper.writeValue(new File("D:\\staff.json"), staff);
 
-        JSONObject jsonCoordinates;
-        JSONArray jsonCoordinate;
+            // Convert object to JSON string
+            String jsonInString = mapper.writeValueAsString(loops);
+            System.out.println(jsonInString);
 
-        JSONObject jsonLoops;
-        JSONArray jsonLoop;
+            // Convert object to JSON string and pretty print
+            jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(loops);
+            System.out.println(jsonInString);
 
-        jsonLoops = new JSONObject();
-        jsonLoop = new JSONArray();
-
-        for(int loop = 0; loop < loops.size(); loop++){
-
-            jsonCoordinates = new JSONObject();
-
-            for(int coordinate = 0; coordinate < loops.get(loop).getNumLegs(); coordinate++){
-                jsonCoordinate = new JSONArray();
-                jsonCoordinate.add("x:"+loops.get(loop).getCoordinate(coordinate).getX());
-                jsonCoordinate.add("y:"+loops.get(loop).getCoordinate(coordinate).getY());
-                jsonCoordinates.put("coordinates", jsonCoordinates);
-            }
-
-            jsonLoop.add("coordinates:", jsonCoordinates);
-
+        } catch (JsonGenerationException e) {
+            e.printStackTrace();
+        } catch (JsonMappingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        jsonLoops.put("loops", jsonLoop);
         return null;
-    }*/
+    }
 
 
     private void writeLoopsToTerminal(){
         //For each loop
-        for(int l = 0; l < loops.size(); l++){
-            writeLoopToTerminal(loops.get(l));
+        for(int l = 0; l < loops.getLoops().size(); l++){
+            writeLoopToTerminal(loops.getLoop(l));
         }
     }
 
