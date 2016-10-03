@@ -4,12 +4,20 @@ package com.loopme.loopgenerator;
 import java.io.File;
 import java.util.ArrayList;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 /**
  * LoopGenerator class is used to randomly generate loops.
  *
  * Created by gunther on 9/16/16.
  */
 public class LoopGenerator {
+
+    private static final int UP = 0;
+    private static final int DOWN = 1;
+    private static final int LEFT = 2;
+    private static final int RIGHT = 3;
 
     private int routeDistance;
 
@@ -44,7 +52,7 @@ public class LoopGenerator {
         yMin = 0;
 
         routeGrid = new String[this.routeDistance][this.routeDistance];
-        loops = new ArrayList<Loop>;
+        loops = new ArrayList<Loop>();
 
     }
 
@@ -55,7 +63,6 @@ public class LoopGenerator {
         boolean generateLegs;
         int randomDirection;
 
-
         //Run until the number of loops we want is generated
         while(generateLoops){
             //System.out.println("new loop");
@@ -65,96 +72,41 @@ public class LoopGenerator {
             //Push first coordinate
             int xCurrent = xMid;
             int yCurrent = yMid;
-            //loop.add(new Coordinate(xCurrent,yCurrent));
+            //loop.addCoordinate(new Coordinate(xCurrent,yCurrent));
 
             generateLegs = true;
-            int oppositeDirection = 99;
 
             //Keep looking for route until we reach max distance
             while(generateLegs){
-                //System.out.println("new leg....");
 
+                //Create random direction (0-3)
                 randomDirection = (int) (Math.random()*4);
 
-                //GO UP
-                if(randomDirection == 0){
-                    if((yCurrent + legLength) >= yMax){ //Test for out of bounds
-                        break;
-                    }else if(randomDirection == oppositeDirection){ //Test for double back
-                        break;
-                    }else if(isACoordinate(loop, xCurrent, yCurrent + legLength)) { //Test for already a point
-                        break;
-                    }else{ //No out of bounds error
-                        //System.out.println("UP");
-
-                        yCurrent += legLength;
-                        loop.addCoordinate(new Coordinate(xCurrent,yCurrent));
-                        oppositeDirection = 1;
+                //Checks the random direction, adds point if passes certain conditionals (see check direction)
+                if(checkDirection(randomDirection, xCurrent, yCurrent)) {
+                    switch(randomDirection){
+                        case UP: yCurrent += legLength; break;
+                        case DOWN: yCurrent -= legLength; break;
+                        case LEFT: xCurrent -= legLength; break;
+                        case RIGHT: xCurrent += legLength; break;
                     }
 
-                //GO DOWN
-                }else if(randomDirection == 1){
-                    if((yCurrent - legLength) <= yMin){ //Test for out of bounds
-                        break;
-                    }else if(randomDirection == oppositeDirection){ //Test for double back
-                        break;
-                    }else if(isACoordinate(loop, xCurrent, yCurrent - legLength)) { //Test for already a point
-                        break;
-                    }else{ //No out of bounds error
-                        //System.out.println("DOWN");
-
-                        yCurrent -= legLength;
-                        loop.add(new Coordinate(xCurrent,yCurrent));
-                        oppositeDirection = 0;
-                    }
-
-                //GO LEFT
-                }else if(randomDirection == 2){
-                    if((xCurrent - legLength) <= xMin){ //Test for out of bonds
-                        break;
-                    }else if(randomDirection == oppositeDirection){ //Test for double back
-                        break;
-                    }else if(isACoordinate(loop, xCurrent - legLength, yCurrent)) { //Test for already a point
-                        break;
-                    }else{ //No out of bounds error
-                        //System.out.println("LEFT");
-
-                        xCurrent -= legLength;
-                        loop.addCoordinate(new Coordinate(xCurrent,yCurrent));
-                        oppositeDirection = 3;
-                    }
-
-                //GO RIGHT
-                }else if(randomDirection == 3){
-                    if((xCurrent + legLength) >= xMax){ //Test for out of bounds
-                        break;
-                    }else if(randomDirection == oppositeDirection){ //Test for double back
-                        break;
-                    }else if(isACoordinate(loop, xCurrent + legLength, yCurrent)) { //Test for already a point
-                        break;
-                    }else{ //No out of bounds error
-                        //System.out.println("RIGHT");
-                        xCurrent += legLength;
-                        loop.addCoordinate(new Coordinate(xCurrent,yCurrent));
-                        oppositeDirection = 2;
-                    }
-
+                    //Add coordinate to loop
+                    loop.addCoordinate(new Coordinate(xCurrent,yCurrent));
+                }else{
+                    break;
                 }
 
-                //Check to see if were back to the starting point (we have a loop)
-                if((xCurrent == xMid && yCurrent == yMid) && ((loop.size()) * legLength == routeDistance)){
-                    //System.out.println("Printing loop:");
-                    //writeLoopToFile(loop);
+                //Loop complete with correct route distance
+                if(atStart(xCurrent,yCurrent) && (loop.getDistance(legLength) == routeDistance)){
                     loops.add(loop);
                     generateLegs = false;
                 }
 
-                //Check to see if we have reached max distance for current route
+                //Loop beyond our route distance, start over
                 if(loop.getDistance(legLength) > routeDistance){
                     generateLegs = false;
                 }
-
-
             }
 
             //Check to see if we have generated the number of loops we wanted
@@ -162,13 +114,68 @@ public class LoopGenerator {
                 generateLoops = false;
             }
 
-        } //end while(moreLoops)
+        }
 
-        writeLoopsToFile();
+        writeLoopsToTerminal();
+    }
 
-    } //end method
+    /**
+     * This method checks a pair of x,y coordinate values to see if they are
+     * at the start of the loop
+     *
+     * @param xCurrent the x value to check
+     * @param yCurrent the y value to check
+     * @return
+     */
+    private Boolean atStart(int xCurrent, int yCurrent){
+        if(xCurrent == xMid && yCurrent == yMid){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * This method is used within the LoopGenerator class to check directions generated randomly.
+     *
+     * @param randomDirection
+     * @param xCurrent
+     * @param yCurrent
+     * @return
+     */
+    private Boolean checkDirection(int randomDirection, int xCurrent, int yCurrent){
+        /*
+        if (randomDirection == oppositeDirection) {
+            return false;
+        }*/
 
 
+        switch(randomDirection){
+            case UP: if((yCurrent + legLength) >= yMax){ return false; }
+                    else if(isACoordinate(loop, xCurrent, yCurrent + legLength)) { return false; }
+                    break;
+            case DOWN: if((yCurrent - legLength) <= yMin){ return false;}
+                    else if(isACoordinate(loop, xCurrent, yCurrent - legLength)) { return false; }
+                    break;
+            case LEFT: if((xCurrent - legLength) <= xMin){ return false; }
+                    else if(isACoordinate(loop, xCurrent - legLength, yCurrent)) { return false; }
+                    break;
+            case RIGHT: if((xCurrent + legLength) >= xMax){ return false; }
+                    else if(isACoordinate(loop, xCurrent + legLength, yCurrent)) { return false; }
+                    break;
+        }
+
+        return true;
+    }
+
+    /**
+     * This method is used within the LoopGenerator class as a way of testing if an x,y coordinate
+     * pair is already part of the loop
+     *
+     * @param loop The loop we want to test coordinates from
+     * @param x The x value of the coordinate pair to test for
+     * @param y The y value of the coordinate pair to test for
+     * @return
+     */
     private Boolean isACoordinate(Loop loop, int x, int y){
         for(int c = 0; c < loop.getNumLegs(); c++){
             if(loop.getCoordinate(c).getX() == x && loop.getCoordinate(c).getY() == y){
@@ -178,14 +185,46 @@ public class LoopGenerator {
         return false;
     }
 
-    private void writeLoopsToFile(){
+    /*
+    private String generateJSON(){
+        JSONObject obj = new JSONObject();
+
+        JSONObject jsonCoordinates;
+        JSONArray jsonCoordinate;
+
+        JSONObject jsonLoops;
+        JSONArray jsonLoop;
+
+        jsonLoops = new JSONObject();
+        jsonLoop = new JSONArray();
+
+        for(int loop = 0; loop < loops.size(); loop++){
+
+            jsonCoordinates = new JSONObject();
+
+            for(int coordinate = 0; coordinate < loops.get(loop).getNumLegs(); coordinate++){
+                jsonCoordinate = new JSONArray();
+                jsonCoordinate.add("x:"+loops.get(loop).getCoordinate(coordinate).getX());
+                jsonCoordinate.add("y:"+loops.get(loop).getCoordinate(coordinate).getY());
+                jsonCoordinates.put("coordinates", jsonCoordinates);
+            }
+
+            jsonLoop.add("coordinates:", jsonCoordinates);
+
+        }
+        jsonLoops.put("loops", jsonLoop);
+        return null;
+    }*/
+
+
+    private void writeLoopsToTerminal(){
         //For each loop
         for(int l = 0; l < loops.size(); l++){
-            writeLoopToFile(loops.get(l));
+            writeLoopToTerminal(loops.get(l));
         }
     }
 
-    private void writeLoopToFile(Loop loop){
+    private void writeLoopToTerminal(Loop loop){
         setUpRouteGrid();
 
         //Print Coordinates
@@ -221,5 +260,32 @@ public class LoopGenerator {
         }
     }
 
+
+
+    //Getters and Setters
+
+    public int getRouteDistance() {
+        return routeDistance;
+    }
+
+    public void setRouteDistance(int routeDistance) {
+        this.routeDistance = routeDistance;
+    }
+
+    public int getLegLength() {
+        return legLength;
+    }
+
+    public void setLegLength(int legLength) {
+        this.legLength = legLength;
+    }
+
+    public int getNumberOfLoops() {
+        return numberOfLoops;
+    }
+
+    public void setNumberOfLoops(int numberOfLoops) {
+        this.numberOfLoops = numberOfLoops;
+    }
 
 }

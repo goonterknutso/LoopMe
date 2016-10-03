@@ -35,8 +35,6 @@ public class Loop {
         return coordinates.get(position);
     }
 
-
-
     public int getNumLegs(){
         return coordinates.size();
     }
@@ -44,6 +42,7 @@ public class Loop {
     public int getDistance(int legLength){
         return (legLength * coordinates.size());
     }
+
 
     //Getters and Setters
 
@@ -78,6 +77,5 @@ public class Loop {
     public void setLegLength(int legLength){
         this.legLength = legLength;
     }
-
 
 }
