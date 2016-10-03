@@ -36,11 +36,11 @@ public class Loop {
     }
 
     public int getNumLegs(){
-        return coordinates.size();
+        return coordinates.size()-1;
     }
 
     public int getDistance(int legLength){
-        return (legLength * coordinates.size());
+        return (legLength * getNumLegs());
     }
 
 

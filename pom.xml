@@ -51,6 +51,13 @@
       <version>2.6.3</version>
     </dependency>
 
+    <!--Firebase-->
+    <dependency>
+      <groupId>com.firebase</groupId>
+      <artifactId>firebase-client-android</artifactId>
+      <version>[2.5.2,)</version>
+    </dependency>
+
   </dependencies>
 
 

@@ -68,14 +68,13 @@ public class LoopGenerator {
 
         //Run until the number of loops we want is generated
         while(generateLoops){
-            //System.out.println("new loop");
 
             loop = new Loop();
 
             //Push first coordinate
             int xCurrent = xMid;
             int yCurrent = yMid;
-            //loop.addCoordinate(new Coordinate(xCurrent,yCurrent));
+            loop.addCoordinate(new Coordinate(xCurrent,yCurrent));
 
             generateLegs = true;
 
@@ -102,6 +101,7 @@ public class LoopGenerator {
 
                 //Loop complete with correct route distance
                 if(atStart(xCurrent,yCurrent) && (loop.getDistance(legLength) == routeDistance)){
+                    System.out.println("LOOP");
                     loops.addLoop(loop);
                     generateLegs = false;
                 }
@@ -121,6 +121,8 @@ public class LoopGenerator {
 
         writeLoopsToTerminal();
 
+        FireDBHelper newHelper = new FireDBHelper();
+        newHelper.saveLoopPatterns(generateJSON());
         //System.out.println(generateJSON());
     }
 
@@ -148,11 +150,6 @@ public class LoopGenerator {
      * @return
      */
     private Boolean checkDirection(Loop loop, int randomDirection, int xCurrent, int yCurrent){
-        /*
-        if (randomDirection == oppositeDirection) {
-            return false;
-        }*/
-
 
         switch(randomDirection){
             case UP: if((yCurrent + legLength) >= yMax){ return false; }
@@ -168,7 +165,6 @@ public class LoopGenerator {
                     else if(isACoordinate(loop, xCurrent + legLength, yCurrent)) { return false; }
                     break;
         }
-
         return true;
     }
 
@@ -183,7 +179,7 @@ public class LoopGenerator {
      */
     private Boolean isACoordinate(Loop loop, int x, int y){
         for(int c = 0; c < loop.getNumLegs(); c++){
-            if(loop.getCoordinate(c).getX() == x && loop.getCoordinate(c).getY() == y){
+            if ((!atStart(x,y) && loop.getCoordinate(c).getX() == x && loop.getCoordinate(c).getY() == y)) {
                 return true;
             }
         }
@@ -191,7 +187,7 @@ public class LoopGenerator {
     }
 
 
-    private String generateJSON(){
+    public String generateJSON(){
         try {
             ObjectMapper mapper = new ObjectMapper();
             // Convert object to JSON string and save into a file directly
@@ -204,6 +200,8 @@ public class LoopGenerator {
             // Convert object to JSON string and pretty print
             jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(loops);
             System.out.println(jsonInString);
+
+            return jsonInString;
 
         } catch (JsonGenerationException e) {
             e.printStackTrace();
