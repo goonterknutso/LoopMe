@@ -3,6 +3,7 @@
 
 #Custom file:
 src/main/resources/hibernate.cfg.xml
+src/main/resources/LoopMe-7868d5b35d9b.json
 
 # User-specific stuff:
 .idea/workspace.xml

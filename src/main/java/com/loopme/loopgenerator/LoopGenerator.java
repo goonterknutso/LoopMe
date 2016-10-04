@@ -2,15 +2,23 @@ package com.loopme.loopgenerator;
 
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 /**
@@ -121,33 +129,9 @@ public class LoopGenerator {
             }
 
         }
-
-        writeLoopsToTerminal();
-        System.out.println("TEST!");
-        writeToFirebase();
         //System.out.println(generateJSON());
     }
 
-    public void writeToFirebase(){
-        System.out.println("TEST2");
-        Firebase ref = new Firebase("https://loopme-144918.firebaseio.com/");
-        ref.removeValue();
-
-        Map<String, Object>  dbLoops = new HashMap<String, Object>();
-        Map<String, Object> dbCoordinates = new HashMap<String,Object>();
-
-        for(int l = 0; l < loops.getLoops().size(); l++){
-            System.out.println("IN");
-            dbCoordinates.put("coordinates",loops.getLoop(l).getCoordinates());
-            dbLoops.put("loop", dbCoordinates);
-        }
-        System.out.println("TEST");
-        System.out.println(dbLoops.toString());
-        Map<String, String> test = new HashMap<String,String>();
-        test.put("Name","Gunther");
-        ref.setValue(test);
-
-    }
 
     /**
      * This method checks a pair of x,y coordinate values to see if they are
@@ -173,6 +157,10 @@ public class LoopGenerator {
      * @return
      */
     private Boolean checkDirection(Loop loop, int randomDirection, int xCurrent, int yCurrent){
+
+        if(!atStart(xCurrent,yCurrent) && isACoordinate(loop, xCurrent, yCurrent)){
+            return false;
+        }
 
         switch(randomDirection){
             case UP: if((yCurrent + legLength) >= yMax){ return false; }
@@ -209,7 +197,29 @@ public class LoopGenerator {
         return false;
     }
 
+    public void writeToFirebase() throws FileNotFoundException {
+        FirebaseOptions options = new FirebaseOptions.Builder()
+                .setServiceAccount(new FileInputStream("src/main/resources/LoopMe-7868d5b35d9b.json"))
+                .setDatabaseUrl("https://loopme-144918.firebaseio.com/")
+                .build();
+        FirebaseApp.initializeApp(options);
 
+        // Get a reference to our posts
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference("data");
+
+        DatabaseReference usersRef = ref.child("name");
+
+        Map<String, String> users = new HashMap<String, String>();
+        users.put("01", "Test1");
+        users.put("02", "Test2");
+
+        usersRef.setValue(users);
+
+// Attach a listener to read the data at our posts reference
+
+
+    }
     public String generateJSON(){
         try {
             ObjectMapper mapper = new ObjectMapper();
@@ -237,7 +247,7 @@ public class LoopGenerator {
     }
 
 
-    private void writeLoopsToTerminal(){
+    public void writeLoopsToTerminal(){
         //For each loop
         for(int l = 0; l < loops.getLoops().size(); l++){
             writeLoopToTerminal(loops.getLoop(l));
