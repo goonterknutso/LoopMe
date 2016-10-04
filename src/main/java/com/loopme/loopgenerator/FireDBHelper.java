@@ -12,8 +12,8 @@ public class FireDBHelper {
         myFirebase = new Firebase("https://loopme-144918.firebaseio.com/");
     }
 
-    public void saveLoopPatterns(String JSON){
-        myFirebase.setValue(JSON);
+    public void saveLoopPatterns(Object o){
+        myFirebase.setValue(o);
     }
 
 

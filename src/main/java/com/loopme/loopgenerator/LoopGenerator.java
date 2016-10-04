@@ -4,10 +4,13 @@ package com.loopme.loopgenerator;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.firebase.client.Firebase;
 
 
 /**
@@ -120,10 +123,30 @@ public class LoopGenerator {
         }
 
         writeLoopsToTerminal();
-
-        FireDBHelper newHelper = new FireDBHelper();
-        newHelper.saveLoopPatterns(generateJSON());
+        System.out.println("TEST!");
+        writeToFirebase();
         //System.out.println(generateJSON());
+    }
+
+    public void writeToFirebase(){
+        System.out.println("TEST2");
+        Firebase ref = new Firebase("https://loopme-144918.firebaseio.com/");
+        ref.removeValue();
+
+        Map<String, Object>  dbLoops = new HashMap<String, Object>();
+        Map<String, Object> dbCoordinates = new HashMap<String,Object>();
+
+        for(int l = 0; l < loops.getLoops().size(); l++){
+            System.out.println("IN");
+            dbCoordinates.put("coordinates",loops.getLoop(l).getCoordinates());
+            dbLoops.put("loop", dbCoordinates);
+        }
+        System.out.println("TEST");
+        System.out.println(dbLoops.toString());
+        Map<String, String> test = new HashMap<String,String>();
+        test.put("Name","Gunther");
+        ref.setValue(test);
+
     }
 
     /**
