@@ -1,26 +1,6 @@
 package com.loopme.loopgenerator;
 
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-
 /**
  * LoopGenerator class is used to randomly generate loops.
  *
@@ -45,16 +25,20 @@ public class LoopGenerator {
 
     private int legLength;
     private int numberOfLoops;
-    private File file;
     private String[][] routeGrid;
+
+    private int oppositeDirection;
 
     Loops loops;
 
-    public LoopGenerator(int routeDistance, int legLength, int numberOfLoops, String fileLocation){
+    boolean added;
+    int tenTimesInARow;
+
+
+    public LoopGenerator(int routeDistance, int legLength, int numberOfLoops){
         this.routeDistance = routeDistance;
         this.legLength = legLength;
         this.numberOfLoops = numberOfLoops;
-        //this.file = new File(fileLocation);
 
         xMid = this.routeDistance /2;
         yMid = this.routeDistance /2;
@@ -67,11 +51,11 @@ public class LoopGenerator {
         routeGrid = new String[this.routeDistance][this.routeDistance];
         loops = new Loops();
 
+        oppositeDirection = Integer.MAX_VALUE;
+        tenTimesInARow = 0;
     }
 
     public void generateLoops(){
-        System.out.println("Generating loops....");
-
         boolean generateLoops = true;
         boolean generateLegs;
         int randomDirection;
@@ -80,7 +64,7 @@ public class LoopGenerator {
         //Run until the number of loops we want is generated
         while(generateLoops){
 
-            loop = new Loop();
+            loop = new Loop(legLength, routeDistance);
 
             //Push first coordinate
             int xCurrent = xMid;
@@ -98,10 +82,10 @@ public class LoopGenerator {
                 //Checks the random direction, adds point if passes certain conditionals (see check direction)
                 if(checkDirection(loop, randomDirection, xCurrent, yCurrent)) {
                     switch(randomDirection){
-                        case UP: yCurrent += legLength; break;
-                        case DOWN: yCurrent -= legLength; break;
-                        case LEFT: xCurrent -= legLength; break;
-                        case RIGHT: xCurrent += legLength; break;
+                        case UP: yCurrent += legLength; oppositeDirection=1; break;
+                        case DOWN: yCurrent -= legLength; oppositeDirection=0; break;
+                        case LEFT: xCurrent -= legLength; oppositeDirection=3; break;
+                        case RIGHT: xCurrent += legLength; oppositeDirection=2; break;
                     }
 
                     //Add coordinate to loop
@@ -110,15 +94,20 @@ public class LoopGenerator {
                     break;
                 }
 
+
                 //Loop complete with correct route distance
-                if(atStart(xCurrent,yCurrent) && (loop.getDistance(legLength) == routeDistance)){
-                    System.out.println("LOOP");
-                    loops.addLoop(loop);
+                if(atStart(xCurrent,yCurrent) && (loop.getDistance() == routeDistance)){
+                    added = loops.addLoop(loop);
+                    if(added){
+                        tenTimesInARow = 0;
+                    }else{
+                        tenTimesInARow++;
+                    }
                     generateLegs = false;
                 }
 
                 //Loop beyond our route distance, start over
-                if(loop.getDistance(legLength) > routeDistance){
+                if(loop.getDistance() > routeDistance){
                     generateLegs = false;
                 }
             }
@@ -128,25 +117,17 @@ public class LoopGenerator {
                 generateLoops = false;
             }
 
+            if(tenTimesInARow == 50){
+                System.out.println("Exited with Failure Number");
+                generateLoops = false;
+            }
+
         }
-        //System.out.println(generateJSON());
     }
 
 
-    /**
-     * This method checks a pair of x,y coordinate values to see if they are
-     * at the start of the loop
-     *
-     * @param xCurrent the x value to check
-     * @param yCurrent the y value to check
-     * @return
-     */
-    private Boolean atStart(int xCurrent, int yCurrent){
-        if(xCurrent == xMid && yCurrent == yMid){
-            return true;
-        }
-        return false;
-    }
+
+    //Private Method for Loop Generating
 
     /**
      * This method is used within the LoopGenerator class to check directions generated randomly.
@@ -158,7 +139,7 @@ public class LoopGenerator {
      */
     private Boolean checkDirection(Loop loop, int randomDirection, int xCurrent, int yCurrent){
 
-        if(!atStart(xCurrent,yCurrent) && isACoordinate(loop, xCurrent, yCurrent)){
+        if(randomDirection == oppositeDirection){
             return false;
         }
 
@@ -197,57 +178,75 @@ public class LoopGenerator {
         return false;
     }
 
-    public void writeToFirebase() throws FileNotFoundException {
-        FirebaseOptions options = new FirebaseOptions.Builder()
-                .setServiceAccount(new FileInputStream("src/main/resources/LoopMe-7868d5b35d9b.json"))
-                .setDatabaseUrl("https://loopme-144918.firebaseio.com/")
-                .build();
-        FirebaseApp.initializeApp(options);
-
-        // Get a reference to our posts
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("data");
-
-        DatabaseReference usersRef = ref.child("name");
-
-        Map<String, String> users = new HashMap<String, String>();
-        users.put("01", "Test1");
-        users.put("02", "Test2");
-
-        usersRef.setValue(users);
-
-// Attach a listener to read the data at our posts reference
-
-
-    }
-    public String generateJSON(){
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            // Convert object to JSON string and save into a file directly
-            //mapper.writeValue(new File("D:\\staff.json"), staff);
-
-            // Convert object to JSON string
-            String jsonInString = mapper.writeValueAsString(loops);
-            System.out.println(jsonInString);
-
-            // Convert object to JSON string and pretty print
-            jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(loops);
-            System.out.println(jsonInString);
-
-            return jsonInString;
-
-        } catch (JsonGenerationException e) {
-            e.printStackTrace();
-        } catch (JsonMappingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+    /**
+     * This method checks a pair of x,y coordinate values to see if they are
+     * at the start of the loop
+     *
+     * @param xCurrent the x value to check
+     * @param yCurrent the y value to check
+     * @return
+     */
+    private Boolean atStart(int xCurrent, int yCurrent){
+        if(xCurrent == xMid && yCurrent == yMid){
+            return true;
         }
-        return null;
+        return false;
     }
 
+
+
+    //Getters and Setters
+
+    public void setLoops(Loops loop){
+        this.loops = loops;
+    }
+
+    public Loops getLoops(){
+        return loops;
+    }
+
+
+
+
+    //Output Methods for Terminal
 
     public void writeLoopsToTerminal(){
+
+        //Loop Info
+        System.out.println("------------LOOP INFO-------------");
+        System.out.println();
+        System.out.println("Route Distance:  " + routeDistance);
+        System.out.println("Leg Length:      " + legLength);
+        System.out.println("Number of Loops: " + loops.getLoops().size());
+        System.out.println();
+        System.out.println("----------------------------------");
+        System.out.println();
+
+        //Print all coordinates first
+        System.out.println("::Coordinates::");
+        System.out.println();
+        for(Loop l: loops.getLoops()){
+            for(Coordinate c : l.getCoordinates()){
+                System.out.print("(");
+                if(c.getX() < 10){
+                    System.out.print(" "+c.getX());
+                }else{
+                    System.out.print(c.getX());
+                }
+                System.out.print(",");
+                if(c.getY() < 10){
+                    System.out.print(c.getY()+" ");
+                }else{
+                    System.out.print(c.getY());
+                }
+                System.out.print(") ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+
+        System.out.println("::Grid w/ Coordinates::");
+        System.out.println();
         //For each loop
         for(int l = 0; l < loops.getLoops().size(); l++){
             writeLoopToTerminal(loops.getLoop(l));
@@ -255,7 +254,7 @@ public class LoopGenerator {
     }
 
     private void writeLoopToTerminal(Loop loop){
-        setUpRouteGrid();
+        setUpRouteGridForTerminal();
 
         //Print Coordinates
         for(int c = 0; c < loop.getNumLegs(); c++){
@@ -282,7 +281,7 @@ public class LoopGenerator {
         System.out.println();
     }
 
-    private void setUpRouteGrid(){
+    private void setUpRouteGridForTerminal(){
         for(int y = yMin; y < yMax; y++){
             for(int x = xMin; x < xMax; x++){
                 routeGrid[x][y] = ".  ";
@@ -290,32 +289,5 @@ public class LoopGenerator {
         }
     }
 
-
-
-    //Getters and Setters
-
-    public int getRouteDistance() {
-        return routeDistance;
-    }
-
-    public void setRouteDistance(int routeDistance) {
-        this.routeDistance = routeDistance;
-    }
-
-    public int getLegLength() {
-        return legLength;
-    }
-
-    public void setLegLength(int legLength) {
-        this.legLength = legLength;
-    }
-
-    public int getNumberOfLoops() {
-        return numberOfLoops;
-    }
-
-    public void setNumberOfLoops(int numberOfLoops) {
-        this.numberOfLoops = numberOfLoops;
-    }
 
 }

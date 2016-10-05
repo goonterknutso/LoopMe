@@ -1,6 +1,7 @@
 package com.loopme.loopgenerator;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by gunther on 10/3/16.
@@ -9,12 +10,14 @@ public class Loop {
 
     private ArrayList<Coordinate> coordinates;
     private int legLength;
+    private int numLegs;
+    private int routeDistance;
+
 
     /**
      * Constructor (empty)
      */
     public Loop(){
-        coordinates = new ArrayList<Coordinate>();
     }
 
     /**
@@ -22,9 +25,10 @@ public class Loop {
      *
      * @param legLength the leg length for the loop
      */
-    public Loop(int legLength){
-        super();
+    public Loop(int legLength, int routeDistance){
+        coordinates = new ArrayList<Coordinate>();
         this.legLength = legLength;
+        this.routeDistance = routeDistance;
     }
 
     public void addCoordinate(Coordinate coordinate){
@@ -35,11 +39,7 @@ public class Loop {
         return coordinates.get(position);
     }
 
-    public int getNumLegs(){
-        return coordinates.size()-1;
-    }
-
-    public int getDistance(int legLength){
+    public int getDistance(){
         return (legLength * getNumLegs());
     }
 
@@ -50,7 +50,7 @@ public class Loop {
      * Gets the coordinates from the loop
      * @return the coordinates from the loop
      */
-    public ArrayList<Coordinate> getCoordinates(){
+    public List<Coordinate> getCoordinates(){
         return coordinates;
     }
 
@@ -58,15 +58,15 @@ public class Loop {
      * Sets the coordinates for the loop
      * @param coordinates the coordinates for the loop
      */
-    public void setCoordinates(ArrayList<Coordinate> coordinates){
-        this.coordinates = coordinates;
+    public void setCoordinates(List<Coordinate> coordinates){
+        this.coordinates = (ArrayList<Coordinate>) coordinates;
     }
 
     /**
      * Gets the leg length for the loop
      * @return the leg length for the loop
      */
-    public int getLegLegth(){
+    public int getLegLength(){
         return legLength;
     }
 
@@ -77,5 +77,35 @@ public class Loop {
     public void setLegLength(int legLength){
         this.legLength = legLength;
     }
+
+    /**
+     * Gets the route distance
+     * @return the route distance
+     */
+    public int getRouteDistance(){
+        return routeDistance;
+    }
+
+    /**
+     * Sets the route distance
+     * @param routeDistance the route distance
+     */
+    public void setRouteDistance(int routeDistance){
+        this.routeDistance = routeDistance;
+    }
+
+    /**
+     * Gets the number of legs for the route
+     * @return the number of legs for the route
+     */
+    public int getNumLegs(){
+        return (coordinates.size()-1);
+    }
+
+    /**
+     * Sets the number of legs for the route
+     * @param numLegs the number of legs for the route
+     */
+    public void setNumLegs(int numLegs){this.numLegs = coordinates.size()-1;}
 
 }

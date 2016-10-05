@@ -7,19 +7,13 @@ import java.io.FileNotFoundException;
  */
 public class LoopGeneratorDriver {
     public static void main(String[] args){
-        LoopGenerator test1 = new LoopGenerator(20, 2, 2, null);
-        test1.generateLoops();
+
+        FireDBHelper db = new FireDBHelper();
+
+        LoopGenerator test1 = new LoopGenerator(20, 5, 20);
+
+        test1.setLoops(db.getLoopPatterns());
         test1.writeLoopsToTerminal();
 
-        try {
-            test1.writeToFirebase();
-        } catch (FileNotFoundException e){
-
-        }
-
-
-        /*LoopGenerator test2 = new LoopGenerator(20, 5, 5, null);
-        test2.generateLoops();
-        System.out.println(test2.generateJSON());*/
     }
 }
