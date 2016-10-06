@@ -23,6 +23,7 @@ public class Loops {
         if(loops.size()!= 0 && alreadyAdded(loop)){
             return false;
         }else{
+            System.out.println("Loop added");
             loops.add(loop);
             return true;
         }

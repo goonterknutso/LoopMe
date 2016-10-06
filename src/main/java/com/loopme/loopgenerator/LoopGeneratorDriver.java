@@ -10,9 +10,12 @@ public class LoopGeneratorDriver {
 
         FireDBHelper db = new FireDBHelper();
 
-        LoopGenerator test1 = new LoopGenerator(20, 5, 20);
+        LoopGenerator test1 = new LoopGenerator(100, 5, 20);
+        test1.generateLoops();
 
-        test1.setLoops(db.getLoopPatterns());
+        //db.writeLoopPatterns(test1.getLoops());
+
+        //test1.setLoops(db.getLoopPatterns());
         test1.writeLoopsToTerminal();
 
     }

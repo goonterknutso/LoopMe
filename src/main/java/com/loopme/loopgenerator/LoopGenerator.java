@@ -96,7 +96,7 @@ public class LoopGenerator {
 
 
                 //Loop complete with correct route distance
-                if(atStart(xCurrent,yCurrent) && (loop.getDistance() == routeDistance)){
+                if(atStart(xCurrent,yCurrent) && (loop.getNumLegs()*loop.getLegLength() == routeDistance)){
                     added = loops.addLoop(loop);
                     if(added){
                         tenTimesInARow = 0;
@@ -107,7 +107,7 @@ public class LoopGenerator {
                 }
 
                 //Loop beyond our route distance, start over
-                if(loop.getDistance() > routeDistance){
+                if(loop.getNumLegs()*loop.getLegLength() > routeDistance){
                     generateLegs = false;
                 }
             }
@@ -197,7 +197,7 @@ public class LoopGenerator {
 
     //Getters and Setters
 
-    public void setLoops(Loops loop){
+    public void setLoops(Loops loops){
         this.loops = loops;
     }
 

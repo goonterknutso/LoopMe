@@ -2,22 +2,22 @@ package com.loopme.loopgenerator;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import net.thegreshams.firebase4j.error.FirebaseException;
-import net.thegreshams.firebase4j.error.JacksonUtilityException;
 import net.thegreshams.firebase4j.model.FirebaseResponse;
 import net.thegreshams.firebase4j.service.Firebase;
 
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.SerializationConfig;
 
 public class FireDBHelper{
+
     private String firebase_baseURL = "https://loopme-144918.firebaseio.com/";
     Firebase firebase;
 
@@ -30,30 +30,61 @@ public class FireDBHelper{
         }
     }
 
-
-
     public void writeLoopPatterns(Loops loops){
         //Convert loops to JSON string
         String JSON = convertToJSON(loops);
-
+        System.out.println(JSON);
         //Write JSON string to database
         writeToDatabase(JSON);
     }
 
     public Loops getLoopPatterns(){
+        //http://tutorials.jenkov.com/java-json/jackson-jsonparser.html
+        //http://wiki.fasterxml.com/JacksonTreeModel
+
         String JSON = readFromDatabase("loops");
-        Loops loops = (Loops) convertToObject(JSON, Loops.class);
+        System.out.println(JSON);
+        Loops loops = new Loops();
+
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            JsonNode rootNode = mapper.readValue(JSON, JsonNode.class);
+
+            //Gets each loop
+            for(JsonNode node : rootNode){
+
+                Loop loop = new Loop();
+                ArrayList<Coordinate> coordinates = new ArrayList<Coordinate>();
+
+                for(JsonNode c : node.path("coordinates")){
+                    Coordinate coordinate = new Coordinate();
+                    coordinate.setX(c.path("x").intValue());
+                    coordinate.setY(c.path("y").intValue());
+                    coordinates.add(coordinate);
+                }
+                System.out.println(coordinates.toString());
+                loop.setCoordinates(coordinates);
+
+                loop.setLegLength(node.path("legLegth").intValue());
+                loop.setNumLegs(node.path("numLegs").intValue());
+                loop.setRouteDistance(node.path("routeDistance").intValue());
+
+                loops.addLoop(loop);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         return loops;
     }
-
 
 
     private String readFromDatabase(String URL){
         FirebaseResponse response;
         try {
             response = firebase.get(URL);
-            System.out.println(response.getRawBody());
-            return response.getBody().toString();
+            return response.getRawBody();
         } catch(FirebaseException e) {
             System.out.println("Error: Loops could not be read");
         } catch(UnsupportedEncodingException e){

@@ -39,10 +39,6 @@ public class Loop {
         return coordinates.get(position);
     }
 
-    public int getDistance(){
-        return (legLength * getNumLegs());
-    }
-
 
     //Getters and Setters
 
