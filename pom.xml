@@ -8,9 +8,14 @@
   <name>tempArtifactId Maven Webapp</name>
   <url>http://maven.apache.org</url>
 
+  <properties>  <!-- App Engine Standard currently requires Java 7 -->
+    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>1.7</maven.compiler.source>
+  </properties>
+
   <dependencies>
 
-    <!--JUnit-->
+    <!-- JUnit -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -18,12 +23,14 @@
       <scope>test</scope>
     </dependency>
 
+    <!-- JAVAX -->
     <dependency>
       <groupId>javax</groupId>
       <artifactId>javaee-web-api</artifactId>
       <version>7.0</version>
     </dependency>
 
+    <!-- MySQL Connector -->
     <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
     <dependency>
       <groupId>mysql</groupId>
@@ -31,6 +38,7 @@
       <version>5.1.39</version>
     </dependency>
 
+    <!-- Log4J -->
     <!-- https://mvnrepository.com/artifact/log4j/log4j -->
     <dependency>
       <groupId>log4j</groupId>
@@ -38,7 +46,7 @@
       <version>1.2.17</version>
     </dependency>
 
-    <!-- hibernate -->
+    <!-- Hibernate -->
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
@@ -52,15 +60,19 @@
       <version>2.6.3</version>
     </dependency>
 
-    <!--Firebase-->
 
 
-    <!--HTTP Components-->
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpcore</artifactId>
+      <version>4.4.5</version>
+    </dependency>
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpclient</artifactId>
-      <version>4.5</version>
+      <version>4.3.6</version>
     </dependency>
+
 
     <!--Firebase4j-->
 
@@ -89,6 +101,27 @@
       <version>1.9.5</version>
     </dependency>
 
+    <!-- Google Maps -->
+    <dependency>
+      <groupId>com.google.maps</groupId>
+      <artifactId>google-maps-services</artifactId>
+      <version>0.1.16</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/com.google.mockwebserver/mockwebserver -->
+    <dependency>
+      <groupId>com.google.mockwebserver</groupId>
+      <artifactId>mockwebserver</artifactId>
+      <version>20130706</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-all</artifactId>
+      <version>1.10.19</version>
+    </dependency>
+
 
   </dependencies>
 
@@ -96,6 +129,7 @@
   <build>
     <finalName>tempArtifactId</finalName>
     <plugins>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -104,6 +138,8 @@
           <target>1.6</target>
         </configuration>
       </plugin>
+
     </plugins>
   </build>
+
 </project>
