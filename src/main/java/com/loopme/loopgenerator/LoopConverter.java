@@ -1,7 +1,12 @@
 package com.loopme.loopgenerator;
 
+import com.google.maps.DirectionsApi;
+import com.google.maps.DirectionsApiRequest;
 import com.google.maps.GeoApiContext;
 import com.google.maps.RoadsApi;
+import com.google.maps.internal.PolylineEncoding;
+import com.google.maps.model.DirectionsResult;
+import com.google.maps.model.DirectionsRoute;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.SnappedPoint;
 
@@ -17,14 +22,62 @@ public class LoopConverter {
     LatLng startingLocation;
     double distance;
 
-    public LoopConverter(LatLng startingLocation, double distance){
+
+    public LoopConverter(LatLng startingLocation, double distance) {
         this.startingLocation = startingLocation;
         this.distance = distance;
     }
 
-    public SnappedPoint[] snapPointsToRoad(Loop loop){
+    public void waypoints(Loop loop){
         GeoApiContext context = new GeoApiContext();
         context.setApiKey(System.getenv("API_KEY"));
+        LatLng[] GPSCoordinates = convertLoop(loop);
+        String[] allWaypoints = new String[GPSCoordinates.length];
+        String[] waypoints = new String[GPSCoordinates.length - 2];
+
+        for(int i = 0; i<GPSCoordinates.length; i++){
+           allWaypoints[i] = GPSCoordinates[i].toString();
+        }
+
+        //print print print
+        for(int i = 0; i<allWaypoints.length; i++){
+            System.out.println(allWaypoints[i].toString());
+        }
+
+        System.out.println();System.out.println();
+
+        for(int i = 1; i < allWaypoints.length - 1; i++) {
+            waypoints[i-1] = allWaypoints[i];
+        }
+
+        //print print print
+        for(int i = 0; i<waypoints.length; i++){
+            System.out.println(waypoints[i].toString());
+        }
+
+
+        DirectionsApiRequest request = DirectionsApi.newRequest(context);
+        DirectionsApi.getDirections(context, waypoints[0], waypoints[0]);
+        request.waypoints(waypoints);
+
+        try {
+            DirectionsResult result = DirectionsApi.newRequest(context)
+                    .origin(allWaypoints[0])
+                    .destination(allWaypoints[0])
+                    .waypoints(waypoints)
+                    .await();
+
+            System.out.println(result.routes[0].toString());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    /*
+    public SnappedPoint[] snapToRoad(Loop loop){
+        GeoApiContext context = new GeoApiContext();
+        context.setApiKey(System.getenv("API_KEY"));
+        System.out.println("Key: " + System.getenv("API_KEY"));
         SnappedPoint[] snappedPoints = new SnappedPoint[loop.getCoordinates().size()];
         try {
             snappedPoints = RoadsApi.snapToRoads(context,
@@ -36,7 +89,7 @@ public class LoopConverter {
 
         return snappedPoints;
 
-    }
+    }*/
 
     /**
      * Converts Coordinates for a Loop into a LatLng array of LatLng

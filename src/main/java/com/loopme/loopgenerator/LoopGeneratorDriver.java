@@ -14,7 +14,7 @@ public class LoopGeneratorDriver {
 
         //FireDBHelper firebase = new FireDBHelper();
 
-        LoopGenerator test1 = new LoopGenerator(100, 10, 1);
+        LoopGenerator test1 = new LoopGenerator(100, 10, 5);
 
         //test1.setLoops(firebase.getLoopPatterns());
         test1.generateLoops();
@@ -24,12 +24,15 @@ public class LoopGeneratorDriver {
         test1.writeLoopsToTerminal();
 
         LatLng startLocation = new LatLng(43.179325, -89.445582);
-        LoopConverter test = new LoopConverter(startLocation, 5);
+        LoopConverter test = new LoopConverter(startLocation, 1);
+
+        test.waypoints(test1.getLoops().getLoop(0));
 
 
-        for(SnappedPoint p : test.snapPointsToRoad(test1.getLoops().getLoop(0))){
-            System.out.println(p);
-        }
+        /*
+        for(SnappedPoint p : test.snapToRoad(test1.getLoops().getLoop(0))){
+            System.out.println(p.location.lat+","+p.location.lng);
+        }*/
 
 
     }
