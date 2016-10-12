@@ -38,12 +38,13 @@ public class FireDBHelper{
         writeToDatabase(JSON);
     }
 
+
     public Loops getLoopPatterns(){
         //http://tutorials.jenkov.com/java-json/jackson-jsonparser.html
         //http://wiki.fasterxml.com/JacksonTreeModel
 
         String JSON = readFromDatabase("loops");
-        System.out.println(JSON);
+        //System.out.println(JSON);
         Loops loops = new Loops();
 
         ObjectMapper mapper = new ObjectMapper();

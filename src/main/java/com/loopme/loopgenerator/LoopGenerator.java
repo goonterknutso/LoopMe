@@ -13,6 +13,9 @@ public class LoopGenerator {
     private static final int LEFT = 2;
     private static final int RIGHT = 3;
 
+    private static final int SAME_EXIT = 50;
+    private static final int FAIL_EXIT = 500000;
+
     private int routeDistance;
 
     private int xMax;
@@ -32,7 +35,8 @@ public class LoopGenerator {
     Loops loops;
 
     boolean added;
-    int tenTimesInARow;
+    int sameCounter;
+    int failCounter;
 
 
     public LoopGenerator(int routeDistance, int legLength, int numberOfLoops){
@@ -52,7 +56,8 @@ public class LoopGenerator {
         loops = new Loops();
 
         oppositeDirection = Integer.MAX_VALUE;
-        tenTimesInARow = 0;
+        sameCounter = 0;
+        failCounter = 0;
     }
 
     public void generateLoops(){
@@ -99,9 +104,10 @@ public class LoopGenerator {
                 if(atStart(xCurrent,yCurrent) && (loop.getNumLegs()*loop.getLegLength() == routeDistance)){
                     added = loops.addLoop(loop);
                     if(added){
-                        tenTimesInARow = 0;
+                        sameCounter = 0;
+                        failCounter = 0;
                     }else{
-                        tenTimesInARow++;
+                        sameCounter++;
                     }
                     generateLegs = false;
                 }
@@ -117,10 +123,12 @@ public class LoopGenerator {
                 generateLoops = false;
             }
 
-            if(tenTimesInARow == 50){
+            if(sameCounter == SAME_EXIT|| failCounter == FAIL_EXIT){
                 System.out.println("Exited with Failure Number");
                 generateLoops = false;
             }
+
+            failCounter++;
 
         }
     }
@@ -199,6 +207,7 @@ public class LoopGenerator {
 
     public void setLoops(Loops loops){
         this.loops = loops;
+        this.numberOfLoops += this.loops.getLoops().size();
     }
 
     public Loops getLoops(){
@@ -245,12 +254,13 @@ public class LoopGenerator {
         }
         System.out.println();
 
+        /*
         System.out.println("::Grid w/ Coordinates::");
         System.out.println();
         //For each loop
         for(int l = 0; l < loops.getLoops().size(); l++){
             writeLoopToTerminal(loops.getLoop(l));
-        }
+        }*/
     }
 
     private void writeLoopToTerminal(Loop loop){

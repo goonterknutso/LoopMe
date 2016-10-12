@@ -8,14 +8,17 @@ import java.io.FileNotFoundException;
 public class LoopGeneratorDriver {
     public static void main(String[] args){
 
-        FireDBHelper db = new FireDBHelper();
+        FireDBHelper firebase = new FireDBHelper();
 
-        LoopGenerator test1 = new LoopGenerator(100, 5, 20);
+        LoopGenerator test1 = new LoopGenerator(100, 10, 1000);
+
+        test1.setLoops(firebase.getLoopPatterns());
         test1.generateLoops();
 
-        //db.writeLoopPatterns(test1.getLoops());
+        firebase.writeLoopPatterns(test1.getLoops());
 
-        //test1.setLoops(db.getLoopPatterns());
+
+
         test1.writeLoopsToTerminal();
 
     }
