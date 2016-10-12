@@ -14,7 +14,7 @@ public class LoopGenerator {
     private static final int RIGHT = 3;
 
     private static final int SAME_EXIT = 50;
-    private static final int FAIL_EXIT = 500000;
+    private static final int FAIL_EXIT = 500000000;
 
     private int routeDistance;
 
