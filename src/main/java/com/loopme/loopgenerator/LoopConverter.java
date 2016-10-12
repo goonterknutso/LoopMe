@@ -5,6 +5,8 @@ import com.google.maps.RoadsApi;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.SnappedPoint;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -13,24 +15,21 @@ import java.util.concurrent.TimeUnit;
 public class LoopConverter {
 
     LatLng startingLocation;
+    double distance;
 
-    public LoopConverter(LatLng startingLocation){
+    public LoopConverter(LatLng startingLocation, double distance){
         this.startingLocation = startingLocation;
+        this.distance = distance;
     }
 
-    public SnappedPoint[] snapPointsToRoad(){
+    public SnappedPoint[] snapPointsToRoad(Loop loop){
         GeoApiContext context = new GeoApiContext();
-        SnappedPoint[] snappedPoints = new SnappedPoint[2];
+        context.setApiKey(System.getenv("API_KEY"));
+        SnappedPoint[] snappedPoints = new SnappedPoint[loop.getCoordinates().size()];
         try {
             snappedPoints = RoadsApi.snapToRoads(context,
                     false,
-                    new LatLng(-33.865382, 151.192861),
-                    new LatLng(-33.865837, 151.193376),
-                    new LatLng(-33.866745, 151.19373),
-                    new LatLng(-33.867128, 151.19344),
-                    new LatLng(-33.867547, 151.193676),
-                    new LatLng(-33.867841, 151.194137),
-                    new LatLng(-33.868224, 151.194116)).await();
+                    convertLoop(loop)).await();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -47,20 +46,38 @@ public class LoopConverter {
     public LatLng[] convertLoop(Loop loop){
 
         LatLng[] path = new LatLng[loop.getCoordinates().size()];
+        double legDistance = distance*((double)loop.getLegLength()/(double)loop.getRouteDistance());
+
+        System.out.println(legDistance);
+
+        double legLengthGPS = calculateLegDistanceKm(legDistance);
 
         for(int c = 0; c < loop.getCoordinates().size(); c++){
-            //path[c] = convertToLatLong(loop.getCoordinate(c));
+
+            //First or last coordinate pair (starting location)
+            if(c == 0 || c == loop.getCoordinates().size()){
+                path[c] = startingLocation;
+            }
+
+            path[c] = convertToLatLong(loop.getCoordinate(c), loop.getCoordinates(), legLengthGPS);
+
         }
 
         return path;
     }
 
-    /*public LatLng convertToLatLong(Coordinate coordinate){
+    public LatLng convertToLatLong(Coordinate coordinate, List<Coordinate> coordinates, double legLengthGPS){
+        Coordinate start = coordinates.get(0);
+        LatLng latLng = new LatLng(0.0,0.0);
 
-    }*/
 
+        latLng.lng = startingLocation.lng + ((coordinate.getX()-start.getX())*legLengthGPS);
+        latLng.lat = startingLocation.lat + ((coordinate.getY()-start.getY())*legLengthGPS);
 
-    public double calculateLegDistanceKm(int legLength){
+        return latLng;
+    }
+
+    public double calculateLegDistanceKm(double legLength){
 
         double R =  6372.8; // kilometres
         LatLng endingLocation = new LatLng(startingLocation.lat, startingLocation.lng);
@@ -73,7 +90,6 @@ public class LoopConverter {
 
         //Loop until GPS distance is close to legLength
         while(true) {
-
             lon2 += deltaGPS;
 
             //Haversine Formula: Calculates distance between two GPS coordinates

@@ -1,6 +1,7 @@
 package com.loopme.loopgenerator;
 
 import com.google.maps.model.LatLng;
+import com.google.maps.model.SnappedPoint;
 
 import java.io.FileNotFoundException;
 
@@ -10,27 +11,26 @@ import java.io.FileNotFoundException;
 public class LoopGeneratorDriver {
     public static void main(String[] args){
 
-        /*
-        FireDBHelper firebase = new FireDBHelper();
 
-        LoopGenerator test1 = new LoopGenerator(100, 5, 1000);
+        //FireDBHelper firebase = new FireDBHelper();
 
-        test1.setLoops(firebase.getLoopPatterns());
+        LoopGenerator test1 = new LoopGenerator(100, 10, 1);
+
+        //test1.setLoops(firebase.getLoopPatterns());
         test1.generateLoops();
 
-        firebase.writeLoopPatterns(test1.getLoops());
+        //firebase.writeLoopPatterns(test1.getLoops());
 
-
-
-        test1.writeLoopsToTerminal();*/
+        test1.writeLoopsToTerminal();
 
         LatLng startLocation = new LatLng(43.179325, -89.445582);
-        LoopConverter test = new LoopConverter(startLocation);
-        System.out.println(test.calculateLegDistanceKm(10)); //0.001534
+        LoopConverter test = new LoopConverter(startLocation, 5);
 
-        LatLng startLocation2 = new LatLng(64.998567, -97.039141);
-        LoopConverter test2 = new LoopConverter(startLocation2);
-        System.out.println(test2.calculateLegDistanceKm(10)); //0.001534
+
+        for(SnappedPoint p : test.snapPointsToRoad(test1.getLoops().getLoop(0))){
+            System.out.println(p);
+        }
+
 
     }
 }
