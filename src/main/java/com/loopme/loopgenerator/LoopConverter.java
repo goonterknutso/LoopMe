@@ -31,34 +31,30 @@ public class LoopConverter {
     public void waypoints(Loop loop){
         GeoApiContext context = new GeoApiContext();
         context.setApiKey(System.getenv("API_KEY"));
+
         LatLng[] GPSCoordinates = convertLoop(loop);
+
         String[] allWaypoints = new String[GPSCoordinates.length];
         String[] waypoints = new String[GPSCoordinates.length - 2];
 
+        //Converts GPSCoordinates from LatLng[] into String[]
         for(int i = 0; i<GPSCoordinates.length; i++){
            allWaypoints[i] = GPSCoordinates[i].toString();
         }
 
-        //print print print
-        for(int i = 0; i<allWaypoints.length; i++){
-            System.out.println(allWaypoints[i].toString());
-        }
+                    //Print Conversion
+                    for(int i = 0; i<allWaypoints.length; i++){
+                        System.out.println(allWaypoints[i].toString());
+                    }
+
 
         System.out.println();System.out.println();
 
+        //Remove starting and ending waypoints
         for(int i = 1; i < allWaypoints.length - 1; i++) {
             waypoints[i-1] = allWaypoints[i];
         }
 
-        //print print print
-        for(int i = 0; i<waypoints.length; i++){
-            System.out.println(waypoints[i].toString());
-        }
-
-
-        DirectionsApiRequest request = DirectionsApi.newRequest(context);
-        DirectionsApi.getDirections(context, waypoints[0], waypoints[0]);
-        request.waypoints(waypoints);
 
         try {
             DirectionsResult result = DirectionsApi.newRequest(context)
@@ -67,7 +63,6 @@ public class LoopConverter {
                     .waypoints(waypoints)
                     .await();
 
-            System.out.println(result.routes[0].toString());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -99,11 +94,13 @@ public class LoopConverter {
     public LatLng[] convertLoop(Loop loop){
 
         LatLng[] path = new LatLng[loop.getCoordinates().size()];
-        double legDistance = distance*((double)loop.getLegLength()/(double)loop.getRouteDistance());
 
+        double legDistance = distance*((double)loop.getLegLength()/(double)loop.getRouteDistance());
         System.out.println(legDistance);
 
         double legLengthGPS = calculateLegDistanceKm(legDistance);
+
+        System.out.println(legLengthGPS);
 
         for(int c = 0; c < loop.getCoordinates().size(); c++){
 
@@ -112,20 +109,20 @@ public class LoopConverter {
                 path[c] = startingLocation;
             }
 
-            path[c] = convertToLatLong(loop.getCoordinate(c), loop.getCoordinates(), legLengthGPS);
+            path[c] = convertToLatLong(loop.getCoordinate(c), loop, legLengthGPS);
 
         }
 
         return path;
     }
 
-    public LatLng convertToLatLong(Coordinate coordinate, List<Coordinate> coordinates, double legLengthGPS){
+    public LatLng convertToLatLong(Coordinate coordinate, Loop loop, double legLengthGPS){
+        List<Coordinate> coordinates = loop.getCoordinates();
         Coordinate start = coordinates.get(0);
         LatLng latLng = new LatLng(0.0,0.0);
 
-
-        latLng.lng = startingLocation.lng + ((coordinate.getX()-start.getX())*legLengthGPS);
-        latLng.lat = startingLocation.lat + ((coordinate.getY()-start.getY())*legLengthGPS);
+        latLng.lng = startingLocation.lng + ((coordinate.getX()-start.getX())/loop.getLegLength()*legLengthGPS);
+        latLng.lat = startingLocation.lat + ((coordinate.getY()-start.getY())/loop.getLegLength()*legLengthGPS);
 
         return latLng;
     }
