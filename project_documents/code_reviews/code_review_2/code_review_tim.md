@@ -1,0 +1,42 @@
+# Design/Code Review 2
+
+## Project: Roomie
+
+### Developer: Tim Morency
+
+#### Reviewer: Gunther Knutson
+
+|Category|Criteria|Analysis/Comments|
+|--------|---------|---------------|
+|**Running application**|| |
+||Describe the application functionality that has been built and is working.| |
+||What is good?| |
+||What could be improved?| |
+|**Unit Tests**|| |
+||What are the code coverage statistics?| | 
+||Are @Before/@BeforeClass/@After/@AfterClass used to reduce redundant code?| | 
+|**JSPs**|| |
+|| Is templating used to eliminate rundandant code(for example, header.jsp, footer.jsp, etc.)| |
+||What is good?| |
+||What could be improved?| |
+|**Code quality**|| |
+||Are methods single-purpose?||
+||Are classes appropriately-sized classes (no monster classes)?| |
+||Are the same lines of code repeated at all?| | 
+||Do any classes perform very similar functions that could be candidates for super/subclass relationships?| |
+||Are any values hard-coded that should be in a properties file?| |
+||Are variable names descriptive?| |
+||Are there many branches or loops that could be simplified or broken up into smaller methods?| |
+||Do the DAOs use Hibernate? No hard-coded sql!| |
+||Has log4J been added?| |
+||Are there logging statements in the code?| |
+||Are appropriate logging levels used? Info, debug, error, for example.| |
+||Are there any System.out.printlns in the code?| |
+||Other comments/notes?| |
+|**Web Service/API integration**|Which web service/api is being used? | |
+||Is the integration built?| |
+|| If so, evaluate the integration code. What is good? What could use improvement?
+|**Independent research topic**| What is the developer's independent research topic?| |
+||Has the topic been implemented in the project?| |
+||If so, evaluate the implementation. What is good? What could use improvement?| |
+|**Key takeaways**|List at least 3 things you learned while reviewing this project that will help you in your own project.||

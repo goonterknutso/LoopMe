@@ -15,15 +15,16 @@ public class LoopGeneratorDriver {
 
         //test1.setLoops(firebase.getLoopPatterns());
         test1.generateLoops();
+        test1.logLoops();
 
         //firebase.writeLoopPatterns(test1.getLoops());
 
         //test1.logLoops();
 
-        LatLng startLocation = new LatLng(43.179325, -89.445582);
-        LoopConverter test = new LoopConverter(startLocation, 20);
+        //LatLng startLocation = new LatLng(43.179325, -89.445582);
+        //LoopConverter test = new LoopConverter(startLocation, 20);
 
-        test.waypoints(test1.getLoops().getLoop(0));
+        //test.waypoints(test1.getLoops().getLoop(0));
 
 
         /*
