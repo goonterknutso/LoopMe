@@ -1,35 +1,20 @@
 package com.loopme.entity;
 
-import org.hibernate.annotations.GenericGenerator;
-import javax.persistence.*;
+import com.google.maps.model.LatLng;
 
 /**
- * A class to represent a user using Hibernate
+ * A class to represent a user
  *
  * @author Gunther Knutson
  */
-
-@Entity
-@Table(name = "users")
 public class User {
 
-    @Id
-    @GeneratedValue(generator="increment")
-    @GenericGenerator(name="increment", strategy = "increment")
-    @Column(name = "user_id")
-    private int userId;
-
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "last_name")
-    private String lastName;
-
-    @Column(name = "email")
+    private String name;
+    private String photoUrl;
     private String email;
-
-    @Column(name = "address_home")
-    private int homeAddressId;
+    private LatLng homeGPS;
+    private Address homeAddress;
+    private Preferences preferences;
 
     /**
      * Constructor (empty) for a new User
@@ -40,108 +25,76 @@ public class User {
     /**
      * Constructor (with parameters) for a new User
      *
-     * @param firstName   the first name
-     * @param lastName    the last name
+     * @param name        the name
+     * @param photoUrl    the photoUrl
      * @param email       the email
+     * @param preferences the preferences
      */
-    public User(String firstName, String lastName, String email){
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(String name, String photoUrl, String email, Preferences preferences){
+        this.name = name;
+        this.photoUrl = photoUrl;
         this.email = email;
+        this.preferences = preferences;
     }
 
     /**
      * Constructor (with parameters including homeAddressId) for a new User
      *
-     * @param firstName   the first name
-     * @param lastName    the last name
+     * @param name        the  name
+     * @param photoUrl    the photoUrl
      * @param email       the email
-     * @param homeAddressId the home address
+     * @param preferences the preferences
+     * @param homeAddress the home address
      */
-    public User(String firstName, String lastName, String email, int homeAddressId){
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(String name, String photoUrl, String email, Preferences preferences, Address homeAddress){
+        this.name = name;
+        this.photoUrl = photoUrl;
         this.email = email;
-        this.homeAddressId = homeAddressId;
+        this.preferences = preferences;
+        this.homeAddress = homeAddress;
     }
 
     /**
-     * Gets user id
-     * @return the user id
+     * Constructor (with parameters including homeAddressId) for a new User
+     *
+     * @param name        the  name
+     * @param photoUrl    the photoUrl
+     * @param email       the email
+     * @param preferences the preferences
+     * @param homeGPS     the home gps
      */
-    public int getUserId() {
-        return userId;
-    }
-
-    /**
-     * Sets the user id
-     * @param userId the user id
-     */
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    /**
-     * Gets first name
-     * @return the first name
-     */
-    public String getFirstName() {
-        return firstName;
-    }
-
-    /**
-     * Sets the first name
-     * @param firstName the first name
-     */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    /**
-     * Gets last name
-     * @return the last name
-     */
-    public String getLastName() {
-        return lastName;
-    }
-
-    /**
-     * Sets the last name
-     * @param lastName the last name
-     */
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    /**
-     * Gets the email
-     * @return the email
-     */
-    public String getEmail() {
-        return email;
-    }
-
-    /**
-     * Sets the email
-     * @param email the email
-     */
-    public void setEmail(String email) {
+    public User(String name, String photoUrl, String email, Preferences preferences, LatLng homeGPS){
+        this.name = name;
+        this.photoUrl = photoUrl;
         this.email = email;
+        this.preferences = preferences;
+        this.homeGPS = homeGPS;
     }
 
     /**
-     * Gets home address
-     * @return the home address
+     * Constructor (with parameters including homeAddressId) for a new User
+     *
+     * @param name        the  name
+     * @param photoUrl    the photoUrl
+     * @param email       the email
+     * @param preferences the preferences
+     * @param homeAddress the home address
+     * @param homeGPS     the home gps
      */
-    public int getHomeAddressId() {
-        return homeAddressId;
+    public User(String name, String photoUrl, String email, Preferences preferences, Address homeAddress, LatLng homeGPS){
+        this.name = name;
+        this.photoUrl = photoUrl;
+        this.email = email;
+        this.preferences = preferences;
+        this.homeAddress = homeAddress;
+        this.homeGPS = homeGPS;
     }
 
-    /**
-     * Sets the home address
-     * @param homeAddressId the home address
-     */
-    public void setHomeAddressId(int homeAddressId) {
-        this.homeAddressId = homeAddressId;
-    }
+
+
+
+
+
+
+
 }

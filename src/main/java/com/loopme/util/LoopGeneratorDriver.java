@@ -1,9 +1,6 @@
-package com.loopme.loopgenerator;
+package com.loopme.util;
 
 import com.google.maps.model.LatLng;
-import com.google.maps.model.SnappedPoint;
-
-import java.io.FileNotFoundException;
 
 /**
  * Created by gunther on 10/1/16.
@@ -21,7 +18,7 @@ public class LoopGeneratorDriver {
 
         //firebase.writeLoopPatterns(test1.getLoops());
 
-        //test1.writeLoopsToTerminal();
+        //test1.logLoops();
 
         LatLng startLocation = new LatLng(43.179325, -89.445582);
         LoopConverter test = new LoopConverter(startLocation, 20);

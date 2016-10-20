@@ -1,4 +1,6 @@
-package com.loopme.loopgenerator;
+package com.loopme.entity;
+
+import com.loopme.entity.Coordinate;
 
 import java.util.ArrayList;
 import java.util.List;

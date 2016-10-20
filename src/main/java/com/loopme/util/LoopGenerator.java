@@ -1,5 +1,10 @@
-package com.loopme.loopgenerator;
+package com.loopme.util;
 
+
+import com.loopme.entity.Coordinate;
+import com.loopme.entity.Loop;
+import com.loopme.entity.Loops;
+import org.apache.log4j.Logger;
 
 /**
  * LoopGenerator class is used to randomly generate loops.
@@ -7,6 +12,8 @@ package com.loopme.loopgenerator;
  * Created by gunther on 9/16/16.
  */
 public class LoopGenerator {
+
+    private static Logger log = Logger.getLogger(LoopGenerator.class.getName());
 
     private static final int UP = 0;
     private static final int DOWN = 1;
@@ -124,7 +131,7 @@ public class LoopGenerator {
             }
 
             if(sameCounter == SAME_EXIT|| failCounter == FAIL_EXIT){
-                System.out.println("Exited with Failure Number");
+                log.debug("Exited with Failure Number");
                 generateLoops = false;
             }
 
@@ -217,58 +224,58 @@ public class LoopGenerator {
 
 
 
-    //Output Methods for Terminal
+    //Output Methods for Logging
 
-    public void writeLoopsToTerminal(){
+    public void logLoops(){
 
         //Loop Info
-        System.out.println("------------LOOP INFO-------------");
-        System.out.println();
-        System.out.println("Route Distance:  " + routeDistance);
-        System.out.println("Leg Length:      " + legLength);
-        System.out.println("Number of Loops: " + loops.getLoops().size());
-        System.out.println();
-        System.out.println("----------------------------------");
-        System.out.println();
+        log.debug("------------LOOP INFO-------------");
+        log.debug("");
+        log.debug("Route Distance:  " + routeDistance);
+        log.debug("Leg Length:      " + legLength);
+        log.debug("Number of Loops: " + loops.getLoops().size());
+        log.debug("");
+        log.debug("----------------------------------");
+        log.debug("");
 
         //Print all coordinates first
-        System.out.println("::Coordinates::");
-        System.out.println();
+        log.debug("::Coordinates::");
+        log.debug("");
         for(Loop l: loops.getLoops()){
             for(Coordinate c : l.getCoordinates()){
-                System.out.print("(");
+                log.debug("(");
                 if(c.getX() < 10){
-                    System.out.print(" "+c.getX());
+                    log.debug(" "+c.getX());
                 }else{
-                    System.out.print(c.getX());
+                    log.debug(c.getX());
                 }
-                System.out.print(",");
+                log.debug(",");
                 if(c.getY() < 10){
-                    System.out.print(c.getY()+" ");
+                    log.debug(c.getY()+" ");
                 }else{
-                    System.out.print(c.getY());
+                    log.debug(c.getY());
                 }
-                System.out.print(") ");
+                log.debug(") ");
             }
-            System.out.println();
+            log.debug("");
         }
-        System.out.println();
+        log.debug("");
 
-        /*
-        System.out.println("::Grid w/ Coordinates::");
-        System.out.println();
+
+        log.debug("::Grid w/ Coordinates::");
+        log.debug("");
         //For each loop
         for(int l = 0; l < loops.getLoops().size(); l++){
-            writeLoopToTerminal(loops.getLoop(l));
-        }*/
+            logLoop(loops.getLoop(l));
+        }
     }
 
-    private void writeLoopToTerminal(Loop loop){
-        setUpRouteGridForTerminal();
+    private void logLoop(Loop loop){
+        setUpRouteGridForLog();
 
         //Print Coordinates
         for(int c = 0; c < loop.getNumLegs(); c++){
-            System.out.print(loop.getCoordinate(c).toString());
+            log.debug(loop.getCoordinate(c).toString());
             if(c < 10) {
                 routeGrid[loop.getCoordinate(c).getX()][loop.getCoordinate(c).getY()] = Integer.toString(c) + "  ";
             }else{
@@ -276,28 +283,27 @@ public class LoopGenerator {
             }
         }
 
-        System.out.println();
-        System.out.println();
+        log.debug("");
+        log.debug("");
 
         //Print grid
         for(int y = yMax -1; y > yMin; y--){
             for(int x = xMin; x < xMax; x++){
-                System.out.print(routeGrid[x][y]);
+                log.debug(routeGrid[x][y]);
             }
-            System.out.println();
+            log.debug("");
         }
 
-        System.out.println();
-        System.out.println();
+        log.debug("");
+        log.debug("");
     }
 
-    private void setUpRouteGridForTerminal(){
+    private void setUpRouteGridForLog(){
         for(int y = yMin; y < yMax; y++){
             for(int x = xMin; x < xMax; x++){
                 routeGrid[x][y] = ".  ";
             }
         }
     }
-
 
 }

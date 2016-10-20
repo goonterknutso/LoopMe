@@ -1,24 +1,21 @@
-package com.loopme.loopgenerator;
+package com.loopme.util;
 
 import com.google.maps.DirectionsApi;
-import com.google.maps.DirectionsApiRequest;
 import com.google.maps.GeoApiContext;
-import com.google.maps.RoadsApi;
-import com.google.maps.internal.PolylineEncoding;
 import com.google.maps.model.DirectionsResult;
-import com.google.maps.model.DirectionsRoute;
 import com.google.maps.model.LatLng;
-import com.google.maps.model.SnappedPoint;
+import com.loopme.entity.Coordinate;
+import com.loopme.entity.Loop;
+import org.apache.log4j.Logger;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by gunther on 10/12/16.
  */
 public class LoopConverter {
-
+    
+    private static Logger log = Logger.getLogger(LoopConverter.class.getName());
     LatLng startingLocation;
     double distance;
 
@@ -44,11 +41,11 @@ public class LoopConverter {
 
                     //Print Conversion
                     for(int i = 0; i<allWaypoints.length; i++){
-                        System.out.println(allWaypoints[i].toString());
+                        log.debug(allWaypoints[i].toString());
                     }
 
 
-        System.out.println();System.out.println();
+        log.debug("");log.debug("");
 
         //Remove starting and ending waypoints
         for(int i = 1; i < allWaypoints.length - 1; i++) {
@@ -68,23 +65,6 @@ public class LoopConverter {
             e.printStackTrace();
         }
     }
-    /*
-    public SnappedPoint[] snapToRoad(Loop loop){
-        GeoApiContext context = new GeoApiContext();
-        context.setApiKey(System.getenv("API_KEY"));
-        System.out.println("Key: " + System.getenv("API_KEY"));
-        SnappedPoint[] snappedPoints = new SnappedPoint[loop.getCoordinates().size()];
-        try {
-            snappedPoints = RoadsApi.snapToRoads(context,
-                    false,
-                    convertLoop(loop)).await();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return snappedPoints;
-
-    }*/
 
     /**
      * Converts Coordinates for a Loop into a LatLng array of LatLng
@@ -96,11 +76,11 @@ public class LoopConverter {
         LatLng[] path = new LatLng[loop.getCoordinates().size()];
 
         double legDistance = distance*((double)loop.getLegLength()/(double)loop.getRouteDistance());
-        System.out.println(legDistance);
+        log.debug(legDistance);
 
         double legLengthGPS = calculateLegDistanceKm(legDistance);
 
-        System.out.println(legLengthGPS);
+        log.debug(legLengthGPS);
 
         for(int c = 0; c < loop.getCoordinates().size(); c++){
 

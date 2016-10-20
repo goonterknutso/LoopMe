@@ -1,4 +1,4 @@
-package com.loopme.loopgenerator;
+package com.loopme.entity;
 
 /**
  * Coordinate is a simple class that stores x and y value pairs.

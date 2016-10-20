@@ -1,4 +1,4 @@
-package com.loopme.loopgenerator;
+package com.loopme.entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,6 @@ import java.util.List;
 public class Loops {
 
     ArrayList<Loop> loops;
-    int tenFailsInARow;
 
     public Loops(){
         loops = new ArrayList<Loop>();
@@ -23,7 +22,6 @@ public class Loops {
         if(loops.size()!= 0 && alreadyAdded(loop)){
             return false;
         }else{
-            System.out.println("Loop added");
             loops.add(loop);
             return true;
         }
@@ -39,10 +37,6 @@ public class Loops {
 
             //Checks each coordinate pair
             for(int c = 0; c < loops.get(l).getCoordinates().size(); c++){
-
-                //System.out.println("X: " + loops.get(l).getCoordinate(c).getX() + " " + loop.getCoordinate(c).getX());
-                //System.out.println("Y: " + loops.get(l).getCoordinate(c).getY() + " " + loop.getCoordinate(c).getY());
-
                 if (loops.get(l).getCoordinate(c).getX() != loop.getCoordinate(c).getX() ||
                         loops.get(l).getCoordinate(c).getY() != loop.getCoordinate(c).getY()) {
 
