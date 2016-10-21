@@ -1,23 +1,14 @@
-body{
-    background-image: url("../images/map.png");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-}
 #logo{
-    font-family: Milkshake;
+    font-family: Evolution;
     font-size: 60px;
     float: left;
 }
 .navbar{
     padding: 20px;
+    margin-bottom: 0px !important;
 }
 
 li a{
-    font-family: Milkshake;
+    font-family: Evolution;
     font-size: 26px;
-}
-.navbar-nav{
-    text-align: center;
-    float: right;
 }

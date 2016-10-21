@@ -1,9 +1,7 @@
 <%--
-  Created by IntelliJ IDEA.
-  User: gunther
-  Date: 9/25/16
-  Time: 10:23 PM
-  To change this template use File | Settings | File Templates.
+    Head.jsp
+    Gunther Knutson
+1   0/20/16
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -13,13 +11,17 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>LoopMe</title>
+<title>excerloops</title>
 
 <!-- Bootstrap core CSS -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Custom styles for this template -->
-<link href="resources/styles/navbar.css" rel="stylesheet">
+<!-- Navbar Custom Styles -->
+<link href="../resources/styles/navbar.css" rel="stylesheet">
+
+<!-- Evolution Font -->
+<link href="../resources/styles/evolution_font.css" rel="stylesheet">
+
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
