@@ -1,91 +1,61 @@
+<!-- INDEX.JSP -->
+
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>LoopMe</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <style>
-        #logo{
-            font-family: Milkshake;
-            /*padding-left: 25px;*/
-            font-size: 40px;
-            float: left;
-        }
-        li a{
-            font-family: Milkshake;
-            font-size: 26px;
-        }
-        .navbar-nav{
-            float: right;
-        }
-
-        @font-face{
-            font-family: Milkshake;
-            src: url("resources/fonts/milkshake.otf") format("opentype");
-        }
-        @font-face {
-            font-family: Milkshake;
-            font-weight: bold;
-            src: url("resources/fonts/milkshake.otf") format("opentype");
-        }
-    </style>
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <%@include file = "templates/head.jsp" %>
+    <title>Create Loop</title>
 </head>
+
 
 <body>
 
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#" id="logo">LoopMe</a>
-        </div>
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Create Loop</a></li>
-                <li><a href="#how_it_works">How it Works</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#account_settings">Account</a></li>
-            </ul>
-        </div><!--/.nav-collapse -->
-    </div>
-</div>
+<!-- NAVBAR -->
+<%@ include file ="templates/navbar.jsp" %>
 
+<!-- MAIN CONTENT -->
+<div id="map" style="width:100%;height:700px"></div>
 
-<div class="container">
+<script>
 
-    <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a
-            mostly barebones HTML document.</p>
-    </div>
+    if (navigator.geolocation) {
+        var timeoutVal = 10 * 1000 * 1000;
+        navigator.geolocation.getCurrentPosition(
+                initMap,
+                displayError,
+                { enableHighAccuracy: true, timeout: timeoutVal, maximumAge: 0 }
+        );
+    }
+    else {
+        alert("Geolocation is not supported by this browser");
+    }
 
-</div><!-- /.container -->
+    function displayError(error) {
+        var errors = {
+            1: 'Permission denied',
+            2: 'Position unavailable',
+            3: 'Request timeout'
+        };
+        alert("Error: " + errors[error.code]);
+    }
 
+    function initMap(position) {
+        // Create a map object and specify the DOM element for display.
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: position.coords.latitude, lng: position.coords.longitude},
+            scrollwheel: false,
+            zoom: 13
+        });
+    }
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6GLTECvlfDuCR9HCVRN5xKmm0ca3RHV0"></script>
+
+<!-- BOOTSTRAP SCRIPTS -->
+<%@ include file="templates/bootstrap_scripts.jsp" %>
+
 </body>
 </html>
+

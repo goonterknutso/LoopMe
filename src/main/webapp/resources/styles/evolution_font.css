@@ -1,9 +1,9 @@
 @font-face{
     font-family: Evolution;
-    src: url("../../../../../../../Java/Enterprise/Projects/LoopMe/src/main/webapp/resources/fonts/evolution.ttf") format("opentype");
+    src: url("../fonts/evolution.ttf") format("truetype");
 }
 @font-face {
     font-family: Evolution;
     font-weight: bold;
-    src: url("../../../../../../../Java/Enterprise/Projects/LoopMe/src/main/webapp/resources/fonts/evolution.ttf") format("opentype");
+    src: url("../fonts/evolution.ttf") format("truetype");
 }
