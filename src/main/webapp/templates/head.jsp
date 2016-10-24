@@ -22,6 +22,9 @@
 <!-- Evolution Font -->
 <link href="../resources/styles/evolution_font.css" rel="stylesheet">
 
+<!-- Footer Style -->
+<link href="../resources/styles/footer.css" rel="stylesheet">
+
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>

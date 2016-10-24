@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: gunther
-  Date: 9/25/16
-  Time: 10:23 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!--NAVBAR-->
@@ -21,18 +15,17 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li id="navCreateLoop"><a href="index.jsp">Create Loop</a></li>
+                <li id="navCreateLoop"><a href="index.jsp">Home</a></li>
                 <li id="navHowItWorks"><a href="how_it_works.jsp">How it Works</a></li>
                 <li id="navAbout"><a href="about.jsp">About</a></li>
                 <li id="navContact"><a href="contact.jsp">Contact</a></li>
-                <li id="navAccount"><a href="account_settings.jsp">Account</a></li>
+                <li id="navAccountSettings"><a href="account_settings.jsp">Account</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </div>
 
 <script type="text/javascript">
-
     if(document.URL.indexOf("index")>0){
         document.getElementById("navCreateLoop").className = "active";
     }
@@ -48,5 +41,4 @@
     else if(document.URL.indexOf("account")>0){
         document.getElementById("navAccountSettings").className = "active";
     }
-
 </script>
