@@ -1,45 +1,45 @@
 # Design/Code Review 2
 
-## Project: Roomie
+## Project: GETIT
 
-### Developer: Tim Morency
+### Developer: Sandi
 
 #### Reviewer: Gunther Knutson
 
 |Category|Criteria|Analysis/Comments|
 |--------|---------|---------------|
 |**Running application**|| |
-||Describe the application functionality that has been built and is working.| |
-||What is good?| |
-||What could be improved?| |
+||Describe the application functionality that has been built and is working.| Application build and runs the index.jsp page|
+||What is good?| It runs and builds correctly|
+||What could be improved?| Java classes and more content|
 |**Unit Tests**|| |
-||What are the code coverage statistics?| | 
-||Are @Before/@BeforeClass/@After/@AfterClass used to reduce redundant code?| | 
+||What are the code coverage statistics?| N/A|
+||Are @Before/@BeforeClass/@After/@AfterClass used to reduce redundant code?| N/A|
 |**JSPs**|| |
-|| Is templating used to eliminate rundandant code(for example, header.jsp, footer.jsp, etc.)| |
-||What is good?| |
-||What could be improved?| |
+|| Is templating used to eliminate rundandant code(for example, header.jsp, footer.jsp, etc.)| N/A|
+||What is good?| index.jsp is done|
+||What could be improved?| More jsps|
 |**Code quality**|| |
-||Are methods single-purpose?||
-||Are classes appropriately-sized classes (no monster classes)?| |
-||Are the same lines of code repeated at all?| | 
-||Do any classes perform very similar functions that could be candidates for super/subclass relationships?| |
-||Are any values hard-coded that should be in a properties file?| |
-||Are variable names descriptive?| |
-||Are there many branches or loops that could be simplified or broken up into smaller methods?| |
-||Do the DAOs use Hibernate? No hard-coded sql!| |
-||Has log4J been added?| |
-||Are there logging statements in the code?| |
-||Are appropriate logging levels used? Info, debug, error, for example.| |
-||Are there any System.out.printlns in the code?| |
-||Other comments/notes?| |
-|**Web Service/API integration**|Which web service/api is being used? | |
-||Is the integration built?| |
+||Are methods single-purpose?|N/A|
+||Are classes appropriately-sized classes (no monster classes)?| N/A|
+||Are the same lines of code repeated at all?| N/A|
+||Do any classes perform very similar functions that could be candidates for super/subclass relationships?| N/A|
+||Are any values hard-coded that should be in a properties file?| N/A|
+||Are variable names descriptive?| N/A|
+||Are there many branches or loops that could be simplified or broken up into smaller methods?| N/A|
+||Do the DAOs use Hibernate? No hard-coded sql!| N/A |
+||Has log4J been added?| No|
+||Are there logging statements in the code?| N/A|
+||Are appropriate logging levels used? Info, debug, error, for example.| N/A|
+||Are there any System.out.printlns in the code?| N/A|
+||Other comments/notes?| None|
+|**Web Service/API integration**|Which web service/api is being used? |  None yet. Ideas are Google Calendar API, Google Analytics Embed API, and Scratch API |
+||Is the integration built?| N/A|
 || If so, evaluate the integration code. What is good? What could use improvement?
-|**Independent research topic**| What is the developer's independent research topic?| |
-||Has the topic been implemented in the project?| |
-||If so, evaluate the implementation. What is good? What could use improvement?| |
-|**Key takeaways**|List at least 3 things you learned while reviewing this project that will help you in your own project.||
+|**Independent research topic**| What is the developer's independent research topic?| Scratch API|
+||Has the topic been implemented in the project?| No |
+||If so, evaluate the implementation. What is good? What could use improvement?| N/A|
+|**Key takeaways**|List at least 3 things you learned while reviewing this project that will help you in your own project.| |
 
   
   
