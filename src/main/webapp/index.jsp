@@ -74,32 +74,52 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6GLTECvlfDuCR9HCVRN5xKmm0ca3RHV0"></script>
 <script>
+    //Check to see if we have already loaded the user location map
+    //If we haven't, find user and set localStorage variables
+    if(localStorage.getItem("lat")==null && localStorage.getItem("lng")==null) {
+        //Find User
+        if (navigator.geolocation) {
+            var timeoutVal = 10 * 1000 * 1000;
+            navigator.geolocation.getCurrentPosition(
+                    displayUserLocationMap,
+                    displayDefaultMap,
+                    {enableHighAccuracy: true, timeout: timeoutVal, maximumAge: 0}
+            );
+        }
+        else {
+            alert("Geolocation is not supported by this browser");
+        }
+        //User doens't allow location
+        function displayDefaultMap(error) {
+            //Store position
+            localStorage.setItem("lat", 38.897540);
+            localStorage.setItem("lng", -77.036958);
 
-    if (navigator.geolocation) {
-        var timeoutVal = 10 * 1000 * 1000;
-        navigator.geolocation.getCurrentPosition(
-                initMap,
-                displayError,
-                { enableHighAccuracy: true, timeout: timeoutVal, maximumAge: 0 }
-        );
+            // Create a map object and specify the DOM element for display.
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: 38.897540, lng: -77.036958},
+                scrollwheel: false,
+                zoom: 13
+            });
+        }
+        //User allows location
+        function displayUserLocationMap(position) {
+            //Store position
+            localStorage.setItem("lat", position.coords.latitude);
+            localStorage.setItem("lng", position.coords.longitude);
+            // Create a map object and specify the DOM element for display.
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: position.coords.latitude, lng: position.coords.longitude},
+                scrollwheel: false,
+                zoom: 13
+            });
+        }
     }
-    else {
-        alert("Geolocation is not supported by this browser");
-    }
-
-    function displayError(error) {
-        var errors = {
-            1: 'Permission denied',
-            2: 'Position unavailable',
-            3: 'Request timeout'
-        };
-        alert("Error: " + errors[error.code]);
-    }
-
-    function initMap(position) {
-        // Create a map object and specify the DOM element for display.
+    //Position previous stored
+    else{
+        alert("Stored");
         var map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: position.coords.latitude, lng: position.coords.longitude},
+            center: {lat: localStorage.getItem("lat"), lng: localStorage.getItem("lng")},
             scrollwheel: false,
             zoom: 13
         });
