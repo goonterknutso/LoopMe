@@ -19,7 +19,12 @@
                 <li id="navHowItWorks"><a href="how_it_works.jsp">How it Works</a></li>
                 <li id="navAbout"><a href="about.jsp">About</a></li>
                 <li id="navContact"><a href="contact.jsp">Contact</a></li>
-                <li id="navAccountSettings"><a href="account_settings.jsp">Account</a></li>
+                <li id="navAccountSettings">
+                    <% if(session.getAttribute("user")==null) { %>
+                    <a href="sign_in.jsp">Account</a></li>
+                    <% } else { %>
+                    <a href="account_settings.jsp">Account</a></li>
+                    <% }  %>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -38,7 +43,7 @@
     else if(document.URL.indexOf("contact")>0){
         document.getElementById("navContact").className = "active";
     }
-    else if(document.URL.indexOf("account")>0){
+    else if(document.URL.indexOf("account")>0 || document.URL.indexOf("sign")>0){
         document.getElementById("navAccountSettings").className = "active";
     }
 </script>

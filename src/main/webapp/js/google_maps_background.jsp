@@ -9,9 +9,6 @@
 
 <script>
     function displayBackgroundMap() {
-        console.log("Lat:" + sessionStorage.getItem("lat"));
-        console.log("Lng:" + sessionStorage.getItem("lng"));
-
         //Check to see if we have already loaded the user location map
         //If we haven't, find user and set sessionStorage variables
         if (sessionStorage.getItem("lat") == null && sessionStorage.getItem("lng") == null) {
@@ -31,9 +28,11 @@
             }
             //User doens't allow location
             function displayDefaultMap(error) {
+
                 //Store position
                 sessionStorage.setItem("lat", 38.897540);
                 sessionStorage.setItem("lng", -77.036958);
+                sessionStorage.setItem("permissionDenied", true)
 
                 // Create a map object and specify the DOM element for display.
                 var map = new google.maps.Map(document.getElementById('map'), {
@@ -45,9 +44,12 @@
 
             //User allows location
             function displayUserLocationMap(position) {
+
                 //Store position
                 sessionStorage.setItem("lat", position.coords.latitude);
                 sessionStorage.setItem("lng", position.coords.longitude);
+                sessionStorage.setItem("permissionDenied", false);
+
                 // Create a map object and specify the DOM element for display.
                 var map = new google.maps.Map(document.getElementById('map'), {
                     center: {lat: position.coords.latitude, lng: position.coords.longitude},
@@ -78,6 +80,10 @@
         }
         //Position previous stored
         else {
+            if(sessionStorage.getItem("findMeClicked") && sessionStorage.getItem("permissionDenied")){
+                alert("Error: Location settings are not enabled. Please enable location settings for your browser and click the button again.");
+                sessionStorage.setItem("reset", true);
+            }
             console.log("Using stored coordinates");
             var lat = sessionStorage.getItem("lat");
             var lng = sessionStorage.getItem("lng");
@@ -87,7 +93,7 @@
                 zoom: 13
             });
 
-            if (sessionStorage.getItem("address")) {
+            if (sessionStorage.getItem("address") && document.URL.indexOf("index")>0) {
                 console.log("Using stored address");
                 document.getElementById("inputLocation").value = sessionStorage.getItem("address");
             }
