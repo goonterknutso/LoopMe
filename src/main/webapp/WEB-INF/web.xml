@@ -4,4 +4,65 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+  <!--Index Redirect-->
+  <servlet>
+    <servlet-name>indexRedirect</servlet-name>
+    <servlet-class>com.loopme.servlet.redirect.indexRedirect</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>indexRedirect</servlet-name>
+    <url-pattern>/index</url-pattern>
+  </servlet-mapping>
+
+  <!--About Redirect-->
+  <servlet>
+    <servlet-name>aboutRedirect</servlet-name>
+    <servlet-class>com.loopme.servlet.redirect.aboutRedirect</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>aboutRedirect</servlet-name>
+    <url-pattern>/about</url-pattern>
+  </servlet-mapping>
+
+  <!--HowItWorks Redirect-->
+  <servlet>
+    <servlet-name>howItWorksRedirect</servlet-name>
+    <servlet-class>com.loopme.servlet.redirect.howItWorksRedirect</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>howItWorksRedirect</servlet-name>
+    <url-pattern>/howItWorks</url-pattern>
+  </servlet-mapping>
+
+  <!--Contact Redirect-->
+  <servlet>
+    <servlet-name>contactRedirect</servlet-name>
+    <servlet-class>com.loopme.servlet.redirect.contactRedirect</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>contactRedirect</servlet-name>
+    <url-pattern>/contact</url-pattern>
+  </servlet-mapping>
+
+  <!--Account Redirect-->
+  <servlet>
+    <servlet-name>accountRedirect</servlet-name>
+    <servlet-class>com.loopme.servlet.redirect.accountRedirect</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>accountRedirect</servlet-name>
+    <url-pattern>/account</url-pattern>
+  </servlet-mapping>
+
+  <!--SignIn Redirect-->
+  <servlet>
+    <servlet-name>signInRedirect</servlet-name>
+    <servlet-class>com.loopme.servlet.redirect.signInRedirect</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>signInRedirect</servlet-name>
+    <url-pattern>/signIn</url-pattern>
+  </servlet-mapping>
+
 </web-app>

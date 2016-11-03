@@ -12,10 +12,8 @@
     <body onload="displayBackgroundMap()">
         <!-- Navbar JSP Template -->
         <%@ include file="templates/navbar.jsp" %>
-
         <!-- Main Content -->
         <%@ include file="templates/main/index_main_content.jsp" %>
-
         <!-- Footer JSP Templates -->
         <%@ include file = "templates/footer.jsp" %>
     </body>
@@ -33,6 +31,3 @@
 
 <!-- FIND ME BUTTON SCRIPT -->
 <%@ include file="js/find_me_button.jsp" %>
-
-
-

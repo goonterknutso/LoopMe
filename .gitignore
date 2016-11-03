@@ -12,6 +12,7 @@ src/main/resources/LoopMe-7868d5b35d9b.json
 .idea/vcs.xml
 .idea/jsLibraryMappings.xml
 src/main/webapp/js/google_maps_api_key.jsp
+src/main/webapp/js/firebase_config.html
 
 # Sensitive or high-churn files:
 .idea/dataSources.ids

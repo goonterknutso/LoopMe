@@ -20,7 +20,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-12">
-                        <input type="email" class="form-control" id="input_email" placeholder="Enter your email address here!">
+                        <input type="email" class="form-control" id="input_email" placeholder="Enter email here!">
                     </div>
                 </div>
 
@@ -30,7 +30,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-12">
-                        <input type="password" class="form-control" id="input_password" placeholder="Enter a your password here!">
+                        <input type="password" class="form-control" id="input_password" placeholder="Enter password here!">
                     </div>
                 </div>
 

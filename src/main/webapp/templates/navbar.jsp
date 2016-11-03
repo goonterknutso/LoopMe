@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!--NAVBAR-->
@@ -11,39 +10,23 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../index.jsp" id="logo">ExcerLoops</a>
+            <a class="navbar-brand" href="/index" id="logo">ExcerLoops</a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li id="navCreateLoop"><a href="index.jsp">Home</a></li>
-                <li id="navHowItWorks"><a href="how_it_works.jsp">How it Works</a></li>
-                <li id="navAbout"><a href="about.jsp">About</a></li>
-                <li id="navContact"><a href="contact.jsp">Contact</a></li>
+                <li id="navCreateLoop"><a href="/index">Home</a></li>
+                <li id="navHowItWorks"><a href="/howItWorks">How it Works</a></li>
+                <li id="navAbout"><a href="/about">About</a></li>
+                <li id="navContact"><a href="/contact">Contact</a></li>
                 <li id="navAccountSettings">
                     <% if(session.getAttribute("user")==null) { %>
-                    <a href="sign_in.jsp">Account</a></li>
+                    <a href="/signIn">Account</a></li>
                     <% } else { %>
-                    <a href="account_settings.jsp">Account</a></li>
+                    <a href="/account">Account</a></li>
                     <% }  %>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </div>
 
-<script type="text/javascript">
-    if(document.URL.indexOf("index")>0){
-        document.getElementById("navCreateLoop").className = "active";
-    }
-    else if(document.URL.indexOf("how_it_works")>0){
-        document.getElementById("navHowItWorks").className = "active";
-    }
-    else if(document.URL.indexOf("about")>0){
-        document.getElementById("navAbout").className = "active";
-    }
-    else if(document.URL.indexOf("contact")>0){
-        document.getElementById("navContact").className = "active";
-    }
-    else if(document.URL.indexOf("account")>0 || document.URL.indexOf("sign")>0){
-        document.getElementById("navAccountSettings").className = "active";
-    }
-</script>
+<%@ include file="../js/navbar_selected.jsp" %>

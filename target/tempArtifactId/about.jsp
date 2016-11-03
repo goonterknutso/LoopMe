@@ -1,34 +1,30 @@
-<!-- ABOUT.JSP -->
-
+<!-- INDEX.JSP -->
 <!DOCTYPE html>
-
 <html lang="en">
-<head>
-    <%@include file = "templates/head.jsp" %>
-    <title>Create Loop</title>
-</head>
 
+    <head>
+        <!-- Head JSP Template -->
+        <%@ include file = "templates/head.jsp" %>
+        <!-- Custom Page CSS -->
+        <style><%@ include file = "resources/styles/index.css"%></style>
+    </head>
 
-<body>
+    <body onload="displayBackgroundMap()">
+        <!-- Navbar JSP Template -->
+        <%@ include file="templates/navbar.jsp" %>
+        <!-- Main Content -->
+        <%@ include file="templates/main/about_main_content.jsp" %>
+        <!-- Footer JSP Templates -->
+        <%@ include file = "templates/footer.jsp" %>
+    </body>
 
-<!-- NAVBAR -->
-<%@ include file ="templates/navbar.jsp" %>
-
-<!-- MAIN CONTENT -->
-<div class="container">
-
-    <div class="starter-template">
-        <h1>About</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a
-            mostly barebones HTML document.</p>
-    </div>
-
-</div><!-- /.container -->
-
+</html>
 
 <!-- BOOTSTRAP SCRIPTS -->
 <%@ include file="templates/bootstrap_scripts.jsp" %>
 
-</body>
-</html>
+<!-- GOOGLE MAPS API KEY SCRIPT-->
+<%@ include file="js/google_maps_api_key.jsp" %>
 
+<!-- GOOGLE MAPS BACKGROUND SCRIPT -->
+<%@ include file="js/google_maps_background.jsp" %>
