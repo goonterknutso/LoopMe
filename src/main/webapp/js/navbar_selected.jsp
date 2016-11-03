@@ -1,4 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script type="text/javascript">
     if(document.URL.indexOf("index")>0){
         document.getElementById("navCreateLoop").className = "active";
@@ -14,5 +13,8 @@
     }
     else if(document.URL.indexOf("account")>0 || document.URL.indexOf("sign")>0){
         document.getElementById("navAccountSettings").className = "active";
+    }
+    else {
+        document.getElementById("navCreateLoop").className = "active";
     }
 </script>

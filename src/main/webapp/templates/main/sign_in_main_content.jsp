@@ -16,21 +16,21 @@
 
                 <!-- Email Input -->
                 <div class="form-group row">
-                    <label for="input_email" class="col-sm-12 col-form-label">Email:</label>
+                    <label for="inputEmail" class="col-sm-12 col-form-label">Email:</label>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-12">
-                        <input type="email" class="form-control" id="input_email" placeholder="Enter email here!">
+                        <input type="email" class="form-control" id="inputEmail" placeholder="Enter email here!">
                     </div>
                 </div>
 
                 <!-- Password Input -->
                 <div class="form-group row">
-                    <label for="input_password" class="col-sm-12 col-form-label">Password:</label>
+                    <label for="inputPassword" class="col-sm-12 col-form-label">Password:</label>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-12">
-                        <input type="password" class="form-control" id="input_password" placeholder="Enter password here!">
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Enter password here!">
                     </div>
                 </div>
 
@@ -54,7 +54,7 @@
                 <!-- Google Sign In Button -->
                 <div class="form-group row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
-                        <a class="btn btn-block btn-social btn-google">
+                        <a class="btn btn-block btn-social btn-google" id="btnGoogle">
                             <span class="fa fa-google">
                                 <img src="resources/images/google_icon.png" style="width: 20px; height: 20px"/>
                             </span>

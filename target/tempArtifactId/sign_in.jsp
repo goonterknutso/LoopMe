@@ -30,3 +30,12 @@
 
 <!-- GOOGLE MAPS BACKGROUND SCRIPT -->
 <%@ include file="js/google_maps_background.jsp" %>
+
+<!-- FIREBASE SCRIPT -->
+<%@ include file="js/firebase_config.jsp" %>
+
+<!-- FIREBASE AUTH SCRIPTS -->
+<%@ include file="js/email_sign_in.jsp" %>
+<%@ include file="js/email_sign_up.jsp" %>
+<%@ include file="js/google_sign_in.jsp" %>
+<%@ include file="js/sign_out.jsp" %>
