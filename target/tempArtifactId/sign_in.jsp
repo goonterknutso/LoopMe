@@ -22,20 +22,12 @@
 
 </html>
 
-<!-- BOOTSTRAP SCRIPTS -->
-<%@ include file="templates/bootstrap_scripts.jsp" %>
+<!-- CONFIG SCRIPTS -->
+<%@ include file="templates/config/firebase_config.jsp" %>
+<%@ include file="templates/config/bootstrap_scripts.jsp" %>
+<%@ include file="templates/config/google_maps_api_key.jsp" %>
 
-<!-- GOOGLE MAPS API KEY SCRIPT-->
-<%@ include file="js/google_maps_api_key.jsp" %>
-
-<!-- GOOGLE MAPS BACKGROUND SCRIPT -->
-<%@ include file="js/google_maps_background.jsp" %>
-
-<!-- FIREBASE SCRIPT -->
-<%@ include file="js/firebase_config.jsp" %>
-
-<!-- FIREBASE AUTH SCRIPTS -->
-<%@ include file="js/email_sign_in.jsp" %>
-<%@ include file="js/email_sign_up.jsp" %>
-<%@ include file="js/google_sign_in.jsp" %>
-<%@ include file="js/sign_out.jsp" %>
+<!-- CUSTOM PAGE SCRIPTS -->
+<script src="js/google_maps_background.js"></script>
+<script src="js/sign_out.js"></script>
+<script src="js/authentication.js"></script>

@@ -3,14 +3,14 @@ package com.loopme.persistence;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import com.loopme.entity.Coordinate;
-import com.loopme.entity.Loop;
-import com.loopme.entity.Loops;
+
+import com.loopme.entity.User;
 import net.thegreshams.firebase4j.error.FirebaseException;
 import net.thegreshams.firebase4j.model.FirebaseResponse;
 import net.thegreshams.firebase4j.service.Firebase;
@@ -19,7 +19,7 @@ import org.apache.log4j.Logger;
 
 public class FireDBHelper{
 
-    private String firebase_baseURL = "https://loopme-144918.firebaseio.com/";
+    private String firebase_baseURL = "https://excerloops.firebaseio.com/";
     Firebase firebase;
     static Logger log = Logger.getLogger(FireDBHelper.class.getName());
 
@@ -32,7 +32,21 @@ public class FireDBHelper{
         }
     }
 
+    public void saveUsers(List<User> users){
+        //Convert loops to JSON string
+        String JSON = convertToJSON(users);
+        log.debug(JSON);
 
+        //Write JSON string to database
+        try {
+            firebase.put(JSON);
+        } catch(FirebaseException e) {
+            log.error("Error: JSON string could not be written");
+        } catch(UnsupportedEncodingException e){
+            log.error("Error: Unsupported Encoding Exception");
+        }
+
+    }
 
     /**
      * Takes an object and converts it into JSON
@@ -58,55 +72,52 @@ public class FireDBHelper{
         return "";
     }
 
+    public User getUser(String email){
+        User user = new User();
+        List<User> users = getUsers();
 
-    public void writeLoopPatterns(Loops loops){
-        //Convert loops to JSON string
-        String JSON = convertToJSON(loops);
-        log.debug(JSON);
-        //Write JSON string to database
-        writeToDatabase(JSON);
+        for(User u : users){
+            if((u.getEmail()).equals(email)){
+                user = u;
+            }
+        }
+
+        return user;
     }
 
-    public Loops getLoopPatterns(){
+    public List<User> getUsers(){
         //http://tutorials.jenkov.com/java-json/jackson-jsonparser.html
         //http://wiki.fasterxml.com/JacksonTreeModel
 
-        String JSON = readFromDatabase("loops");
+        String JSON = readFromDatabase("users");
         log.debug("Read from database: " + JSON);
 
-        Loops loops = new Loops();
+        List<User> users = new ArrayList<User>();
 
         ObjectMapper mapper = new ObjectMapper();
         try {
             JsonNode rootNode = mapper.readValue(JSON, JsonNode.class);
 
-            //Gets each loop
+            //Gets each user
             for(JsonNode node : rootNode){
 
-                Loop loop = new Loop();
-                ArrayList<Coordinate> coordinates = new ArrayList<Coordinate>();
-
-                for(JsonNode c : node.path("coordinates")){
-                    Coordinate coordinate = new Coordinate();
-                    coordinate.setX(c.path("x").intValue());
-                    coordinate.setY(c.path("y").intValue());
-                    coordinates.add(coordinate);
+                try {
+                    User user = mapper.readValue(node.toString(), User.class);
+                    users.add(user);
+                } catch (JsonGenerationException e) {
+                    e.printStackTrace();
+                } catch (com.fasterxml.jackson.databind.JsonMappingException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-
-                loop.setCoordinates(coordinates);
-
-                loop.setLegLength(node.path("legLegth").intValue());
-                loop.setNumLegs(node.path("numLegs").intValue());
-                loop.setRouteDistance(node.path("routeDistance").intValue());
-
-                loops.addLoop(loop);
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return loops;
+        return users;
     }
 
 
@@ -123,38 +134,4 @@ public class FireDBHelper{
         return null;
     }
 
-    private Object convertToObject(String JSON, Class c){
-
-        //Convert loops to JSON string
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            Object obj = mapper.readValue(JSON, c);
-            return obj;
-        } catch (JsonGenerationException e) {
-            e.printStackTrace();
-        } catch (com.fasterxml.jackson.databind.JsonMappingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-
-
-    //TODO Change this method to write to file
-
-    /**
-     * Writes JSON to database
-     * @param JSON
-     */
-    private void writeToDatabase(String JSON){
-        try {
-            firebase.put(JSON);
-        } catch(FirebaseException e) {
-            log.error("Error: JSON string could not be written");
-        } catch(UnsupportedEncodingException e){
-            log.error("Error: Unsupported Encoding Exception");
-        }
-    }
 }

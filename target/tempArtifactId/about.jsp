@@ -21,10 +21,10 @@
 </html>
 
 <!-- BOOTSTRAP SCRIPTS -->
-<%@ include file="templates/bootstrap_scripts.jsp" %>
+<%@ include file="templates/config/bootstrap_scripts.jsp" %>
 
 <!-- GOOGLE MAPS API KEY SCRIPT-->
-<%@ include file="js/google_maps_api_key.jsp" %>
+<%@ include file="templates/config/google_maps_api_key.jsp" %>
 
 <!-- GOOGLE MAPS BACKGROUND SCRIPT -->
-<%@ include file="js/google_maps_background.jsp" %>
+<%@ include file="js/google_maps_background.js" %>

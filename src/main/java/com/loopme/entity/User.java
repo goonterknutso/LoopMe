@@ -12,6 +12,7 @@ public class User {
     private String name;
     private String photoUrl;
     private String email;
+    private String uid;
     private LatLng homeGPS;
     private Address homeAddress;
     private Preferences preferences;
@@ -90,11 +91,59 @@ public class User {
         this.homeGPS = homeGPS;
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
 
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
 
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
+    public String getUid() {
+        return uid;
+    }
 
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public LatLng getHomeGPS() {
+        return homeGPS;
+    }
+
+    public void setHomeGPS(LatLng homeGPS) {
+        this.homeGPS = homeGPS;
+    }
+
+    public Address getHomeAddress() {
+        return homeAddress;
+    }
+
+    public void setHomeAddress(Address homeAddress) {
+        this.homeAddress = homeAddress;
+    }
+
+    public Preferences getPreferences() {
+        return preferences;
+    }
+
+    public void setPreferences(Preferences preferences) {
+        this.preferences = preferences;
+    }
 }

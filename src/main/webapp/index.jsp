@@ -20,14 +20,10 @@
 
 </html>
 
-<!-- BOOTSTRAP SCRIPTS -->
-<%@ include file="templates/bootstrap_scripts.jsp" %>
+<!-- CONFIG SCRIPTS -->
+<%@ include file="templates/config/firebase_config.jsp" %>
+<%@ include file="templates/config/bootstrap_scripts.jsp" %>
+<%@ include file="templates/config/google_maps_api_key.jsp" %>
 
-<!-- GOOGLE MAPS API KEY SCRIPT-->
-<%@ include file="js/google_maps_api_key.jsp" %>
-
-<!-- GOOGLE MAPS BACKGROUND SCRIPT -->
-<%@ include file="js/google_maps_background.jsp" %>
-
-<!-- FIND ME BUTTON SCRIPT -->
-<%@ include file="js/find_me_button.jsp" %>
+<!-- CUSTOM PAGE SCRIPTS -->
+<script src="js/google_maps_background.js" type="text/javascript"></script>
