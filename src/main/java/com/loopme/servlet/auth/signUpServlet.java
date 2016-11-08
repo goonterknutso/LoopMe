@@ -41,7 +41,7 @@ public class signUpServlet extends HttpServlet {
         user.setName(request.getParameter("name"));
         user.setPhotoUrl(request.getParameter("photoUrl"));
         user.setUid(request.getParameter("uid"));
-
+        user.setRole("user");
         user.setHomeAddress(null);
         user.setHomeGPS(null);
 

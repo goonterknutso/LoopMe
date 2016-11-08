@@ -13,6 +13,7 @@ public class User {
     private String photoUrl;
     private String email;
     private String uid;
+    private String role;
     private LatLng homeGPS;
     private Address homeAddress;
     private Preferences preferences;
@@ -121,6 +122,14 @@ public class User {
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public LatLng getHomeGPS() {

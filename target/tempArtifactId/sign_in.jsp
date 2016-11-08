@@ -28,6 +28,7 @@
 <%@ include file="templates/config/google_maps_api_key.jsp" %>
 
 <!-- CUSTOM PAGE SCRIPTS -->
+<%@ include file="js/authentication.jsp" %>
 <script src="js/google_maps_background.js"></script>
 <script src="js/sign_out.js"></script>
-<script src="js/authentication.js"></script>
+<script src="js/authentication.jsp"></script>

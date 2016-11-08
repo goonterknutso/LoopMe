@@ -65,4 +65,39 @@
     <url-pattern>/signIn</url-pattern>
   </servlet-mapping>
 
+
+
+  <!--AUTHENTICATION SERVLETS-->
+
+  <!--SignIn Auth-->
+  <servlet>
+    <servlet-name>signInAuth</servlet-name>
+    <servlet-class>com.loopme.servlet.auth.signInServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>signInAuth</servlet-name>
+    <url-pattern>/signInAuth</url-pattern>
+  </servlet-mapping>
+
+  <!--SignUp Auth-->
+  <servlet>
+    <servlet-name>signUpAuth</servlet-name>
+    <servlet-class>com.loopme.servlet.auth.signUpServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>signUpAuth</servlet-name>
+    <url-pattern>/signUpAuth</url-pattern>
+  </servlet-mapping>
+
+  <!--SignUp Auth-->
+  <servlet>
+    <servlet-name>signOutAuth</servlet-name>
+    <servlet-class>com.loopme.servlet.auth.signOutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>signOutAuth</servlet-name>
+    <url-pattern>/signOutAuth</url-pattern>
+  </servlet-mapping>
+
+
 </web-app>
