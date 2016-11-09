@@ -4,18 +4,18 @@
 
     <head>
         <!-- Head JSP Template -->
-        <%@include file = "templates/head.jsp" %>
+        <%@include file = "templates/parts/head.jsp" %>
         <!-- Custom Page CSS -->
-        <style><%@include file = "resources/styles/account_settings.css"%></style>
+        <link href="resources/styles/account.css" type="text/css" rel="stylesheet"/>
     </head>
 
     <body onload="displayBackgroundMap()">
         <!-- Navbar JSP Template -->
-        <%@ include file ="templates/navbar.jsp" %>
+        <%@ include file ="templates/parts/navbar.jsp" %>
         <!-- Main Page Content -->
         <%@ include file="templates/main/account_main_content.jsp" %>
         <!-- Footer JSP Templates -->
-        <%@ include file = "templates/footer.jsp" %>
+        <%@ include file = "templates/parts/footer.jsp" %>
     </body>
 
 </html>

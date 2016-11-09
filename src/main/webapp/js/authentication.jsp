@@ -1,4 +1,6 @@
+
 <script>
+    //TODO MAKE ERROR ALERTS MORE MEANINGFUL
     //Connect Buttons to Functions
     document.getElementById("btnSignIn").addEventListener("click", signIn);
     document.getElementById("btnSignUp").addEventListener("click", signUp);
@@ -36,8 +38,6 @@
 
     //Google Sign In Function
     function googleSignIn() {
-        alert("Google Button Clicked");
-
         var provider = new firebase.auth.GoogleAuthProvider();
 
         firebase.auth().signInWithRedirect(provider);

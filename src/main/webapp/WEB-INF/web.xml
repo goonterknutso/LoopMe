@@ -5,66 +5,62 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
 
+  <!--MAIN REDIRECT -->
+
   <!--Index Redirect-->
   <servlet>
     <servlet-name>indexRedirect</servlet-name>
-    <servlet-class>com.loopme.servlet.redirect.indexRedirect</servlet-class>
+    <servlet-class>com.loopme.servlet.redirect.main.indexRedirect</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>indexRedirect</servlet-name>
     <url-pattern>/index</url-pattern>
   </servlet-mapping>
-
   <!--About Redirect-->
   <servlet>
     <servlet-name>aboutRedirect</servlet-name>
-    <servlet-class>com.loopme.servlet.redirect.aboutRedirect</servlet-class>
+    <servlet-class>com.loopme.servlet.redirect.main.aboutRedirect</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>aboutRedirect</servlet-name>
     <url-pattern>/about</url-pattern>
   </servlet-mapping>
-
   <!--HowItWorks Redirect-->
   <servlet>
     <servlet-name>howItWorksRedirect</servlet-name>
-    <servlet-class>com.loopme.servlet.redirect.howItWorksRedirect</servlet-class>
+    <servlet-class>com.loopme.servlet.redirect.main.howItWorksRedirect</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>howItWorksRedirect</servlet-name>
     <url-pattern>/howItWorks</url-pattern>
   </servlet-mapping>
-
   <!--Contact Redirect-->
   <servlet>
     <servlet-name>contactRedirect</servlet-name>
-    <servlet-class>com.loopme.servlet.redirect.contactRedirect</servlet-class>
+    <servlet-class>com.loopme.servlet.redirect.main.contactRedirect</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>contactRedirect</servlet-name>
     <url-pattern>/contact</url-pattern>
   </servlet-mapping>
-
   <!--Account Redirect-->
   <servlet>
     <servlet-name>accountRedirect</servlet-name>
-    <servlet-class>com.loopme.servlet.redirect.accountRedirect</servlet-class>
+    <servlet-class>com.loopme.servlet.redirect.main.accountRedirect</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>accountRedirect</servlet-name>
     <url-pattern>/account</url-pattern>
   </servlet-mapping>
-
   <!--SignIn Redirect-->
   <servlet>
     <servlet-name>signInRedirect</servlet-name>
-    <servlet-class>com.loopme.servlet.redirect.signInRedirect</servlet-class>
+    <servlet-class>com.loopme.servlet.redirect.main.signInRedirect</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>signInRedirect</servlet-name>
     <url-pattern>/signIn</url-pattern>
   </servlet-mapping>
-
 
 
   <!--AUTHENTICATION SERVLETS-->
@@ -78,7 +74,6 @@
     <servlet-name>signInAuth</servlet-name>
     <url-pattern>/signInAuth</url-pattern>
   </servlet-mapping>
-
   <!--SignUp Auth-->
   <servlet>
     <servlet-name>signUpAuth</servlet-name>
@@ -88,7 +83,6 @@
     <servlet-name>signUpAuth</servlet-name>
     <url-pattern>/signUpAuth</url-pattern>
   </servlet-mapping>
-
   <!--SignUp Auth-->
   <servlet>
     <servlet-name>signOutAuth</servlet-name>
@@ -97,6 +91,37 @@
   <servlet-mapping>
     <servlet-name>signOutAuth</servlet-name>
     <url-pattern>/signOutAuth</url-pattern>
+  </servlet-mapping>
+
+
+  <!-- ADMIN REDIRECT -->
+
+  <!-- Users -->
+  <servlet>
+    <servlet-name>users</servlet-name>
+    <servlet-class>com.loopme.servlet.redirect.admin.usersRedirect</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>users</servlet-name>
+    <url-pattern>/users</url-pattern>
+  </servlet-mapping>
+  <!-- Saved Loops -->
+  <servlet>
+    <servlet-name>savedLoops</servlet-name>
+    <servlet-class>com.loopme.servlet.redirect.admin.savedLoopsRedirect</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>savedLoops</servlet-name>
+    <url-pattern>/savedLoops</url-pattern>
+  </servlet-mapping>
+  <!-- Preferences -->
+  <servlet>
+    <servlet-name>preferences</servlet-name>
+    <servlet-class>com.loopme.servlet.redirect.admin.preferencesRedirect</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>preferences</servlet-name>
+    <url-pattern>/preferences</url-pattern>
   </servlet-mapping>
 
 

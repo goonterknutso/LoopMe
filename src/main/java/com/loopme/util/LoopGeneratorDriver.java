@@ -9,7 +9,7 @@ public class LoopGeneratorDriver {
     public static void main(String[] args){
 
 
-        //FireDBHelper firebase = new FireDBHelper();
+        //UserDao firebase = new UserDao();
 
         LoopGenerator test1 = new LoopGenerator(100, 5, 1);
 

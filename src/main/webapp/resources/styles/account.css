@@ -1,0 +1,22 @@
+#account_form{
+    position: absolute;
+    top: 20%;
+    background-color: #333;
+    padding: 20px;
+    width: 60%;
+    left: 50%;
+    margin-left: -30%;
+    color:#9d9d9d;
+}
+#div_buttons{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+legend{
+    color: #9d9d9d;
+    font-family: Evolution;
+    font-size: 40px;
+}
+p{
+    color: #9d9d9d;
+}

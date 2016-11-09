@@ -2,7 +2,7 @@ package com.loopme.servlet.auth;
 
 import com.loopme.entity.Preferences;
 import com.loopme.entity.User;
-import com.loopme.persistence.FireDBHelper;
+import com.loopme.persistence.UserDao;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,12 +13,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 public class signUpServlet extends HttpServlet {
 
-    FireDBHelper dbHelper;
+    UserDao dbHelper;
     User user;
     Preferences preferences;
     List<User> users;
@@ -26,7 +24,7 @@ public class signUpServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        dbHelper = new FireDBHelper();
+        dbHelper = new UserDao();
         user = new User();
         preferences = new Preferences();
         users = new ArrayList<User>();
@@ -55,6 +53,11 @@ public class signUpServlet extends HttpServlet {
 
         //Add user to users and save
         users = dbHelper.getUsers();
+        System.out.println("Users read:");
+        for(User u : users){
+            System.out.println(u.toString());
+        }
+
         users.add(user);
         dbHelper.saveUsers(users);
 

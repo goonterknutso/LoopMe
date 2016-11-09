@@ -1,0 +1,38 @@
+body{
+    background-image: url("../images/map.png");
+}
+#users_form{
+    position: absolute;
+    top: 20%;
+    background-color: #333;
+    padding: 20px;
+    width: 90%;
+    left: 50%;
+    margin-left: -45%;
+    color:#9d9d9d;
+    overflow-x: scroll;
+}
+#div_buttons{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+#users_table{
+    text-align: center;
+}
+legend{
+    color: #9d9d9d;
+    font-family: Evolution;
+    font-size: 40px;
+}
+form{
+    padding-bottom: 20%;
+}
+p{
+    color: #9d9d9d;
+}
+td{
+    text-align: center;
+}
+th{
+    text-align: center;
+}

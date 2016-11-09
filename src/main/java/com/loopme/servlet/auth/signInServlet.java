@@ -1,7 +1,7 @@
 package com.loopme.servlet.auth;
 
 import com.loopme.entity.User;
-import com.loopme.persistence.FireDBHelper;
+import com.loopme.persistence.UserDao;
 
 import java.io.IOException;
 
@@ -11,17 +11,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 public class signInServlet extends HttpServlet {
 
-    FireDBHelper dbHelper;
+    UserDao dbHelper;
     User user;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        dbHelper = new FireDBHelper();
+        dbHelper = new UserDao();
     }
 
     @Override
@@ -30,11 +29,13 @@ public class signInServlet extends HttpServlet {
 
         //Get user based on email (id)
         user = dbHelper.getUser(request.getParameter("email"));
+        System.out.println(user.toString());
 
         //Set user in session
         HttpSession session = request.getSession(true);
         session.setAttribute("user", user);
 
+        //Redirect to account
         response.sendRedirect("/account");
 
     }

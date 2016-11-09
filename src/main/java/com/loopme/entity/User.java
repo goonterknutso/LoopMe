@@ -155,4 +155,18 @@ public class User {
     public void setPreferences(Preferences preferences) {
         this.preferences = preferences;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", photoUrl='" + photoUrl + '\'' +
+                ", email='" + email + '\'' +
+                ", uid='" + uid + '\'' +
+                ", role='" + role + '\'' +
+                ", homeGPS=" + homeGPS +
+                ", homeAddress=" + homeAddress +
+                ", preferences=" + preferences +
+                '}';
+    }
 }
