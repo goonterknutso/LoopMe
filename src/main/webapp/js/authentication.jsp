@@ -1,12 +1,11 @@
 <script>
+    //Connect Buttons to Functions
     document.getElementById("btnSignIn").addEventListener("click", signIn);
     document.getElementById("btnSignUp").addEventListener("click", signUp);
     document.getElementById("btnGoogle").addEventListener("click", googleSignIn);
 
-
+    //Sign In Function
     function signIn() {
-        alert("Sign In Button Clicked");
-
         var email = document.getElementById("inputEmail").value;
         var password = document.getElementById("inputPassword").value;
 
@@ -19,9 +18,8 @@
         });
     };
 
-
+    //Sign Up Function
     function signUp() {
-        alert("Sign Up Button clicked");
         sessionStorage.setItem("signUp", true);
         var email = document.getElementById("inputEmail").value;
         var password = document.getElementById("inputPassword").value;
@@ -36,7 +34,7 @@
         });
     };
 
-
+    //Google Sign In Function
     function googleSignIn() {
         alert("Google Button Clicked");
 
@@ -51,7 +49,6 @@
             }
             // The signed-in user info.
             var user = result.user;
-            alert("User:"+user);
         }).catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;
@@ -68,26 +65,19 @@
         });
     };
 
-    //Listen for change in user
+    //User Change Function
     firebase.auth().onAuthStateChanged(function(user) {
-        alert("onAuthStateChanged");
-
         if (user) {
             if(sessionStorage.getItem("signUp")){
-                alert("sign up");
                 sessionStorage.removeItem("signUp");
                 window.location.href = "/signUpAuth?email="+user.email+
                         "&name="+user.displayName+
                         "&photoUrl="+user.photoUrl+
                         "&uid="+user.uid;
             } else {
-                alert("sign in");
                 window.location.href = "/signInAuth?email="+user.email;
             }
-
-
         }
-
     });
 
 

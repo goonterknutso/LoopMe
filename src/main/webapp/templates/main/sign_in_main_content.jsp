@@ -38,7 +38,7 @@
                 <div class="form-group">
                     <div class="col-lg-4 col-md-4 col-sm-4"></div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
-                        <button id="btnSignIn" type="submit" class="btn btn-default">Sign In</button>
+                        <button id="btnSignIn" type="button" class="btn btn-default">Sign In</button>
                         <button id="btnSignUp" type="button" class="btn btn-default">Sign Up</button>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4"></div>

@@ -3,12 +3,8 @@
 
     function signOut() {
         firebase.auth().signOut().then(function () {
-            alert("Sign Out Successful");
-
-            //Add in servlet call
-            window.location.href = "/signOutAuth";
-            alert("no?");
-
+            //alert("Sign Out Successful");
+            sessionStorage.setItem("signOut", true);
         }, function (error) {
             var errorCode = error.code;
             var errorMessage = error.message;
@@ -16,7 +12,13 @@
             alert("Error Code: " + errorCode + "\n" +
                     "Error Message: " + errorMessage);
         });
-        alert("here");
-        window.location.href="/signOutAuth";
+
     }
+
+    //Listen for change in user
+    firebase.auth().onAuthStateChanged(function(user) {
+        if(user==null) {
+            window.location.href = "/signOutAuth";
+        }
+    });
 </script>
