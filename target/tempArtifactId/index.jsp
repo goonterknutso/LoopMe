@@ -20,10 +20,5 @@
 
 </html>
 
-<!-- CONFIG SCRIPTS -->
-<%@ include file="templates/config/firebase_config.jsp" %>
-<%@ include file="templates/config/bootstrap_scripts.jsp" %>
-<%@ include file="templates/config/google_maps_api_key.jsp" %>
-
 <!-- CUSTOM PAGE SCRIPTS -->
-<script src="js/google_maps_background.js" type="text/javascript"></script>
+<%@ include file="js/google_maps_background.jsp" %>

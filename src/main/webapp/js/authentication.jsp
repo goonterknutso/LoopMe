@@ -5,7 +5,6 @@
 
 
     function signIn() {
-        signOut();
         alert("Sign In Button Clicked");
 
         var email = document.getElementById("inputEmail").value;
@@ -18,18 +17,12 @@
             alert("Error Code: " + errorCode + "\n" +
                 "Error Message: " + errorMessage);
         });
+    };
 
-        //Check for valid sign in, redirect to servlet
-        var user = firebase.auth().currentUser;
-        if(user!=null){
-            window.location.href = "/signInAuth?email="+user.email;
-        }
-    }
 
     function signUp() {
-        alert("Sign Up Butotn clicked");
-
-
+        alert("Sign Up Button clicked");
+        sessionStorage.setItem("signUp", true);
         var email = document.getElementById("inputEmail").value;
         var password = document.getElementById("inputPassword").value;
 
@@ -41,20 +34,10 @@
             alert("Error Code: " + errorCode + "\n" +
                 "Error Message: " + errorMessage);
         });
+    };
 
-        //Check for valid sign in, redirect to servlet
-        var user = firebase.auth().currentUser;
-        if(user!=null){
-            window.location.href = "/signUpAuth?email="+user.email+
-                                              "&name="+user.displayName+
-                                              "&photoUrl="+user.photoUrl+
-                                              "&uid="+user.uid;
-        }
-
-    }
 
     function googleSignIn() {
-        signOut();
         alert("Google Button Clicked");
 
         var provider = new firebase.auth.GoogleAuthProvider();
@@ -65,11 +48,10 @@
             if (result.credential) {
                 // This gives you a Google Access Token. You can use it to access the Google API.
                 var token = result.credential.accessToken;
-                alert("it worked?");
             }
             // The signed-in user info.
             var user = result.user;
-            alert(user);
+            alert("User:"+user);
         }).catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;
@@ -84,15 +66,30 @@
             console.log("Error Email: "+email);
             console.log("Error Credential: "+credential);
         });
+    };
 
-        //Check for valid sign in, redirect to servlet
-        var user = firebase.auth().currentUser;
-        if(user!=null){
-            window.location.href = "/signUpAuth?email="+user.email+
-                    "&name="+user.displayName+
-                    "&photoUrl="+user.photoUrl+
-                    "&uid="+user.uid;
+    //Listen for change in user
+    firebase.auth().onAuthStateChanged(function(user) {
+        alert("onAuthStateChanged");
+
+        if (user) {
+            if(sessionStorage.getItem("signUp")){
+                alert("sign up");
+                sessionStorage.removeItem("signUp");
+                window.location.href = "/signUpAuth?email="+user.email+
+                        "&name="+user.displayName+
+                        "&photoUrl="+user.photoUrl+
+                        "&uid="+user.uid;
+            } else {
+                alert("sign in");
+                window.location.href = "/signInAuth?email="+user.email;
+            }
+
+
         }
-    }
+
+    });
+
+
 
 </script>

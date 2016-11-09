@@ -20,7 +20,7 @@
                 <li id="navContact"><a href="/contact">Contact</a></li>
                 <li id="navAccountSettings">
                     <% if(session.getAttribute("user")==null) { %>
-                    <a href="/signIn">Account</a></li>
+                    <a href="/signIn">Sign In</a></li>
                     <% } else { %>
                     <a href="/account">Account</a></li>
                     <% }  %>

@@ -1,4 +1,5 @@
 <script type="text/javascript">
+
     if(document.URL.indexOf("index")>0){
         document.getElementById("navCreateLoop").className = "active";
     }

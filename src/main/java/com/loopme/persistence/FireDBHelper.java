@@ -19,7 +19,7 @@ import org.apache.log4j.Logger;
 
 public class FireDBHelper{
 
-    private String firebase_baseURL = "https://excerloops.firebaseio.com/";
+    private String firebase_baseURL = "https://excerloops.firebaseio.com/users";
     Firebase firebase;
     static Logger log = Logger.getLogger(FireDBHelper.class.getName());
 
@@ -133,5 +133,7 @@ public class FireDBHelper{
         }
         return null;
     }
+
+
 
 }

@@ -36,8 +36,11 @@ public class signUpServlet extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        System.out.println("sign up");
+
         //Create new user
         user.setEmail(request.getParameter("email"));
+        System.out.println("in servlet");
         user.setName(request.getParameter("name"));
         user.setPhotoUrl(request.getParameter("photoUrl"));
         user.setUid(request.getParameter("uid"));
@@ -55,12 +58,8 @@ public class signUpServlet extends HttpServlet {
         users.add(user);
         dbHelper.saveUsers(users);
 
-        //Set user in session
-        HttpSession session = request.getSession(true);
-        session.setAttribute("user", user);
-
         //Redirect to account
-        request.getRequestDispatcher("account.jsp").forward(request, response);
+        request.getRequestDispatcher("/signIn?email="+request.getParameter("email")).forward(request, response);
     }
 
     @Override

@@ -31,10 +31,10 @@ public class signOutServlet extends HttpServlet {
         HttpSession session = request.getSession(true);
 
         //Remove user
-        session.removeAttribute("user");
-
+        session.setAttribute("user", null);
+        System.out.println("signed out");
         //Redirect to sign in
-        request.getRequestDispatcher("sign_in.jsp").forward(request, response);
+        response.sendRedirect("/signIn");
     }
 
     @Override
