@@ -20,7 +20,7 @@
             <form>
                 <legend>Users</legend>
 
-                <table id="#users_table" class="table table-striped">
+                <table id="#users_table" class="table table-bordered">
                 <thead>
                     <tr>
                         <th>Email</th>
@@ -30,7 +30,7 @@
                         <th>Role</th>
                         <th>Address</th>
                         <th>GPS</th>
-                        <th>Saved Loops</th>
+                        <th># Loops</th>
                         <th>Update</th>
                         <th>Delete</th>
                     </tr>
@@ -39,27 +39,72 @@
                 <!--Display information for each user -->
                 <tbody>
 
-                    <% for(User u : users) { %>
+                    <% for(int i=0; i<users.size(); i++) {
+                        User u = users.get(i);
+                    %>
 
                     <tr>
-                        <td><input type="text" value="<% out.print(u.getEmail()); %>" /></td>
-                        <td><input type="text" value="<% out.print(u.getName()); %>" /></td>
-                        <td><input type="text" value="<% out.print(u.getPhotoUrl()); %>" /></td>
-                        <td><input type="text" value="<% out.print(u.getUid()); %>" /></td>
-                        <td><input type="text" value="<% out.print(u.getRole()); %>" /></td>
-                        <td><input type="text" value="<% out.print(u.getHomeAddress()); %>" />
-                            <a href="http://maps.google.com/?q=<% out.print(u.getHomeAddress()); %>">
+                        <!--Email-->
+                        <td>
+                            <div class="td_div" id="<%out.print(i);out.print(u.getEmail());%>email" onclick="editOnClick(this);">
+                                <% out.print(u.getEmail()); %>
+                            </div>
+                        </td>
+                        <!--Name-->
+                        <td>
+                            <div id="<%out.print(i);out.print(u.getEmail());%>name" onclick="editOnClick(this);">
+                                <% out.print(u.getName()); %>
+                            </div>
+                        </td>
+                        <!--Photo Url-->
+                        <td>
+                            <div id="<%out.print(i);out.print(u.getEmail());%>photoUrl" onclick="editOnClick(this);">
+                                <% out.print(u.getPhotoUrl()); %>
+                            </div>
+                        </td>
+                        <!--Uid-->
+                        <td>
+                            <div id="<%out.print(i);out.print(u.getEmail());%>uid" onclick="editOnClick(this);">
+                                <% out.print(u.getUid()); %>
+                            </div>
+                        </td>
+                        <!--Role-->
+                        <td>
+                            <div id="<%out.print(i);out.print(u.getEmail());%>role" onclick="editOnClick(this);">
+                                <% out.print(u.getRole()); %>
+                            </div>
+                        </td>
+                        <!--Address-->
+                        <td>
+                            <div id="<%out.print(i);out.print(u.getEmail());%>address" onclick="editOnClick(this);" style="float: left">
+                                <% out.print(u.getHomeAddress()); %>
+                            </div>
+                            <a href="http://maps.google.com/?q=<% out.print(u.getHomeAddress()); %>" style="float:right;">
                                 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                             </a>
                         </td>
-                        <td><input type="text" value="<% out.print(u.getHomeGPS()); %>" />
-                            <a href="http://maps.google.com/?q=<% out.print(u.getHomeGPS()); %>">
+                        <!--Home GPS-->
+                        <td>
+                            <div id="<%out.print(i);out.print(u.getEmail());%>gps" onclick="editOnClick(this);" style="float: left">
+                                <% out.print(u.getHomeGPS()); %>
+                            </div>
+                            <a href="http://maps.google.com/?q=<% out.print(u.getHomeGPS()); %>" style="float:right">
                                 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                             </a>
                         </td>
+
+                        <!--Number of Loops Saved-->
                         <td>0</td>
-                        <td><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span></td>
-                        <td><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></td>
+
+                        <!--Update (call servlet)-->
+                        <td style="text-align: center">
+                            <span class="glyphicon glyphicon-ok-circle" id="iconUpdate" aria-hidden="true"></span>
+                        </td>
+
+                        <!--Delete (call servlet)-->
+                        <td style="text-align: center">
+                            <span class="glyphicon glyphicon-remove-circle" id="iconDelete" aria-hidden="true"></span>
+                        </td>
 
                     </tr>
 

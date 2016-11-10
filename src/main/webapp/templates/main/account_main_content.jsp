@@ -19,9 +19,10 @@
                 <!-- Email -->
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Email:</label>
-                    <div class="col-sm-6">
+                    <div class="col-sm-3">
                         <p><% out.print(user.getEmail()); %></p>
                     </div>
+                    <div class="col-sm-3"></div>
                 </div>
                 <!-- Name -->
                 <div class="form-group row">
@@ -29,7 +30,38 @@
                     <div class="col-sm-6">
                         <input type="text" class="form-control" id="inputName" placeholder="<% user.getName(); %>" />
                     </div>
+                    <div class="col-sm-3">
+                        <button id="btnUpdateName" type="button" class="btn btn-default">Update</button>
+                        <!--TODO add js method and event listner-->
+                    </div>
                 </div>
+                <!-- Home Address -->
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label" for="inputAddress">Home Address:</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="inputAddress" placeholder="<% user.getHomeAddress(); %>" />
+                    </div>
+                    <div class="col-sm-3">
+                        <button id="btnUpdateAddress" type="button" class="btn btn-default">Update</button>
+                        <!--TODO add js method and event listner-->
+                    </div>
+                </div>
+                <!-- Home GPS -->
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label" for="inputGPS">Home GPS:</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="inputGPS" placeholder="<% user.getHomeGPS(); %>" />
+                    </div>
+                    <div class="col-sm-3">
+                        <button id="btnUpdateGPS" type="button" class="btn btn-default">Update</button>
+                        <!--TODO add js method and event listner-->
+                    </div>
+                </div>
+
+
+                <!-- TODO add link to their loops or just add them here -->
+
+
                 <!-- Sign Out -->
                 <div class="form-group">
                     <div class="col-lg-4 col-md-4 col-sm-4"></div>

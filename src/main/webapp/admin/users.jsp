@@ -9,7 +9,7 @@
         <style><%@ include file = "../resources/styles/users.css"%></style>
     </head>
 
-    <body>
+    <body style='background-image: url("../resources/images/map.png")';>
         <!-- Navbar JSP Template -->
         <%@ include file="../templates/parts/navbar.jsp" %>
         <!-- Main Content -->
@@ -19,3 +19,6 @@
     </body>
 
 </html>
+
+<!-- CUSTOM JS -->
+<%@ include file="../js/edit_text.jsp" %>
