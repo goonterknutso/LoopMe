@@ -12,7 +12,7 @@ public class Preferences {
 
     public Preferences(String distanceUnit, Boolean useHomeAddress){
         this.distanceUnit = distanceUnit;
-        this. useHomeAddress = useHomeAddress;
+        this.useHomeAddress = useHomeAddress;
     }
 
     public String getDistanceUnit() {

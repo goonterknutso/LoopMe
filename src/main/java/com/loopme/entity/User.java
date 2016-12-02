@@ -1,7 +1,5 @@
 package com.loopme.entity;
 
-import com.google.maps.model.LatLng;
-
 /**
  * A class to represent a user
  *
@@ -14,9 +12,10 @@ public class User {
     private String email;
     private String uid;
     private String role;
-    private LatLng homeGPS;
-    private Address homeAddress;
+    private String homeGPS;
+    private String homeAddress;
     private Preferences preferences;
+    private int numSavedLoops;
 
     /**
      * Constructor (empty) for a new User
@@ -33,6 +32,7 @@ public class User {
      * @param preferences the preferences
      */
     public User(String name, String photoUrl, String email, Preferences preferences){
+        this();
         this.name = name;
         this.photoUrl = photoUrl;
         this.email = email;
@@ -48,7 +48,8 @@ public class User {
      * @param preferences the preferences
      * @param homeAddress the home address
      */
-    public User(String name, String photoUrl, String email, Preferences preferences, Address homeAddress){
+    public User(String name, String photoUrl, String email, Preferences preferences, String homeAddress){
+        this();
         this.name = name;
         this.photoUrl = photoUrl;
         this.email = email;
@@ -63,27 +64,10 @@ public class User {
      * @param photoUrl    the photoUrl
      * @param email       the email
      * @param preferences the preferences
-     * @param homeGPS     the home gps
-     */
-    public User(String name, String photoUrl, String email, Preferences preferences, LatLng homeGPS){
-        this.name = name;
-        this.photoUrl = photoUrl;
-        this.email = email;
-        this.preferences = preferences;
-        this.homeGPS = homeGPS;
-    }
-
-    /**
-     * Constructor (with parameters including homeAddressId) for a new User
-     *
-     * @param name        the  name
-     * @param photoUrl    the photoUrl
-     * @param email       the email
-     * @param preferences the preferences
      * @param homeAddress the home address
      * @param homeGPS     the home gps
      */
-    public User(String name, String photoUrl, String email, Preferences preferences, Address homeAddress, LatLng homeGPS){
+    public User(String name, String photoUrl, String email, Preferences preferences, String homeAddress, String homeGPS){
         this.name = name;
         this.photoUrl = photoUrl;
         this.email = email;
@@ -132,19 +116,19 @@ public class User {
         this.role = role;
     }
 
-    public LatLng getHomeGPS() {
+    public String getHomeGPS() {
         return homeGPS;
     }
 
-    public void setHomeGPS(LatLng homeGPS) {
+    public void setHomeGPS(String homeGPS) {
         this.homeGPS = homeGPS;
     }
 
-    public Address getHomeAddress() {
+    public String getHomeAddress() {
         return homeAddress;
     }
 
-    public void setHomeAddress(Address homeAddress) {
+    public void setHomeAddress(String homeAddress) {
         this.homeAddress = homeAddress;
     }
 
@@ -154,6 +138,14 @@ public class User {
 
     public void setPreferences(Preferences preferences) {
         this.preferences = preferences;
+    }
+
+    public int getNumSavedLoops(){
+        return numSavedLoops;
+    }
+
+    public void setNumSavedLoops(int numSavedLoops){
+        this.numSavedLoops = numSavedLoops;
     }
 
     @Override

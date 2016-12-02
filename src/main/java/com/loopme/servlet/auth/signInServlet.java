@@ -14,25 +14,31 @@ import javax.servlet.http.HttpSession;
 
 public class signInServlet extends HttpServlet {
 
-    UserDao dbHelper;
+    UserDao userDao;
     User user;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        dbHelper = new UserDao();
     }
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        //Setup new userDao if it doesn't exist
+        HttpSession session = request.getSession(true);
+        if(session.getAttribute("userDao")==null){
+            UserDao userDao = new UserDao();
+            session.setAttribute("userDao",userDao);
+        }
+
         //Get user based on email (id)
-        user = dbHelper.getUser(request.getParameter("email"));
+        userDao = (UserDao) session.getAttribute("userDao");
+        user = userDao.getUser(request.getParameter("email"));
         System.out.println(user.toString());
 
         //Set user in session
-        HttpSession session = request.getSession(true);
         session.setAttribute("user", user);
 
         //Redirect to account

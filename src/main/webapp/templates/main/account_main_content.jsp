@@ -19,7 +19,7 @@
                 <!-- Email -->
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Email:</label>
-                    <div class="col-sm-3">
+                    <div class="col-sm-6">
                         <p><% out.print(user.getEmail()); %></p>
                     </div>
                     <div class="col-sm-3"></div>
@@ -37,8 +37,8 @@
                 </div>
                 <!-- Home Address -->
                 <div class="form-group row">
-                    <label class="col-sm-3 col-form-label" for="inputAddress">Home Address:</label>
-                    <div class="col-sm-3">
+                    <label class="col-sm-2 col-form-label" for="inputAddress">Home Address:</label>
+                    <div class="col-sm-6">
                         <input type="text" class="form-control" id="inputAddress" placeholder="<% user.getHomeAddress(); %>" />
                     </div>
                     <div class="col-sm-3">
@@ -48,8 +48,8 @@
                 </div>
                 <!-- Home GPS -->
                 <div class="form-group row">
-                    <label class="col-sm-3 col-form-label" for="inputGPS">Home GPS:</label>
-                    <div class="col-sm-3">
+                    <label class="col-sm-2 col-form-label" for="inputGPS">Home GPS:</label>
+                    <div class="col-sm-6">
                         <input type="text" class="form-control" id="inputGPS" placeholder="<% user.getHomeGPS(); %>" />
                     </div>
                     <div class="col-sm-3">

@@ -124,5 +124,27 @@
     <url-pattern>/preferences</url-pattern>
   </servlet-mapping>
 
+  <!-- ADMIN SERVLETS -->
+  <!-- Update User -->
+  <servlet>
+    <servlet-name>updateUser</servlet-name>
+    <servlet-class>com.loopme.servlet.admin.updateUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>updateUser</servlet-name>
+    <url-pattern>/updateUser</url-pattern>
+  </servlet-mapping>
+  <!-- Remove User -->
+  <servlet>
+    <servlet-name>removeUser</servlet-name>
+    <servlet-class>com.loopme.servlet.admin.removeUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>removeUser</servlet-name>
+    <url-pattern>/removeUser</url-pattern>
+  </servlet-mapping>
+
+
+
 
 </web-app>

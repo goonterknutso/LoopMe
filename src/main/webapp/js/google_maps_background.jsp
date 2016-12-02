@@ -3,7 +3,7 @@
         //Check to see if we have already loaded the user location map
         //If we haven't, find user and set sessionStorage variables
         if (sessionStorage.getItem("lat") == null && sessionStorage.getItem("lng") == null) {
-            console.log("Position not stored.");
+            alert("Position not stored.");
 
             //Find User
             if (navigator.geolocation) {
@@ -17,14 +17,15 @@
             else {
                 alert("Geolocation is not supported by this browser");
             }
+
             //User doens't allow location
             function displayDefaultMap(error) {
 
                 //Store position
                 sessionStorage.setItem("lat", 38.897540);
                 sessionStorage.setItem("lng", -77.036958);
-                sessionStorage.setItem("permissionDenied", true)
-
+                sessionStorage.setItem("permissionDenied", true);
+                alert("Permission Denied");
                 // Create a map object and specify the DOM element for display.
                 var map = new google.maps.Map(document.getElementById('map'), {
                     center: {lat: 38.897540, lng: -77.036958},
@@ -40,7 +41,7 @@
                 sessionStorage.setItem("lat", position.coords.latitude);
                 sessionStorage.setItem("lng", position.coords.longitude);
                 sessionStorage.setItem("permissionDenied", false);
-
+                alert("Permission enabled")
                 // Create a map object and specify the DOM element for display.
                 var map = new google.maps.Map(document.getElementById('map'), {
                     center: {lat: position.coords.latitude, lng: position.coords.longitude},
@@ -69,25 +70,24 @@
                 }
             }
         }
-        //Position previous stored
-        else {
-            if(sessionStorage.getItem("findMeClicked") && sessionStorage.getItem("permissionDenied")){
-                alert("Error: Location settings are not enabled. Please enable location settings for your browser and click the button again.");
-                sessionStorage.setItem("reset", true);
-            }
-            console.log("Using stored coordinates");
-            var lat = sessionStorage.getItem("lat");
-            var lng = sessionStorage.getItem("lng");
-            var map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: parseFloat(lat), lng: parseFloat(lng)},
-                scrollwheel: false,
-                zoom: 13
-            });
 
-            if (sessionStorage.getItem("address") && document.URL.indexOf("index")>0) {
-                console.log("Using stored address");
-                document.getElementById("inputLocation").value = sessionStorage.getItem("address");
-            }
+        //Position previous stored
+        if(sessionStorage.getItem("findMeClicked") && sessionStorage.getItem("permissionDenied")){
+            alert("Error: Location settings are not enabled. Please enable location settings for your browser and click the button again.");
+            sessionStorage.setItem("reset", true);
+        }
+        alert("Using stored coordinates");
+        var lat = sessionStorage.getItem("lat");
+        var lng = sessionStorage.getItem("lng");
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: parseFloat(lat), lng: parseFloat(lng)},
+            scrollwheel: false,
+            zoom: 13
+        });
+
+        if (sessionStorage.getItem("address") && document.URL.indexOf("index")>0) {
+            alert("Using stored address");
+            document.getElementById("inputLocation").value = sessionStorage.getItem("address");
         }
     }
 </script>

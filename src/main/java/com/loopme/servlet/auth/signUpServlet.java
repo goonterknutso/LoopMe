@@ -13,10 +13,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class signUpServlet extends HttpServlet {
 
-    UserDao dbHelper;
+    UserDao userDao;
     User user;
     Preferences preferences;
     List<User> users;
@@ -24,7 +25,6 @@ public class signUpServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        dbHelper = new UserDao();
         user = new User();
         preferences = new Preferences();
         users = new ArrayList<User>();
@@ -34,7 +34,14 @@ public class signUpServlet extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        System.out.println("sign up");
+        //Setup new userDao if it doesn't exist
+        HttpSession session = request.getSession(true);
+        if(session.getAttribute("userDao")==null){
+            UserDao userDao = new UserDao();
+            session.setAttribute("userDao",userDao);
+        }
+
+        userDao = (UserDao) session.getAttribute("userDao");
 
         //Create new user
         user.setEmail(request.getParameter("email"));
@@ -52,14 +59,11 @@ public class signUpServlet extends HttpServlet {
         user.setPreferences(preferences);
 
         //Add user to users and save
-        users = dbHelper.getUsers();
-        System.out.println("Users read:");
-        for(User u : users){
-            System.out.println(u.toString());
-        }
+        userDao.addUser(user);
+        userDao.saveUsers();
 
-        users.add(user);
-        dbHelper.saveUsers(users);
+        //Release userDao from session to reload list of users in userDao
+        session.removeAttribute("userDao");
 
         //Redirect to account
         request.getRequestDispatcher("/signIn?email="+request.getParameter("email")).forward(request, response);

@@ -46,7 +46,7 @@
                     <tr>
                         <!--Email-->
                         <td>
-                            <div class="td_div" id="<%out.print(i);out.print(u.getEmail());%>email" onclick="editOnClick(this);">
+                            <div class="td_div" id="<%out.print(i);out.print(u.getEmail());%>email">
                                 <% out.print(u.getEmail()); %>
                             </div>
                         </td>
@@ -64,7 +64,7 @@
                         </td>
                         <!--Uid-->
                         <td>
-                            <div id="<%out.print(i);out.print(u.getEmail());%>uid" onclick="editOnClick(this);">
+                            <div id="<%out.print(i);out.print(u.getEmail());%>uid">
                                 <% out.print(u.getUid()); %>
                             </div>
                         </td>
@@ -79,7 +79,7 @@
                             <div id="<%out.print(i);out.print(u.getEmail());%>address" onclick="editOnClick(this);" style="float: left">
                                 <% out.print(u.getHomeAddress()); %>
                             </div>
-                            <a href="http://maps.google.com/?q=<% out.print(u.getHomeAddress()); %>" style="float:right;">
+                            <a href="http://maps.google.com/?q=<% out.print(u.getHomeAddress()); %>" style="float:right;" target="_blank">
                                 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                             </a>
                         </td>
@@ -88,17 +88,21 @@
                             <div id="<%out.print(i);out.print(u.getEmail());%>gps" onclick="editOnClick(this);" style="float: left">
                                 <% out.print(u.getHomeGPS()); %>
                             </div>
-                            <a href="http://maps.google.com/?q=<% out.print(u.getHomeGPS()); %>" style="float:right">
+                            <a href="http://maps.google.com/?q=<% out.print(u.getHomeGPS()); %>" style="float:right" target="_blank">
                                 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                             </a>
                         </td>
 
                         <!--Number of Loops Saved-->
-                        <td>0</td>
+                        <td>
+                            <div id="<%out.print(i);out.print(u.getEmail());%>numLoops">
+                                <% out.print(u.getNumSavedLoops()); %>
+                            </div>
+                        </td>
 
                         <!--Update (call servlet)-->
                         <td style="text-align: center">
-                            <span class="glyphicon glyphicon-ok-circle" id="iconUpdate" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-ok-circle" id="iconUpdate" name="<%out.print(i);out.print(u.getEmail());%>" aria-hidden="true" onclick="updateUser(this)"></span>
                         </td>
 
                         <!--Delete (call servlet)-->

@@ -22,3 +22,5 @@
 
 <!-- CUSTOM PAGE SCRIPTS -->
 <%@ include file="js/google_maps_background.jsp" %>
+<%@ include file="js/find_me_button.jsp" %>
+<%@ include file="js/generate_loop.jsp" %>

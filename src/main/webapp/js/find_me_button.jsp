@@ -1,10 +1,15 @@
+<script>
 document.getElementById("btnLocation").addEventListener("click", function(){
+    alert("Find me clicked");
+    sessionStorage.setItem("findMeClicked", true);
 
-    console.log("Location button clicked");
-
+    alert(sessionStorage.getItem("permissionDenied"));
     if(sessionStorage.getItem("permissionDenied")) {
 
-        sessionStorage.setItem("findMeClicked", true);
+        alert("permission denied");
+
+
+
 
         if (sessionStorage.getItem("reset")) {
             console.log("Resetting and reloading");
@@ -20,3 +25,4 @@ document.getElementById("btnLocation").addEventListener("click", function(){
         }
     }
 });
+</script>

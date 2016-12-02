@@ -36,8 +36,8 @@
                     </div>
                     <div class="col-sm-4 col-md-4 col-lg-4">
                         <select class="form-control" id="inputDistanceUnit">
-                            <option>MI</option>
-                            <option>KM</option>
+                            <option value="MI">MI</option>
+                            <option value="KM">KM</option>
                         </select>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                 <div class="form-group">
                     <div class="col-lg-4 col-md-4 col-sm-4"></div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
-                        <button id="btnSubmit" type="submit" class="btn btn-success">Submit</button>
+                        <button id="btnSubmit" class="btn btn-success">Submit</button>
                         <button id="btnReset" type="reset" class="btn btn-danger">Reset</button>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4"></div>

@@ -22,16 +22,64 @@ public class UserDao {
     private String firebase_baseURL = "https://excerloops.firebaseio.com/users";
     Firebase firebase;
     static Logger log = Logger.getLogger(UserDao.class.getName());
+    List<User> users;
 
     public UserDao(){
         try{
             firebase = new Firebase(firebase_baseURL);
         } catch (FirebaseException e){
             System.out.println("Error: couldn't connect to Firebase");
+        } catch (Exception e){
+
         }
+        users = readUsers();
     }
 
-    public void saveUsers(List<User> users){
+
+    public Boolean updateUser(User user){
+        //TEST
+        try {
+            System.out.println(firebase.get("/0").getRawBody());
+        } catch(FirebaseException e) {
+            log.error("Error: Loops could not be read");
+        } catch(UnsupportedEncodingException e){
+            log.error("Error: Unsupported Encoding Exception");
+        }
+
+        //Loop through user, update at matching email
+        for(int i = 0; i<users.size(); i++){
+            if((users.get(i).getEmail()).equals(user.getEmail())){
+                users.set(i,user);
+            }
+        }
+
+        return true;
+    }
+
+    public void addUser(User user){
+        users.add(user);
+        /*TODO ADD SAVE USER FUNCTION */
+    }
+
+    public List<User> getUsers(){
+        return users;
+    }
+
+    public User getUser(String email){
+        User user = new User();
+
+        for(User u : users){
+            if((u.getEmail()).equals(email)){
+                user = u;
+            }
+        }
+
+        return user;
+    }
+
+
+    //Write Methods
+    public void saveUsers(){
         //Convert loops to JSON string
         String JSON = convertToJSON(users);
         System.out.println(JSON);
@@ -65,27 +113,16 @@ public class UserDao {
         return "";
     }
 
-    public User getUser(String email){
-        User user = new User();
-        List<User> users = getUsers();
 
-        for(User u : users){
-            if((u.getEmail()).equals(email)){
-                user = u;
-            }
-        }
-
-        return user;
-    }
-
-    public List<User> getUsers(){
+    //Read Methods
+    public List<User> readUsers(){
         //http://tutorials.jenkov.com/java-json/jackson-jsonparser.html
         //http://wiki.fasterxml.com/JacksonTreeModel
 
         String JSON = readFromDatabase("/");
         System.out.println("Read from database: " + JSON);
 
-        List<User> users = new ArrayList<User>();
+        List<User> usersRead = new ArrayList<User>();
 
         ObjectMapper mapper = new ObjectMapper();
         try {
@@ -96,7 +133,7 @@ public class UserDao {
 
                 try {
                     User user = mapper.readValue(node.toString(), User.class);
-                    users.add(user);
+                    usersRead.add(user);
                     System.out.println(user.toString());
                 } catch (JsonGenerationException e) {
                     e.printStackTrace();
@@ -111,7 +148,7 @@ public class UserDao {
             e.printStackTrace();
         }
 
-        return users;
+        return usersRead;
     }
 
     private String readFromDatabase(String URL){

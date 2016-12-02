@@ -21,4 +21,4 @@
 </html>
 
 <!-- CUSTOM JS -->
-<%@ include file="../js/edit_text.jsp" %>
+<%@ include file="../js/users.jsp" %>
