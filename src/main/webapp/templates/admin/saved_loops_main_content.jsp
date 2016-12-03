@@ -1,4 +1,4 @@
-<%@ page import="com.loopme.entity.User" %>
+<%@ page import="com.excerloops.entity.User" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 

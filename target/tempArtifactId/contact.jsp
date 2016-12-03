@@ -9,11 +9,11 @@
         <style><%@ include file = "resources/styles/index.css"%></style>
     </head>
 
-    <body onload="displayBackgroundMap()">
+    <body>
         <!-- Navbar JSP Template -->
         <%@ include file="templates/parts/navbar.jsp" %>
         <!-- Main Content -->
-        <%@ include file="templates/main/contact_main_content.jsp" %>
+        <%@ include file="templates/contact_main_content.jsp" %>
         <!-- Footer JSP Templates -->
         <%@ include file = "templates/parts/footer.jsp" %>
     </body>
@@ -21,4 +21,3 @@
 </html>
 
 <!-- CUSTOM PAGE SCRIPTS -->
-<%@ include file="js/google_maps_background.jsp" %>

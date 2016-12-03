@@ -10,7 +10,7 @@
   <!--Index Redirect-->
   <servlet>
     <servlet-name>indexRedirect</servlet-name>
-    <servlet-class>com.loopme.servlet.redirect.main.indexRedirect</servlet-class>
+    <servlet-class>com.excerloops.servlet.redirect.main.indexRedirect</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>indexRedirect</servlet-name>
@@ -19,7 +19,7 @@
   <!--About Redirect-->
   <servlet>
     <servlet-name>aboutRedirect</servlet-name>
-    <servlet-class>com.loopme.servlet.redirect.main.aboutRedirect</servlet-class>
+    <servlet-class>com.excerloops.servlet.redirect.main.aboutRedirect</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>aboutRedirect</servlet-name>
@@ -28,7 +28,7 @@
   <!--HowItWorks Redirect-->
   <servlet>
     <servlet-name>howItWorksRedirect</servlet-name>
-    <servlet-class>com.loopme.servlet.redirect.main.howItWorksRedirect</servlet-class>
+    <servlet-class>com.excerloops.servlet.redirect.main.howItWorksRedirect</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>howItWorksRedirect</servlet-name>
@@ -37,7 +37,7 @@
   <!--Contact Redirect-->
   <servlet>
     <servlet-name>contactRedirect</servlet-name>
-    <servlet-class>com.loopme.servlet.redirect.main.contactRedirect</servlet-class>
+    <servlet-class>com.excerloops.servlet.redirect.main.contactRedirect</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>contactRedirect</servlet-name>
@@ -46,7 +46,7 @@
   <!--Account Redirect-->
   <servlet>
     <servlet-name>accountRedirect</servlet-name>
-    <servlet-class>com.loopme.servlet.redirect.main.accountRedirect</servlet-class>
+    <servlet-class>com.excerloops.servlet.redirect.main.accountRedirect</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>accountRedirect</servlet-name>
@@ -55,11 +55,20 @@
   <!--SignIn Redirect-->
   <servlet>
     <servlet-name>signInRedirect</servlet-name>
-    <servlet-class>com.loopme.servlet.redirect.main.signInRedirect</servlet-class>
+    <servlet-class>com.excerloops.servlet.redirect.main.signInRedirect</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>signInRedirect</servlet-name>
     <url-pattern>/signIn</url-pattern>
+  </servlet-mapping>
+  <!--GeneratedMap Redirect-->
+  <servlet>
+    <servlet-name>generatedMapRedirect</servlet-name>
+    <servlet-class>com.excerloops.servlet.redirect.main.generatedMapRedirect</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>generatedMapRedirect</servlet-name>
+    <url-pattern>/generatedMap</url-pattern>
   </servlet-mapping>
 
 
@@ -68,7 +77,7 @@
   <!--SignIn Auth-->
   <servlet>
     <servlet-name>signInAuth</servlet-name>
-    <servlet-class>com.loopme.servlet.auth.signInServlet</servlet-class>
+    <servlet-class>com.excerloops.servlet.auth.signInServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>signInAuth</servlet-name>
@@ -77,7 +86,7 @@
   <!--SignUp Auth-->
   <servlet>
     <servlet-name>signUpAuth</servlet-name>
-    <servlet-class>com.loopme.servlet.auth.signUpServlet</servlet-class>
+    <servlet-class>com.excerloops.servlet.auth.createUserServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>signUpAuth</servlet-name>
@@ -86,7 +95,7 @@
   <!--SignUp Auth-->
   <servlet>
     <servlet-name>signOutAuth</servlet-name>
-    <servlet-class>com.loopme.servlet.auth.signOutServlet</servlet-class>
+    <servlet-class>com.excerloops.servlet.auth.signOutServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>signOutAuth</servlet-name>
@@ -99,7 +108,7 @@
   <!-- Users -->
   <servlet>
     <servlet-name>users</servlet-name>
-    <servlet-class>com.loopme.servlet.redirect.admin.usersRedirect</servlet-class>
+    <servlet-class>com.excerloops.servlet.redirect.admin.usersRedirect</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>users</servlet-name>
@@ -108,7 +117,7 @@
   <!-- Saved Loops -->
   <servlet>
     <servlet-name>savedLoops</servlet-name>
-    <servlet-class>com.loopme.servlet.redirect.admin.savedLoopsRedirect</servlet-class>
+    <servlet-class>com.excerloops.servlet.redirect.admin.savedLoopsRedirect</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>savedLoops</servlet-name>
@@ -117,7 +126,7 @@
   <!-- Preferences -->
   <servlet>
     <servlet-name>preferences</servlet-name>
-    <servlet-class>com.loopme.servlet.redirect.admin.preferencesRedirect</servlet-class>
+    <servlet-class>com.excerloops.servlet.redirect.admin.preferencesRedirect</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>preferences</servlet-name>
@@ -128,7 +137,7 @@
   <!-- Update User -->
   <servlet>
     <servlet-name>updateUser</servlet-name>
-    <servlet-class>com.loopme.servlet.admin.updateUserServlet</servlet-class>
+    <servlet-class>com.excerloops.servlet.admin.updateUserServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>updateUser</servlet-name>
@@ -137,7 +146,7 @@
   <!-- Remove User -->
   <servlet>
     <servlet-name>removeUser</servlet-name>
-    <servlet-class>com.loopme.servlet.admin.removeUserServlet</servlet-class>
+    <servlet-class>com.excerloops.servlet.admin.removeUserServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>removeUser</servlet-name>

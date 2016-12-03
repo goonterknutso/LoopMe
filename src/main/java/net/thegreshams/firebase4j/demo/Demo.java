@@ -18,7 +18,7 @@ public class Demo {
 
 		
 		// get the base-url (ie: 'http://gamma.firebase.com/username')
-		String firebase_baseUrl = "https://loopme-144918.firebaseio.com/";
+		String firebase_baseUrl = "https://excerloops-144918.firebaseio.com/";
 		/*for( String s : args ) {
 
 			if( s == null || s.trim().isEmpty() ) continue;
