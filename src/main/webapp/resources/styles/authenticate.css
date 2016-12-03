@@ -1,6 +1,6 @@
-#wrapper {
-    position: relative;
-    height: 100%;
+#wrapper{
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 #sign_in_form{
     position: absolute;

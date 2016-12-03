@@ -6,7 +6,7 @@
         <!-- Head JSP Template -->
         <%@include file = "templates/parts/head.jsp" %>
         <!-- Custom Page CSS -->
-        <link href="resources/styles/authenticate.css" type="text/css" rel="stylesheet"/>
+        <style><%@ include file="resources/styles/authenticate.css" %></style>
         <link href="resources/styles/bootstrap-social.css" type="text/css" rel="stylesheet"/>
         <link href="resources/styles/bootstrap-social.css" type="text/css" rel="stylesheet"/>
     </head>

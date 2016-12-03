@@ -1,9 +1,9 @@
 @font-face{
     font-family: Evolution;
-    src: url("../fonts/evolution.ttf") format("truetype");
+    src: url("/resources/fonts/evolution.ttf") format("truetype");
 }
 @font-face {
     font-family: Evolution;
     font-weight: bold;
-    src: url("../fonts/evolution.ttf") format("truetype");
+    src: url("/resources/fonts/evolution.ttf") format("truetype");
 }

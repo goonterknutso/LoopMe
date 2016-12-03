@@ -4,9 +4,9 @@
 
     <head>
         <!-- Head JSP Template -->
-        <%@include file = "templates/parts/head.jsp" %>
+        <%@ include file = "templates/parts/head.jsp" %>
         <!-- Custom Page CSS -->
-        <link rel="stylesheet" type="text/css" href="resources/styles/account.css">
+        <style><%@ include file="resources/styles/account.css" %></style>
     </head>
 
     <body onload="loadData()">
@@ -21,7 +21,4 @@
 </html>
 
 <!-- CUSTOM PAGE SCRIPTS -->
-<%@ include file="js/account/load_form_data.jsp" %>
-<%@ include file="js/account/listener_home_enable_change.jsp"%>
-<%@ include file="js/account/listener_unit_enable_change.jsp"%>
-<%@ include file="js/account/button_sign_out.jsp" %>
+<%@ include file="js/account/_scripts.jsp" %>

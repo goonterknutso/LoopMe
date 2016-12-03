@@ -6,7 +6,7 @@
         <!-- Head JSP Template -->
         <%@ include file = "templates/parts/head.jsp" %>
         <!-- Custom Page CSS -->
-        <link rel="stylesheet" type="text/css" href="resources/styles/index.css">
+        <style><%@ include file="resources/styles/index.css" %></style>
     </head>
 
     <body onload="displayBackgroundMap()">

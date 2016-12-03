@@ -1,11 +1,17 @@
+#wrapper{
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
 #account_form{
     position: absolute;
-    top: 20%;
+    top: 15%;
+    overflow-y: scroll;
+    height: 77%;
     background-color: #333;
     padding: 20px;
-    width: 60%;
+    width: 81%;
     left: 50%;
-    margin-left: -30%;
+    margin-left: -40%;
     color:#9d9d9d;
 }
 #div_buttons{
@@ -20,35 +26,38 @@ legend{
 p{
     color: #9d9d9d;
 }
+label{
+    text-align: right;
+}
 #magenta{
-    background: magenta !important;
-    color: black !important;
+    background: magenta;
+    color: black;
 }
 #blue{
-    background: blue !important;
-    color: white !important;
+    background: blue;
+    color: white;
 }
  #cyan{
-    background: cyan !important;
-    color: black !important;
+    background: cyan;
+    color: black;
 }
 #green{
-    background: green !important;
-    color: white !important;
+    background: green;
+    color: white;
 }
 #yellow{
-    background: yellow !important;
-    color: black !important;
+    background: yellow;
+    color: black;
 }
 #red{
-    background: red !important;
-    color: white !important;
+    background: red;
+    color: white;
 }
 #black{
-    background: black !important;
-    color: white !important;
+    background: black;
+    color: white;
 }
 #white{
-    background: white !important;
-    color: black !important;
+    background: white;
+    color: black;
 }

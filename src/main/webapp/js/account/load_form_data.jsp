@@ -7,9 +7,11 @@
 
 function loadData(){
     //Account Info
+    var txtUid = document.getElementById("textUid");
     var txtEmail = document.getElementById("textEmail");
     var txtName = document.getElementById("textName");
     var txtPhotoUrl = document.getElementById("textPhotoUrl");
+    txtUid.innerHTML = "<% out.print(user.getUid()); %>";
     txtEmail.innerHTML = "<% out.print(user.getEmail()); %>";
     txtName.innerHTML = "<% if(user.getName() == null){ out.print(""); }else{out.print(user.getName());} %>" ;
     txtPhotoUrl.innerHTML = "<% if(user.getPhotoUrl() == null){ out.print(""); }else{out.print(user.getPhotoUrl());} %>" ;
@@ -43,6 +45,18 @@ function loadData(){
 
     //Line Color
     document.getElementById("selectColor").value = "<% out.print(preferences.getLineColor()); %>";
+    <% 
+    switch(preferences.getLineColor()){
+        case -65281: %> document.getElementById("selectColor").style.color = "black"; document.getElementById("selectColor").style.backgroundColor = "magenta"; <% break;
+        case -16776961: %> document.getElementById("selectColor").style.color = "white"; document.getElementById("selectColor").style.backgroundColor = "blue"; <% break;
+        case -16711681: %> document.getElementById("selectColor").style.color = "black"; document.getElementById("selectColor").style.backgroundColor = "cyan"; <% break;
+        case -16711936: %> document.getElementById("selectColor").style.color = "white"; document.getElementById("selectColor").style.backgroundColor = "green"; <% break;
+        case -256: %> document.getElementById("selectColor").style.color = "black"; document.getElementById("selectColor").style.backgroundColor = "yellow"; <% break;
+        case -65536: %> document.getElementById("selectColor").style.color = "white"; document.getElementById("selectColor").style.backgroundColor = "red"; <% break;
+        case -16777216: %> document.getElementById("selectColor").style.color = "white"; document.getElementById("selectColor").style.backgroundColor = "black"; <% break;
+        case -1: %> document.getElementById("selectColor").style.color = "black"; document.getElementById("selectColor").style.backgroundColor = "white"; <% break;
+    } 
+    %>
 
     //Transit Mode
     document.getElementById("selectTransit").value = "<% out.print(preferences.getTransitMode()); %>";

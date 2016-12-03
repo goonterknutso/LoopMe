@@ -6,7 +6,7 @@
         <!-- Head JSP Template -->
         <%@ include file = "templates/parts/head.jsp" %>
         <!-- Custom Page CSS -->
-        <style><%@ include file = "resources/styles/index.css"%></style>
+        <style><%@ include file="resources/styles/generated_map.css" %></style>
     </head>
 
     <body onload="displayGeneratedMap()">
