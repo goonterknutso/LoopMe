@@ -37,6 +37,16 @@ public class createUserServlet extends HttpServlet {
 
         userDao = (UserDao) session.getAttribute("userDao");
 
+        //Check if Google Sign In
+        if(request.getParameter("googleSignIn").equals("true")){
+            System.out.println("Google Sign In");
+            request.removeAttribute("googleSignIn");
+            //User exists, sign in user
+            if(userDao.checkExist(request.getParameter("uid"))){
+                request.getRequestDispatcher("/signIn?uid="+request.getParameter("uid")).forward(request, response);
+            }
+        }
+
         //Create new user
         user.setName(request.getParameter("name"));
         user.setPhotoUrl(request.getParameter("photoUrl").toString());

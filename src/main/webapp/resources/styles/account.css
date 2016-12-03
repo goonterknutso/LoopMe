@@ -20,3 +20,35 @@ legend{
 p{
     color: #9d9d9d;
 }
+#magenta{
+    background: magenta !important;
+    color: black !important;
+}
+#blue{
+    background: blue !important;
+    color: white !important;
+}
+ #cyan{
+    background: cyan !important;
+    color: black !important;
+}
+#green{
+    background: green !important;
+    color: white !important;
+}
+#yellow{
+    background: yellow !important;
+    color: black !important;
+}
+#red{
+    background: red !important;
+    color: white !important;
+}
+#black{
+    background: black !important;
+    color: white !important;
+}
+#white{
+    background: white !important;
+    color: black !important;
+}

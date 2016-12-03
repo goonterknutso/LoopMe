@@ -14,6 +14,7 @@
             }
             // The signed-in user info.
             var user = result.user;
+            sessionStorage.setItem("googleSignIn", true);
         }).catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;

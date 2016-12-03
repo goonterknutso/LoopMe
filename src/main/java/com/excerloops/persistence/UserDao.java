@@ -33,7 +33,6 @@ public class UserDao {
         }
     }
 
-
     //CRUD
 
     public Boolean createUser(User user){
@@ -61,7 +60,6 @@ public class UserDao {
     public User readUser(String uid){
         System.out.println("READ USER METHOD CALLED");
 
-
         User readUser = new User();
         readUser.setUid(uid);
 
@@ -69,7 +67,7 @@ public class UserDao {
             FirebaseResponse response = users.get(uid);
             Map<String, Object> map = response.getBody();
             System.out.println(map.toString());
-            String json = map.get(uid).toString();
+            String json = gson.toJson(map);
             System.out.println(json);
             readUser = gson.fromJson(json, User.class);
             System.out.println(readUser.getEmail());
@@ -82,8 +80,6 @@ public class UserDao {
         return readUser;
 
     }
-
-
 
     public Boolean updateUser(User user){
         log.debug("UPDATE USER METHOD CALLED");
@@ -118,6 +114,23 @@ public class UserDao {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+        return false;
+    }
+
+    public Boolean checkExist(String uid){
+        try {
+            FirebaseResponse response = users.get(uid);
+            if(response.getSuccess()){
+                return true;
+            } else {
+                return false;
+            }
+        } catch (FirebaseException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
         return false;
     }
 

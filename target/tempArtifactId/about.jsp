@@ -6,7 +6,7 @@
         <!-- Head JSP Template -->
         <%@ include file = "templates/parts/head.jsp" %>
         <!-- Custom Page CSS -->
-        <style><%@ include file = "resources/styles/index.css"%></style>
+        <link rel="stylesheet" type="text/css" href="resources/styles/about.css">
     </head>
 
     <body>

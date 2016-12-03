@@ -14,17 +14,14 @@
 <title>excerloops</title>
 
 <!-- Bootstrap core CSS -->
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
 <!-- Navbar Custom Styles -->
-<link href="../../resources/styles/navbar.css" rel="stylesheet">
-
+<style><%@ include file="../../resources/styles/navbar.css" %></style>
 <!-- Evolution Font -->
-<link href="../../resources/styles/evolution_font.css" rel="stylesheet">
-
+<style><%@ include file="../../resources/styles/evolution_font.css" %></style>
 <!-- Footer Style -->
-<link href="../../resources/styles/footer.css" rel="stylesheet">
-
+<style><%@ include file="../../resources/styles/footer.css" %></style>
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
