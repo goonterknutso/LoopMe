@@ -10,11 +10,7 @@
         firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
             sessionStorage.setItem("createAccount", false);
             // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-
-            alert("Error Code: " + errorCode + "\n" +
-                    "Error Message: " + errorMessage);
+            alert("Error: " + error.message + "!");
         });
     };
 </script>

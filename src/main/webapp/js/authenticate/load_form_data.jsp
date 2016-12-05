@@ -1,16 +1,15 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: gunther
-  Date: 12/3/16
-  Time: 11:04 AM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<script>
+    function loadData() {
+        if (sessionStorage.getItem("email") != null) {
+            document.getElementById("inputEmail").value = sessionStorage.getItem("email");
+        } else{
+            document.getElementById("inputEmail").focus();
+        }
+        if (sessionStorage.getItem("password") != null) {
+            document.getElementById("inputPassword").value = sessionStorage.getItem("password");
+            document.getElementById("inputPassword").focus();
+        } else {
+            document.getElementById("inputPassword").focus();
+        }
+    }
+</script>

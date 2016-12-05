@@ -1,7 +1,9 @@
 package com.excerloops.util;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 
@@ -24,7 +26,7 @@ public class LoopFileReader{
 
     public Loops readLoopsFromFile(){
         String json = "";
-        loops = getLoopsFromJSON("files/loop_patterns.json");
+        loops = getLoopsFromJSON("");
         return loops;
     }
 
@@ -36,7 +38,10 @@ public class LoopFileReader{
 
         ObjectMapper mapper = new ObjectMapper();
         try {
-            JsonNode rootNode = mapper.readValue(reader, JsonNode
+            ClassLoader classLoader = getClass().getClassLoader();
+            File loopsFile = new File(classLoader.getResource("loop_patterns.json").getFile());
+
+            JsonNode rootNode = mapper.readValue(loopsFile, JsonNode
                     .class);
             //Gets each loop
             for(JsonNode node : rootNode.path("loops")){
@@ -66,7 +71,7 @@ public class LoopFileReader{
                 loop.setLegLength(legLength);
                 loop.setNumLegs(node.path("numLegs").intValue());
                 loop.setRouteDistance(node.path("routeDistance").intValue());
-
+                System.out.println("loop added");
                 loops.addLoop(loop);
             }
 

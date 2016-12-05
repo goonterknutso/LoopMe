@@ -31,9 +31,9 @@ public class usersRedirect extends HttpServlet {
         //List<User> users = userDb.getUsers();
         //session.setAttribute("users", users);
 
-        //Only allow admin to get to users.jsp
-        if(user != null && user.getRole().equals("admin")){
-            request.getRequestDispatcher("admin/users.jsp").forward(request, response);
+        //Only allow persistence to get to users.jsp
+        if(user != null && user.getRole().equals("persistence")){
+            request.getRequestDispatcher("persistence/users.jsp").forward(request, response);
         } else {
             request.getRequestDispatcher("account.jsp").forward(request, response);
         }

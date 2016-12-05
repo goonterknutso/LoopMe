@@ -16,28 +16,44 @@ function loadData(){
     txtName.innerHTML = "<% if(user.getName() == null){ out.print(""); }else{out.print(user.getName());} %>" ;
     txtPhotoUrl.innerHTML = "<% if(user.getPhotoUrl() == null){ out.print(""); }else{out.print(user.getPhotoUrl());} %>" ;
 
+    if(txtName.innerHTML == "null"){
+        txtName.innerHTML = "";
+    }
+    if(txtPhotoUrl.innerHTML == "undefined"){
+        txtPhotoUrl.innerHTML = "";
+    }
+
 
     //Preferences
     //Home Enabled
     <% if(preferences.getDefaultHomeEnabled()){ %>
         document.getElementById("homeEnabledTrue").checked = true;
         document.getElementById("homeEnabledTrueLabel").style.color = "green";
+    document.getElementById("inputDefaultHome").disabled = false;
+    document.getElementById("homeEnabledFalseLabel").style.color = "";
     <% } else { %>
         document.getElementById("homeEnabledFalse").checked = true;
         document.getElementById("inputDefaultHome").disabled = true;
         document.getElementById("homeEnabledFalseLabel").style.color = "red";
+        document.getElementById("homeEnabledTrueLabel").style.color = "";
     <% } %>
     //Home
-    document.getElementById("inputDefaultHome").setAttribute("text", "<% out.print(preferences.getDefaultHome()); %>");
+    document.getElementById("inputDefaultHome").value = "<% out.print(preferences.getDefaultHome()); %>";
+    if(document.getElementById("inputDefaultHome").value == "undefined"){
+        document.getElementById("inputDefaultHome").value = "";
+    }
 
     //Unit Enabled
     <% if(preferences.getDefaultUnitEnabled()){ %>
         document.getElementById("unitEnabledTrue").checked = true;
         document.getElementById("unitEnabledTrueLabel").style.color = "green";
+        document.getElementById("unitEnabledFalseLabel").style.color = "";
+        document.getElementById("selectUnit").disabled = false;
     <% } else { %>
         document.getElementById("unitEnabledFalse").checked = true;
         document.getElementById("selectUnit").disabled = true;
         document.getElementById("unitEnabledFalseLabel").style.color = "red";
+        document.getElementById("unitEnabledTrueLabel").style.color = "";
     <% }
    %>
     //Unit
@@ -64,12 +80,20 @@ function loadData(){
     //Number of Markers
     document.getElementById("inputNumMarkers").value = "<% out.print(preferences.getNumberOfMarkers()); %>";
 
-    //Admin Links
+
+    //Change Password
+    //Hide if Google Email
     <%
-    if (user.getRole().equals("admin")) {
-        %> document.getElementById("adminLinks").style.visibility = "visible"; <%
+    if(user.getEmail().contains("gmail")){
+         %> document.getElementById("changePasswordForm").style.display = "none"; <%
     }
     %>
+
+    //Admin Links
+
+    <% if (user.getRole().equals("admin")) {
+        %> document.getElementById("adminForm").style.display = "block"; <%
+    } %>
 }
 
 </script>

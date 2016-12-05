@@ -21,4 +21,4 @@
 </html>
 
 <!-- CUSTOM PAGE SCRIPTS -->
-<%@ include file="js/generatedMap/generated_map_background.jsp" %>
+<%@ include file="js/generatedMap/_scripts.jsp" %>

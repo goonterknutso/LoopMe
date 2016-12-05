@@ -1,4 +1,4 @@
-package com.excerloops.servlet.admin;
+package com.excerloops.servlet.persistence;
 
 import com.excerloops.entity.User;
 import com.excerloops.persistence.UserDao;
@@ -10,7 +10,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 public class removeUserServlet extends HttpServlet {
 

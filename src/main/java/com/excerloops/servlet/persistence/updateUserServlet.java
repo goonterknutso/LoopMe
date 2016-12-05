@@ -1,4 +1,4 @@
-package com.excerloops.servlet.admin;
+package com.excerloops.servlet.persistence;
 
 import com.excerloops.entity.User;
 import com.excerloops.persistence.UserDao;

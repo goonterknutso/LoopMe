@@ -9,7 +9,7 @@
         <style><%@ include file="resources/styles/index.css" %></style>
     </head>
 
-    <body onload="displayBackgroundMap()">
+    <body onload="loadData()">
         <!-- Navbar JSP Template -->
         <%@ include file="templates/parts/navbar.jsp" %>
         <!-- Main Content -->
@@ -21,7 +21,4 @@
 </html>
 
 <!-- CUSTOM PAGE SCRIPTS -->
-<%@ include file="js/google_maps_background.jsp" %>
-<%@ include file="js/index/button_locate.jsp" %>
-<%@ include file="js/index/button_generate.jsp" %>
-<%@ include file="js/index/button_reset.jsp" %>
+<%@ include file="js/index/_scripts.jsp" %>

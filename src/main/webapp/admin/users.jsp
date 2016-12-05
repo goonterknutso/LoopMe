@@ -21,4 +21,4 @@
 </html>
 
 <!-- CUSTOM JS -->
-<%@ include file="../js/users.jsp" %>
+<%@ include file="../js/admin/users.jsp" %>

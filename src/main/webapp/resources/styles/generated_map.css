@@ -1,0 +1,36 @@
+#wrapper {
+    position: relative;
+    height: 100%;
+}
+#over_map {
+    position: absolute;
+    top: 10%;
+    background-color: #333;
+    padding: 20px;
+    width: 25%;
+    left: 5%;
+
+    color:#9d9d9d;
+}
+#div_buttons{
+    margin-top: 5%;
+}
+#divInfo{
+    margin-top: 30px;
+}
+#fabButtons{
+    padding: 0%;
+}
+legend{
+    color: #9d9d9d;
+    font-family: Evolution;
+    font-size: 40px;
+}
+.iconButton{
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+}
+p{
+    word-wrap: break-word;
+}

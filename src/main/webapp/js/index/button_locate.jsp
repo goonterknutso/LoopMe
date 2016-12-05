@@ -12,7 +12,7 @@ function findLocation(){
         );
     }
     else {
-        alert("Geolocation is not supported by this browser");
+        alert("Error: Geolocation is not supported by this browser!");
     }
 
     //User doens't allow location

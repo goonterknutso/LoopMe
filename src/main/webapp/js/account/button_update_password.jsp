@@ -1,16 +1,26 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: gunther
-  Date: 12/3/16
-  Time: 10:07 AM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<script>
+    document.getElementById("btnUpdatePassword").addEventListener("click", function() {
+        var newPassword = document.getElementById("inputPassword").value;
+        var confPassword = document.getElementById("inputConfirmPassword").value;
+
+        //Passwords match
+        if (newPassword == confPassword) {
+            var user = firebase.auth().currentUser;
+
+            user.updatePassword(newPassword).then(function () {
+                // Update successful.
+                alert("Success: Password updated!");
+                newPassword.value ="";
+                confPassword.value="";
+            }, function (error) {
+                // An error happened.
+                alert("Error: "+error.message + "!");
+            });
+        }
+
+        //Passwords don't match
+        else {
+            alert("Error: Passwords don't match!");
+        }
+    });
+</script>

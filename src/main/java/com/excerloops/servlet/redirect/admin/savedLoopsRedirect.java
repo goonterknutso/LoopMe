@@ -24,9 +24,9 @@ public class savedLoopsRedirect extends HttpServlet {
         HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute("user");
 
-        //Only allow admin to get to users.jsp
-        if(user != null && user.getRole().equals("admin")){
-            request.getRequestDispatcher("admin/saved_loops.jsp").forward(request, response);
+        //Only allow persistence to get to users.jsp
+        if(user != null && user.getRole().equals("persistence")){
+            request.getRequestDispatcher("persistence/saved_loops.jsp").forward(request, response);
         } else {
             request.getRequestDispatcher("account.jsp").forward(request, response);
         }

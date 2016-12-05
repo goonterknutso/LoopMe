@@ -4,23 +4,15 @@
         var errors = "";
 
         //Validate Default Home
-        var home = document.getElementById("inputDefaultHome").value;
+        if(document.getElementById("homeEnabledTrue").checked) {
+            var home = document.getElementById("inputDefaultHome").value;
+            if (home == "") {
+                errors += ("Error: Address cannot be empty! \n");
+            }
+        }
+
         if(home == ""){
-            errors += ("Error: Address cannot be empty! \n");
-        } else {
-            var geocoder = new google.maps.Geocoder();
-            geocoder.geocode({'address': home}, function (results, status) {
-                if (status === 'OK') {
-                    /*locationVerified = true;
-                    alert("location verified");
-                    alert(results);
-                    lat = results[0].geometry.location.lat();
-                    lng = results[0].geometry.location.lng();
-                    alert("LatLng: "+lat+" "+lng);*/
-                } else {
-                    errors += ("Error: Not a valid address!\n");
-                }
-            });
+            home = "";
         }
 
         //Validate Num Markers
@@ -31,17 +23,18 @@
 
         //Validated
         if(errors == ""){
-            var uid = document.getElementById("textUid");
+            var uid = document.getElementById("textUid").innerHTML;
             var homeEnabled;
             var unitEnabled;
+            var unit = document.getElementById("selectUnit").value;
             var lineColor = document.getElementById("selectColor").value;
             var transitMode = document.getElementById("selectTransit").value;
 
             //Home Enabled
             if(document.getElementById("homeEnabledTrue").checked){
-                unitEnabled = true;
+                homeEnabled = true;
             } else {
-                unitEnabled = false;
+                homeEnabled = false;
             }
 
             //Unit Enabled
@@ -51,14 +44,14 @@
                 unitEnabled = false;
             }
 
-
-            /*window.location.href =*/ alert( "/updatePreferences?uid="+uid+
-                    "&homeEnabled="+homeEnabled+
+            window.location.href = "/updatePreferences?"+
+                    "homeEnabled="+homeEnabled+
                     "&home="+home+
                     "&unitEnabled="+unitEnabled+
+                    "&unit="+unit+
                     "&lineColor="+lineColor+
                     "&transitMode="+transitMode+
-                    "&numMarkers="+numMarkers);
+                    "&numMarkers="+numMarkers;
         } else {
             alert(errors);
         }

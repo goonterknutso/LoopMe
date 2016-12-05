@@ -11,7 +11,7 @@
         <link href="resources/styles/bootstrap-social.css" type="text/css" rel="stylesheet"/>
     </head>
 
-    <body>
+    <body onload="loadData()">
         <!-- Navbar JSP Template -->
         <%@ include file ="templates/parts/navbar.jsp" %>
         <!-- Main Page Content -->
@@ -22,9 +22,5 @@
 
 </html>
 
-
 <!-- CUSTOM PAGE SCRIPTS -->
-<%@ include file="js/authenticate/button_create_account.jsp" %>
-<%@ include file="js/authenticate/button_google_sign_in.jsp" %>
-<%@ include file="js/authenticate/button_sign_in.jsp" %>
-<%@ include file="js/authenticate/listener_auth_state_change.jsp" %>
+<%@ include file="js/authenticate/_scripts.jsp" %>

@@ -1,16 +1,7 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: gunther
-  Date: 12/3/16
-  Time: 10:08 AM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<!--Authentication Scripts-->
+<%@include file="button_create_account.jsp"%>
+<%@include file="button_google_sign_in.jsp"%>
+<%@include file="button_sign_in.jsp"%>
+<%@include file="listener_auth_state_change.jsp"%>
+<%@include file="listener_enter_keypress.jsp"%>
+<%@include file="load_form_data.jsp"%>

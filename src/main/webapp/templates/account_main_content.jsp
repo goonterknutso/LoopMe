@@ -144,9 +144,9 @@
                     <div class="col-lg-4 col-md-4 col-sm-4"></div>
 
                     <div class="col-lg-4 col-md-4 col-sm-4">
-                        <button id="btnUpdatePreferences" type="button" class="btn btn-default">Update Preferences</button>
-                        <button id="btnResetPreferences" type="button" class="btn btn-default">Reset to Default</button>
-
+                        <button id="btnUpdatePreferences" type="button" class="btn btn-default">Update</button>
+                        <button id="btnResetPreferences" type="button" class="btn btn-default">Reset</button>
+                        <button id="btnDefaultPreferences" type="button" class="btn btn-default">Default</button>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4"></div>
                 </div>
@@ -156,7 +156,7 @@
 
 
             <!-- Change Password -->
-            <form>
+            <form id="changePasswordForm">
                 <legend>Change Password</legend>
                 <!-- Change Password -->
                 <div class="form-group row">
@@ -183,7 +183,7 @@
             </form>
 
                 <!-- Admin Links -->
-                <form id="adminForm" style="visibility: hidden;">
+                <form id="adminForm" style="display: none">
                     <legend>Admin Links</legend>
                     <div class="form-group">
                         <a class="col-sm-12" href="/users"> Users </a>

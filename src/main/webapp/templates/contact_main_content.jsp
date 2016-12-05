@@ -4,7 +4,6 @@
 
     <!-- Map -->
     <div id="map" style="width:100%;height:900px;">
-        <img src="../resources/images/map2.png" />
     </div>
 
     <!-- Form on Top of Map -->

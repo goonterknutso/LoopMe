@@ -10,7 +10,7 @@ import java.awt.*;
 public interface ExcerloopsInterface {
     //Roles
     String USER = "user";
-    String ADMIN =  "admin";
+    String ADMIN =  "persistence";
 
     //Colors
     int MAGENTA = Color.magenta.getRGB();

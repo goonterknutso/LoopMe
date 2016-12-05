@@ -1,5 +1,5 @@
 <script>
-    document.getElementById("btnResetPreferences").addEventListener("click", function(){
+    document.getElementById("btnDefaultPreferences").addEventListener("click", function(){
         //Default Preferences
 
         //Home Enabled

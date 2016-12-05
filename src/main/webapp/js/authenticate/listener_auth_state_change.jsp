@@ -2,13 +2,16 @@
     //User Change Function
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
+            sessionStorage.removeItem("password");
+
             //Create Account
             if(sessionStorage.getItem("createAccount")){
                 sessionStorage.removeItem("createAccount");
                 window.location.href = "/signUpAuth?email="+user.email+
                         "&name="+user.displayName+
                         "&photoUrl="+user.photoUrl+
-                        "&uid="+user.uid;
+                        "&uid="+user.uid+
+                        "&googleSignIn=false";
             }
             //Google Sign, Try to Create Account, Servlet Handles if User Exists
             else if(sessionStorage.getItem("googleSignIn")){
