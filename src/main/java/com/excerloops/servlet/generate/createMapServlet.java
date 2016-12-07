@@ -32,9 +32,6 @@ public class createMapServlet extends HttpServlet implements ExcerloopsInterface
     Double lng;
     String address;
     LatLng[] waypoints;
-    double distanceGenerated;
-    double distanceGeneratedKM;
-    double distanceGeneratedMI;
 
     ArrayList<LatLng> converted;
     ArrayList<LatLng> markers;
@@ -101,10 +98,6 @@ public class createMapServlet extends HttpServlet implements ExcerloopsInterface
 
         System.out.println(response);
 
-        //Set distances
-        distanceGenerated = GoogleAPIUtil.parseDistance(apiResponse);
-        distanceGeneratedMI = (0.000621371*distanceGenerated);
-        distanceGeneratedKM = distanceGenerated/1000;
 
         //Set user preferences or default
 
@@ -135,8 +128,6 @@ public class createMapServlet extends HttpServlet implements ExcerloopsInterface
         request.setAttribute("unit", unit);
 
         request.setAttribute("waypoints", apiResults);
-        request.setAttribute("distanceGeneratedMI", distanceGeneratedMI);
-        request.setAttribute("distanceGeneratedKM", distanceGeneratedKM);
         request.setAttribute("numMarkers", numMarkers);
         request.setAttribute("markers", markers);
         request.setAttribute("zoom", zoom);

@@ -25,7 +25,8 @@ public class signOutServlet extends HttpServlet {
 
         //Remove user
         session.setAttribute("user", null);
-        System.out.println("signed out");
+        session.setAttribute("savedLoops", null);
+
         //Redirect to sign in
         response.sendRedirect("/signIn");
     }

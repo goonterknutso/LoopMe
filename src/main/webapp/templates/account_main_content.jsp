@@ -11,7 +11,7 @@
         <div id="account_form" class="container-fluid">
 
             <!-- Account Info -->
-            <form>
+            <form class="content-section">
                 <legend>Account Info</legend>
                 <!-- Uid -->
                 <div class="form-group row">
@@ -44,22 +44,20 @@
                     </div>
                 </div>
 
-                <!-- TODO add link to their loops or just add them here -->
-
                 <!-- Sign Out -->
                 <div class="form-group">
                     <div class="col-lg-4 col-md-4 col-sm-4"></div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <button id="btnSignOut" type="button" class="btn btn-default">Sign Out</button>
+                        <button id="btnDeleteAccount" type="button" class="btn btn-danger" style="display:none">Delete Account</button>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4"></div>
                 </div>
             </form>
 
 
-
             <!-- Preferences -->
-            <form>
+            <form class="content-section">
                 <legend>Preferences</legend>
 
                 <!--Default Home Enabled-->
@@ -153,10 +151,29 @@
             </form>
 
 
+            <!-- Saved Loops -->
+            <div class="table-responsive col-lg-12 col-md-12 col-sm-12 content-section" id="savedLoops">
+                <legend>Saved Loops</legend>
+                <table class="table borderless">
+                    <thead>
+                    <tr>
+                        <th>Loop Name:</th>
+                        <th>Distance(KM)</th>
+                        <th>Distance(MI)</th>
+                        <th>Start Address</th>
+                        <th>Mode</th>
+                        <th style="text-align: center">View</th>
+                        <th style="text-align: center">Delete</th>
+                    </tr>
+                    <tbody id="savedLoopsTableBody">
+                    </tbody>
+                </table>
+            </div>
+
 
 
             <!-- Change Password -->
-            <form id="changePasswordForm">
+            <form id="changePasswordForm" class="content-section" style="display:none">
                 <legend>Change Password</legend>
                 <!-- Change Password -->
                 <div class="form-group row">
@@ -182,19 +199,20 @@
                 </div>
             </form>
 
-                <!-- Admin Links -->
-                <form id="adminForm" style="display: none">
-                    <legend>Admin Links</legend>
-                    <div class="form-group">
-                        <a class="col-sm-12" href="/users"> Users </a>
-                    </div>
-                    <div class="form-group">
-                        <a class="col-sm-12" href="/savedLoops"> Saved Loops </a>
-                    </div>
-                    <div class="form-group">
-                        <a class="col-sm-12" href="/preferences"> Preferences </a>
-                    </div>
-                </form>
+
+            <!-- Admin Links -->
+            <form id="adminForm" style="display: none">
+                <legend>Admin Links</legend>
+                <div class="form-group">
+                    <a class="col-sm-12" href=""> Users </a>
+                </div>
+                <div class="form-group">
+                    <a class="col-sm-12" href=""> Saved Loops </a>
+                </div>
+                <div class="form-group">
+                    <a class="col-sm-12" href=""> Preferences </a>
+                </div>
+            </form>
 
 
             </form>

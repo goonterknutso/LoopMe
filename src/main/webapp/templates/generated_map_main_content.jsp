@@ -10,18 +10,19 @@
         <div class="container-fluid">
             <!--FAB BUTTONS-->
             <div class="group" id="fabButtons">
-            <div class="group row">
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <input type="image" src="resources/images/info_icon.png" class="iconButton" id="btnInfo"/>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <input type="image" src="resources/images/map_icon.png" class="iconButton" id="btnMap"/>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <input type="image" src="resources/images/save_icon.png" class="iconButton" id="btnSave"/>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <input type="image" src="resources/images/new_icon.png" class="iconButton" id="btnNew"/>
+                <div class="group row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 iconCol">
+                        <input type="image" src="resources/images/info_icon.png" class="iconButton" id="btnInfo"/>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 iconCol">
+                        <input type="image" src="resources/images/map_icon.png" class="iconButton" id="btnMap"/>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 iconCol">
+                        <input type="image" src="resources/images/save_icon.png" class="iconButton" id="btnSave"/>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 iconCol">
+                        <input type="image" src="resources/images/new_icon.png" class="iconButton" id="btnNew"/>
+                    </div>
                 </div>
             </div>
 
@@ -57,19 +58,25 @@
                 <!-- DISTANCE(KM) -->
                 <div class="group row">
                     <label class="col-sm-6">Distance (KM):</label>
-                    <p class="col-sm-6"><%= request.getAttribute("distanceGeneratedKM") %></p>
+                    <p class="col-sm-6" id="distKM"></p>
                 </div>
 
                 <!-- DISTANCE (MI) -->
                 <div class="group row">
                     <label class="col-sm-6">Distance (MI):</label>
-                    <p class="col-sm-6"><%= request.getAttribute("distanceGeneratedMI") %></p>
+                    <p class="col-sm-6" id="distMI"></p>
                 </div>
 
                 <!-- MARKERS -->
                 <div class="group row">
                     <label class="col-sm-6">Markers:</label>
                     <p class="col-sm-6"><%= request.getAttribute("numMarkers") %></p>
+                </div>
+
+                <!-- Transit Mode -->
+                <div class="group row">
+                    <label class="col-sm-6">Transit Mode:</label>
+                    <p class="col-sm-6"><%= request.getAttribute("transitMode") %></p>
                 </div>
 
 

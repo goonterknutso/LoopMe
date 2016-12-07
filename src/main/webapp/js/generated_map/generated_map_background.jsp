@@ -10,8 +10,6 @@
     String unit = (String) request.getAttribute("unit");
 
     ArrayList<LatLng> waypoints = (ArrayList<LatLng>) request.getAttribute("waypoints");
-    double distanceGeneratedMI = (Double) request.getAttribute("distanceGeneratedMI");
-    double distanceGeneratedKM = (Double) request.getAttribute("distanceGeneratedKM");
     int numMarkers = (Integer) request.getAttribute("numMarkers");
     ArrayList<LatLng> markers = (ArrayList<LatLng>) request.getAttribute("markers");
     int zoom = (Integer) request.getAttribute("zoom");
@@ -28,7 +26,20 @@
         tm = "DRIVING";
     }
 
+
+    //Alert if loop added successfully or not
+    if(session.getAttribute("loopAdded") != null){
+        if((Boolean)session.getAttribute("loopAdded")){
+            %> alert("Loop added."); <%
+            session.removeAttribute("loopAdded");
+        } else {
+            %> alert("Error: Something went wrong while adding the loop. Please contact the administrator."); <%
+            session.removeAttribute("loopAdded");
+        }
+    }
     %>
+
+
     
     function displayGeneratedMap() {
         var directionsService = new google.maps.DirectionsService;
@@ -58,13 +69,11 @@
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(<%= markers.get(i).toString() %>),
             map: map,
-            title: '<%= i+1 %>',
-            icon: {
-                path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
-                scale: 5.0
-            }
+            label: '<%= i+1 %>'
         });
         <% } %>
+
+        //google.maps.SymbolPath.BACKWARD_CLOSED_ARROW
 
 
 
@@ -92,9 +101,25 @@
         }, function(response, status) {
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
+                var route = response.routes[0];
+                var totalDist = 0;
+
+                for (var i = 0; i < route.legs.length; i++) {
+                    totalDist += route.legs[i].distance.value;
+                }
+
+                //Set distKM
+                document.getElementById("distKM").innerHTML = (totalDist/1000).toFixed(2) + " KM";
+                document.getElementById("distKM").value = (totalDist/1000).toFixed(2);
+                //Set distMI
+                document.getElementById("distMI").innerHTML = (totalDist/1000*0.621371).toFixed(2) + " MI";
+                document.getElementById("distMI").value = (totalDist/1000*0.621371).toFixed(2);
+
+
             } else {
                 //Try Again
-                window.location.href = '<%= request.getAttribute("url") %>';            }
+                window.location.href = '<%= request.getAttribute("url") %>';
+            }
         });
     }
 

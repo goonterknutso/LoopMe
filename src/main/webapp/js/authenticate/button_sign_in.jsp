@@ -8,11 +8,10 @@
         var password = document.getElementById("inputPassword").value;
 
         sessionStorage.setItem("email", email);
-        sessionStorage.setItem("password", password);
 
         firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
             // Handle Errors here.
-            alert("Error: " + error.message + "!");
+            alert("Error: " + error.message);
         });
     };
 </script>

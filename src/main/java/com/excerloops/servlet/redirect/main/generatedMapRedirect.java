@@ -20,13 +20,6 @@ public class generatedMapRedirect extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        //Setup new userDao if it doesn't exist
-        HttpSession session = request.getSession(true);
-        if(session.getAttribute("userDao")==null){
-            UserDao userDao = new UserDao();
-            session.setAttribute("userDao",userDao);
-        }
-
         //Redirect
         request.getRequestDispatcher("generated_map.jsp").forward(request, response);
     }

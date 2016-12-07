@@ -12,7 +12,7 @@ function findLocation(){
         );
     }
     else {
-        alert("Error: Geolocation is not supported by this browser!");
+        alert("Error: Geolocation is not supported by this browser.");
     }
 
     //User doens't allow location
@@ -53,10 +53,10 @@ function findLocation(){
                         sessionStorage.setItem("address", results[1].formatted_address.toString());
                         document.getElementById("inputLocation").value = results[1].formatted_address.toString();
                     } else {
-                        alert("Error: Address for location not found!");
+                        alert("Error: Address for location not found.");
                     }
                 } else {
-                    alert("Error: Geocoder failed due to: " + status + "!");
+                    alert("Error: Geocoder failed due to " + status);
                 }
             });
         } else {

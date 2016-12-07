@@ -34,7 +34,7 @@
     if(document.URL.indexOf("index")>0){
         document.getElementById("navCreateLoop").className = "active";
     }
-    else if(document.URL.indexOf("how_it_works")>0){
+    else if(document.URL.indexOf("howItWorks")>0){
         document.getElementById("navHowItWorks").className = "active";
     }
     else if(document.URL.indexOf("about")>0){

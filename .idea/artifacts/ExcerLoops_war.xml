@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="ExcerLoops:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="excerloops.war">
+      <element id="artifact" artifact-name="ExcerLoops:war exploded" />
+    </root>
+  </artifact>
+</component>

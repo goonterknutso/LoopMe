@@ -7,9 +7,9 @@
 <div id="wrapper">
 
     <!-- Map -->
-    <!--<div id="map">
-        <img src="../resources/images/map.png" style="width:100%;height:900px;"/>
-    </div>-->
+    <div id="map">
+        <img src="../resources/images/map2.png" style="width:100%;height:900px;"/>
+    </div>
 
     <!-- Form on Top of Map -->
     <div id="over_map">
@@ -96,7 +96,7 @@
                         <!--Number of Loops Saved-->
                         <td>
                             <div id="<%out.print(i);out.print(u.getEmail());%>numLoops">
-                                <% out.print(u.getNumSavedLoops()); %>
+                                <% out.print(u.getSavedLoops().size()); %>
                             </div>
                         </td>
 

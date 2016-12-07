@@ -1,6 +1,7 @@
 package com.excerloops.persistence;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -120,10 +121,18 @@ public class UserDao {
     public Boolean checkExist(String uid){
         try {
             FirebaseResponse response = users.get(uid);
-            if(response.getSuccess()){
-                return true;
-            } else {
+            System.out.println("Response: "+response);
+            System.out.println("RawBody: "+response.getRawBody());
+            System.out.println("Body: "+response.getBody());
+            System.out.println("Code: "+response.getCode());
+            System.out.println("Success: "+response.getSuccess());
+
+            if(response.getRawBody().equals("null")){
+                System.out.println("User not exist!");
                 return false;
+            } else {
+                System.out.println("User exist!");
+                return true;
             }
         } catch (FirebaseException e) {
             e.printStackTrace();

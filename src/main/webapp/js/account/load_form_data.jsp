@@ -1,8 +1,9 @@
 <script>
 
 <%@ page import="com.excerloops.entity.User" %>
-<%@ page import="com.excerloops.entity.Preferences" %>
+<%@ page import="com.excerloops.entity.Preferences" %><%@ page import="com.excerloops.entity.SavedLoop"%><%@ page import="java.util.ArrayList"%>
 <% User user = (User) session.getAttribute("user"); %>
+<% ArrayList<SavedLoop> savedLoops = (ArrayList<SavedLoop>) session.getAttribute("savedLoops"); %>
 <% Preferences preferences = (Preferences) user.getPreferences(); %>
 
 function loadData(){
@@ -22,6 +23,27 @@ function loadData(){
     if(txtPhotoUrl.innerHTML == "undefined"){
         txtPhotoUrl.innerHTML = "";
     }
+
+    <%
+    //Alert if preferences updated succesfully or not
+    if(session.getAttribute("updatedPreferences") != null){
+        if((Boolean)session.getAttribute("updatedPreferences")){
+        %> alert("Preferences updated."); <%
+        } else {
+            %> alert("Error: Something went wrong while updating preferences. Please contact the administrator."); <%
+        }
+        session.removeAttribute("updatedPreferences");
+    }
+    //Alert if loop deleted successfully or not
+    if(session.getAttribute("savedLoopDeleted") != null){
+        if((Boolean)session.getAttribute("savedLoopDeleted")){
+        %> alert("Loop deleted."); <%
+        } else {
+            %> alert("Error: Something went wrong while deleting saved loop. Please contact the administrator."); <%
+        }
+        session.removeAttribute("savedLoopDeleted");
+    }
+    %>
 
 
     //Preferences
@@ -81,13 +103,81 @@ function loadData(){
     document.getElementById("inputNumMarkers").value = "<% out.print(preferences.getNumberOfMarkers()); %>";
 
 
-    //Change Password
+    //SAVED LOOPS TABLE
+    //Hide if no saved loops
+    <% if(savedLoops.size() == 0){ %>
+        document.getElementById("savedLoops").style.display = "none";
+    <% } %>
+
+    //Otherwise build table
+    var tbody = document.getElementById("savedLoopsTableBody");
+    <% for(int i = 0; i<savedLoops.size(); i++){ %>
+        var tr = document.createElement("TR");
+
+        var nameTD = document.createElement("TD");
+        var distKMTD = document.createElement("TD");
+        var distMITD = document.createElement("TD");
+        var addressTD = document.createElement("TD");
+        var modeTD = document.createElement("TD");
+        var viewTD = document.createElement("TD");
+        var deleteTD = document.createElement("TD");
+
+        nameTD.appendChild(document.createTextNode("<%= savedLoops.get(i).getName() %>"));
+        distKMTD.appendChild(document.createTextNode("<%= savedLoops.get(i).getDistanceKM() %>"));
+        distMITD.appendChild(document.createTextNode("<%= savedLoops.get(i).getDistanceMI() %>"));
+        addressTD.appendChild(document.createTextNode("<%= savedLoops.get(i).getStartAddress() %>"));
+        modeTD.appendChild(document.createTextNode("<%= savedLoops.get(i).getTransitMode() %>"));
+
+        var viewIconButton = document.createElement("SPAN");
+        viewIconButton.id = "<%= savedLoops.get(i).getId() %>";
+        viewIconButton.setAttribute("name","viewIcons");
+        viewIconButton.value = "<%= savedLoops.get(i).getName() %>";
+        viewIconButton.classList.add("glyphicon");
+        viewIconButton.classList.add("glyphicon-eye-open");
+        viewIconButton.setAttribute("aria-hidden", "true");
+
+        var deleteIconButton = document.createElement("SPAN");
+        deleteIconButton.id = "<%= savedLoops.get(i).getId() %>";
+        deleteIconButton.setAttribute("name","deleteIcons");
+        deleteIconButton.value = "<%= savedLoops.get(i).getName() %>";
+        deleteIconButton.classList.add("glyphicon");
+        deleteIconButton.classList.add("glyphicon-remove-circle");
+        deleteIconButton.setAttribute("aria-hidden", "true");
+
+        viewTD.style.textAlign = "center";
+        viewTD.appendChild(viewIconButton);
+        deleteTD.style.textAlign = "center";
+        deleteTD.appendChild(deleteIconButton);
+
+        tr.appendChild(nameTD);
+        tr.appendChild(distKMTD);
+        tr.appendChild(distMITD);
+        tr.appendChild(addressTD);
+        tr.appendChild(modeTD);
+        tr.appendChild(viewTD);
+        tr.appendChild(deleteTD);
+
+        tbody.appendChild(tr);
+    <% } %>
+
+    //Setup buttons when after created
+    setupViewButtons();
+    setupDeleteButtons();
+
+
+
+    //Change Password and Delete Button
     //Hide if Google Email
-    <%
-    if(user.getEmail().contains("gmail")){
-         %> document.getElementById("changePasswordForm").style.display = "none"; <%
+    var user = firebase.auth().currentUser;
+    if (user != null) {
+        user.providerData.forEach(function (profile) {
+            if(profile.providerId != "google.com"){
+                document.getElementById("changePasswordForm").style.display = "block";
+                document.getElementById("btnDeleteAccount").style.display = "inline-block";
+            }
+        });
     }
-    %>
+
 
     //Admin Links
 

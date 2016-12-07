@@ -5,6 +5,111 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
 
+  <!--CREATE MAP SERVLET-->
+  <servlet>
+    <servlet-name>createMapServlet</servlet-name>
+    <servlet-class>com.excerloops.servlet.generate.createMapServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>createMapServlet</servlet-name>
+    <url-pattern>/createMap</url-pattern>
+  </servlet-mapping>
+
+  <!--VIEW SAVED LOOP SERVLET -->
+  <servlet>
+    <servlet-name>viewLoop</servlet-name>
+    <servlet-class>com.excerloops.servlet.generate.viewSavedLoopServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>viewLoop</servlet-name>
+    <url-pattern>/viewLoop</url-pattern>
+  </servlet-mapping>
+
+
+  <!-- PERSISTENCE SERVLETS -->
+
+  <!--USER-->
+  <!--Create User-->
+  <servlet>
+    <servlet-name>createUser</servlet-name>
+    <servlet-class>com.excerloops.servlet.persistence.user.createUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>createUser</servlet-name>
+    <url-pattern>/createUser</url-pattern>
+  </servlet-mapping>
+  <!-- Update User -->
+  <servlet>
+    <servlet-name>updateUser</servlet-name>
+    <servlet-class>com.excerloops.servlet.persistence.user.updateUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>updateUser</servlet-name>
+    <url-pattern>/updateUser</url-pattern>
+  </servlet-mapping>
+  <!-- Delete User -->
+  <servlet>
+    <servlet-name>deleteUser</servlet-name>
+    <servlet-class>com.excerloops.servlet.persistence.user.deleteUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>deleteUser</servlet-name>
+    <url-pattern>/deleteUser</url-pattern>
+  </servlet-mapping>
+
+  <!--PREFERENCES-->
+  <!-- Update Preferences -->
+  <servlet>
+    <servlet-name>updatePreferences</servlet-name>
+    <servlet-class>com.excerloops.servlet.persistence.preferences.updatePreferencesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>updatePreferences</servlet-name>
+    <url-pattern>/updatePreferences</url-pattern>
+  </servlet-mapping>
+
+  <!--SAVED LOOPS-->
+  <!--Add Saved Loop-->
+  <servlet>
+    <servlet-name>saveLoop</servlet-name>
+    <servlet-class>com.excerloops.servlet.persistence.savedLoop.addSavedLoopServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>saveLoop</servlet-name>
+    <url-pattern>/saveLoop</url-pattern>
+  </servlet-mapping>
+  <!--Delete Saved Loop-->
+  <servlet>
+    <servlet-name>deleteLoop</servlet-name>
+    <servlet-class>com.excerloops.servlet.persistence.savedLoop.deleteSavedLoopServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>deleteLoop</servlet-name>
+    <url-pattern>/deleteLoop</url-pattern>
+  </servlet-mapping>
+
+
+
+  <!--AUTHENTICATION SERVLETS-->
+  <!--SignIn Auth-->
+  <servlet>
+    <servlet-name>signInAuth</servlet-name>
+    <servlet-class>com.excerloops.servlet.auth.signInServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>signInAuth</servlet-name>
+    <url-pattern>/signInAuth</url-pattern>
+  </servlet-mapping>
+  <!--SignUp Auth-->
+  <servlet>
+    <servlet-name>signOutAuth</servlet-name>
+    <servlet-class>com.excerloops.servlet.auth.signOutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>signOutAuth</servlet-name>
+    <url-pattern>/signOutAuth</url-pattern>
+  </servlet-mapping>
+
   <!--MAIN REDIRECT -->
   <!--Index Redirect-->
   <servlet>
@@ -69,6 +174,15 @@
     <servlet-name>generatedMapRedirect</servlet-name>
     <url-pattern>/generatedMap</url-pattern>
   </servlet-mapping>
+  <!--View Loop Redirect-->
+  <servlet>
+    <servlet-name>viewLoopRedirect</servlet-name>
+    <servlet-class>com.excerloops.servlet.redirect.main.viewSavedLoopRedirect</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>viewLoopRedirect</servlet-name>
+    <url-pattern>/viewLoopRedirect</url-pattern>
+  </servlet-mapping>
 
   <!-- ADMIN REDIRECT -->
   <!-- Users -->
@@ -97,74 +211,6 @@
   <servlet-mapping>
     <servlet-name>preferences</servlet-name>
     <url-pattern>/preferences</url-pattern>
-  </servlet-mapping>
-
-  <!--CREATE MAP SERVLET-->
-  <servlet>
-    <servlet-name>createMapServlet</servlet-name>
-    <servlet-class>com.excerloops.servlet.generate.createMapServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>createMapServlet</servlet-name>
-    <url-pattern>/createMap</url-pattern>
-  </servlet-mapping>
-
-  <!--AUTHENTICATION SERVLETS-->
-  <!--SignIn Auth-->
-  <servlet>
-    <servlet-name>signInAuth</servlet-name>
-    <servlet-class>com.excerloops.servlet.auth.signInServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>signInAuth</servlet-name>
-    <url-pattern>/signInAuth</url-pattern>
-  </servlet-mapping>
-  <!--SignUp Auth-->
-  <servlet>
-    <servlet-name>signUpAuth</servlet-name>
-    <servlet-class>com.excerloops.servlet.auth.createUserServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>signUpAuth</servlet-name>
-    <url-pattern>/signUpAuth</url-pattern>
-  </servlet-mapping>
-  <!--SignUp Auth-->
-  <servlet>
-    <servlet-name>signOutAuth</servlet-name>
-    <servlet-class>com.excerloops.servlet.auth.signOutServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>signOutAuth</servlet-name>
-    <url-pattern>/signOutAuth</url-pattern>
-  </servlet-mapping>
-
-  <!-- PERSISTENCE SERVLETS -->
-  <!-- Update Preferences -->
-  <servlet>
-    <servlet-name>updatePreferences</servlet-name>
-    <servlet-class>com.excerloops.servlet.persistence.updatePreferencesServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>updatePreferences</servlet-name>
-    <url-pattern>/updatePreferences</url-pattern>
-  </servlet-mapping>
-  <!-- Update User -->
-  <servlet>
-    <servlet-name>updateUser</servlet-name>
-    <servlet-class>com.excerloops.servlet.persistence.updateUserServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>updateUser</servlet-name>
-    <url-pattern>/updateUser</url-pattern>
-  </servlet-mapping>
-  <!-- Remove User -->
-  <servlet>
-    <servlet-name>removeUser</servlet-name>
-    <servlet-class>com.excerloops.servlet.persistence.removeUserServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>removeUser</servlet-name>
-    <url-pattern>/removeUser</url-pattern>
   </servlet-mapping>
 
 </web-app>

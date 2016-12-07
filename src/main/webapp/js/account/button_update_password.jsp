@@ -9,18 +9,18 @@
 
             user.updatePassword(newPassword).then(function () {
                 // Update successful.
-                alert("Success: Password updated!");
-                newPassword.value ="";
-                confPassword.value="";
+                alert("Password updated.");
+                document.getElementById("inputPassword").value = "";
+                document.getElementById("inputConfirmPassword").value = "";
             }, function (error) {
                 // An error happened.
-                alert("Error: "+error.message + "!");
+                alert("Error: "+error.message);
             });
         }
 
         //Passwords don't match
         else {
-            alert("Error: Passwords don't match!");
+            alert("Error: Passwords don't match.");
         }
     });
 </script>

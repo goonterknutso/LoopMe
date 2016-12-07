@@ -15,11 +15,11 @@
         var unit = document.getElementById("inputDistanceUnit").value;
 
         if(address == ""){
-            alert("Error: Address cannot be empty!");
+            alert("Error: Address cannot be empty.");
         } else if(distance == ""){
-            alert("Error: Distance cannot be empty!");
+            alert("Error: Distance cannot be empty.");
         } else if(isNaN(distance)) {
-            alert("Error: Distance must be a number!");
+            alert("Error: Distance must be a number.");
         } else {
             distanceVerified = true;
             var geocoder = new google.maps.Geocoder();
@@ -39,7 +39,7 @@
                                 "&unit="+unit;
                     }
                  } else {
-                    alert("Error: Not a valid address!");
+                    alert("Error: Not a valid address.");
                 }
             });
         }
