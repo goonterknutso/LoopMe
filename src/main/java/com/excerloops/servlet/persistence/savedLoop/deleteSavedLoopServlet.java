@@ -27,7 +27,6 @@ public class deleteSavedLoopServlet extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        System.out.println("IN HERE !!");
         //Setup new savedLoopsDao
         HttpSession session = request.getSession(true);
         if(session.getAttribute("savedLoopsDao")==null){
@@ -43,7 +42,6 @@ public class deleteSavedLoopServlet extends HttpServlet {
         String uid = request.getParameter("uid");
 
         //Read loop from database
-        //TODO ADD SESSION VARIRALBE FOR SUCCES OR NOT
         if(savedLoopsDao.deleteSavedLoop(id, uid)){
             session.setAttribute("savedLoopDeleted",true);
         } else {

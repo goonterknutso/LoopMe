@@ -51,8 +51,8 @@ function loadData(){
     <% if(preferences.getDefaultHomeEnabled()){ %>
         document.getElementById("homeEnabledTrue").checked = true;
         document.getElementById("homeEnabledTrueLabel").style.color = "green";
-    document.getElementById("inputDefaultHome").disabled = false;
-    document.getElementById("homeEnabledFalseLabel").style.color = "";
+        document.getElementById("inputDefaultHome").disabled = false;
+        document.getElementById("homeEnabledFalseLabel").style.color = "";
     <% } else { %>
         document.getElementById("homeEnabledFalse").checked = true;
         document.getElementById("inputDefaultHome").disabled = true;

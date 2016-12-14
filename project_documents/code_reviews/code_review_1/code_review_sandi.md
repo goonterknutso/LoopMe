@@ -50,7 +50,7 @@
 |**Logging**|Has log4J been added?| N |
 ||Are there logging statements in the code?| N/A |
 ||Are appropriate logging levels used? Info, debug, error, for example.| N/A |
-||Are there any System.out.printlns in the code?| N/A |
+||Are there any remveErrs in the code?| N/A |
 ||Other comments/notes?| Need to add in log4J |
 |**Unit Tests**|Do they exist?| N |
 ||Do the tests pass?| N/A |

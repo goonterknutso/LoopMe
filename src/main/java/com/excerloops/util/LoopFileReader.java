@@ -33,7 +33,7 @@ public class LoopFileReader{
 
     public Loops getLoopsFromJSON(String fileLocation){
 
-        //System.out.println(JSON);
+        //remveErr(JSON);
         Loops loops = new Loops();
 
         ObjectMapper mapper = new ObjectMapper();
@@ -71,7 +71,6 @@ public class LoopFileReader{
                 loop.setLegLength(legLength);
                 loop.setNumLegs(node.path("numLegs").intValue());
                 loop.setRouteDistance(node.path("routeDistance").intValue());
-                System.out.println("loop added");
                 loops.addLoop(loop);
             }
 

@@ -59,7 +59,6 @@ public class UserDao {
     }
 
     public User readUser(String uid){
-        System.out.println("READ USER METHOD CALLED");
 
         User readUser = new User();
         readUser.setUid(uid);
@@ -67,11 +66,8 @@ public class UserDao {
         try {
             FirebaseResponse response = users.get(uid);
             Map<String, Object> map = response.getBody();
-            System.out.println(map.toString());
             String json = gson.toJson(map);
-            System.out.println(json);
             readUser = gson.fromJson(json, User.class);
-            System.out.println(readUser.getEmail());
         } catch (FirebaseException e) {
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {
@@ -121,17 +117,10 @@ public class UserDao {
     public Boolean checkExist(String uid){
         try {
             FirebaseResponse response = users.get(uid);
-            System.out.println("Response: "+response);
-            System.out.println("RawBody: "+response.getRawBody());
-            System.out.println("Body: "+response.getBody());
-            System.out.println("Code: "+response.getCode());
-            System.out.println("Success: "+response.getSuccess());
 
             if(response.getRawBody().equals("null")){
-                System.out.println("User not exist!");
                 return false;
             } else {
-                System.out.println("User exist!");
                 return true;
             }
         } catch (FirebaseException e) {

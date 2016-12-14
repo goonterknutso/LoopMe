@@ -59,8 +59,6 @@ public class createMapServlet extends HttpServlet implements ExcerloopsInterface
 
         HttpSession session = request.getSession(true);
 
-        System.out.println("IN!!!");
-
         //Read in parameters from index
         address = request.getParameter("address");
         lat = Double.parseDouble(request.getParameter("lat"));
@@ -95,9 +93,6 @@ public class createMapServlet extends HttpServlet implements ExcerloopsInterface
         //Make second call
         apiResponse = GoogleAPIUtil.getDirectionsAPIResponse(startLatLng, GoogleAPIUtil.trimResults(GoogleAPIUtil.removeDoubleBacks(initResults, true)));
         apiResults = GoogleAPIUtil.trimResults(GoogleAPIUtil.parseOverviewPolyLine(apiResponse));
-
-        System.out.println(response);
-
 
         //Set user preferences or default
 

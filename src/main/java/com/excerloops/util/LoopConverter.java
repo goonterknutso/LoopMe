@@ -65,7 +65,6 @@ public class LoopConverter implements ExcerloopsInterface {
         double legLengthGPS;
         double legDistance = (distance*((double)loop.getLegLength()/(double)loop.getRouteDistance
                 ()));
-        System.out.println("WTF!"+loop.getLegLength());
 
         if(distanceUnit.equals(KM)) {
             legLengthGPS = calculateLegDistanceKm(legDistance);
@@ -101,7 +100,6 @@ public class LoopConverter implements ExcerloopsInterface {
     }
 
     public double calculateLegDistanceMi(double legLength){
-        System.out.println("in caluclate distance mi legLength = "+legLength);
 
         double R =  3959.87433; // miles
         LatLng endingLocation = new LatLng(startingLocation.lat, startingLocation.lng);

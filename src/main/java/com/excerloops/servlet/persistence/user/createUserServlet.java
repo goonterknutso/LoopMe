@@ -39,18 +39,15 @@ public class createUserServlet extends HttpServlet {
 
         //Check if Google Sign In
         if(request.getParameter("googleSignIn").equals("true")){
-            System.out.println("Google Sign In");
             request.removeAttribute("googleSignIn");
             //User exists, sign in user
             if(userDao.checkExist(request.getParameter("uid"))){
-                System.out.println("GETTING IN HERE!!!!");
                 request.getRequestDispatcher("/signIn?uid="+request.getParameter("uid")).forward(request, response);
                 return;
             }
         }
 
         //Create new user
-        System.out.println("CREATE USER");
         user.setName(request.getParameter("name"));
         user.setPhotoUrl(request.getParameter("photoUrl").toString());
         user.setEmail(request.getParameter("email"));

@@ -24,8 +24,6 @@ public class deleteUserServlet extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        System.out.println("DELETE USER SERVLET");
-
         //Setup new userDao if it doesn't exist
         HttpSession session = request.getSession(true);
         if(session.getAttribute("userDao")==null){

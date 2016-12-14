@@ -51,14 +51,12 @@ public class SavedLoopsDao {
         try {
             userSavedLoopsRef = new Firebase(FIREBASE_SAVED_LOOPS_URL);
             FirebaseResponse response = userSavedLoopsRef.get(uid);
-            System.out.println(response.getBody());
 
             Map<String, Object> map = response.getBody();
 
             //Read each loop
             for (Map.Entry<String, Object> entry : map.entrySet()) {
                 String json = gson.toJson(entry.getValue());
-                System.out.println(json);
                 userSavedLoops.add(gson.fromJson(json, SavedLoop.class));
             }
 
@@ -114,8 +112,6 @@ public class SavedLoopsDao {
     }
 
     public Boolean addSavedLoop(SavedLoop savedLoop, String uid){
-        System.out.println("ADDING SAVED LOOP FOR USER "+uid);
-        System.out.println(gson.toJson(savedLoop));
 
         //Check id for duplicate
         while(true) {
@@ -133,7 +129,6 @@ public class SavedLoopsDao {
         try{
             userSavedLoopsRef = new Firebase(FIREBASE_SAVED_LOOPS_URL + "/" + uid);
             userSavedLoopsRef.put(savedLoop.getId(), map);
-            System.out.println("Saved Loop Add");
             return true;
         } catch (FirebaseException e){
             e.printStackTrace();
@@ -154,17 +149,10 @@ public class SavedLoopsDao {
             checkSavedLoopRef = new Firebase(FIREBASE_SAVED_LOOPS_URL + "/" + uid);
 
             FirebaseResponse response = checkSavedLoopRef.get(id);
-            System.out.println("Response: "+response);
-            System.out.println("RawBody: "+response.getRawBody());
-            System.out.println("Body: "+response.getBody());
-            System.out.println("Code: "+response.getCode());
-            System.out.println("Success: "+response.getSuccess());
 
             if(response.getRawBody().equals("null")){
-                System.out.println("Loop id not exist!");
                 return false;
             } else {
-                System.out.println("Loop id exist!");
                 return true;
             }
         } catch (FirebaseException e) {

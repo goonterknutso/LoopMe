@@ -37,8 +37,6 @@ public class GoogleAPIUtil implements ExcerloopsInterface {
             urlStr += "&mode=walking";
             urlStr += "&key=AIzaSyB6GLTECvlfDuCR9HCVRN5xKmm0ca3RHV0";
 
-            System.out.println(urlStr);
-
 
             URL url = new URL(urlStr);
 
@@ -58,7 +56,7 @@ public class GoogleAPIUtil implements ExcerloopsInterface {
             }
         }
         catch(Exception e) {
-            log.debug("ERROR" + e.getMessage());
+            log.error("Error: " + e.getMessage());
             return null;
         }
     }
@@ -181,17 +179,11 @@ public class GoogleAPIUtil implements ExcerloopsInterface {
             poly.add(p);
         }
 
-        //for(int i=0;i<poly.size();i++){
-            //Log.i("Location", "Point sent: Latitude: "+poly.get(i).latitude+" Longitude: "+poly
-                 //   .get(i).longitude);
-        //}
         return poly;
     }
 
     public static ArrayList<LatLng> removeDoubleBacks(ArrayList<LatLng> results, Boolean returnVal){
 
-        System.out.println("STARTING REMOVE DOUBLEBACKS");
-        System.out.println("SIZE: "+results.size());
         //Array to store duplicates
         ArrayList<LatLng> duplicates = new ArrayList<LatLng>();
         ArrayList<LatLng> noDuplicates = new ArrayList<LatLng>();
@@ -207,10 +199,8 @@ public class GoogleAPIUtil implements ExcerloopsInterface {
         }
 
         if(returnVal){
-            System.out.println("noDuplicates size: "+noDuplicates.size());
             return noDuplicates;
         } else {
-            System.out.println("duplicates size: "+duplicates.size());
             return duplicates;
         }
 
@@ -218,8 +208,6 @@ public class GoogleAPIUtil implements ExcerloopsInterface {
 
     public static ArrayList<LatLng> trimResults(ArrayList<LatLng> results){
         ArrayList<LatLng> trimmedArray = new ArrayList<LatLng>();
-        System.out.println("IN TRIMMED RESULTS");
-        System.out.println("RESULTS SIZE:"+results.size());
 
         int modValue;
 
@@ -233,52 +221,16 @@ public class GoogleAPIUtil implements ExcerloopsInterface {
             modValue = (size/20)+1;
         }
 
-        System.out.println("MOD: "+modValue);
-
         for(int i = 0; i<results.size(); i++){
             if(i%modValue == 0){
                 trimmedArray.add(results.get(i));
             }
         }
-        System.out.println("TRIMMED SIZE:"+trimmedArray.size());
         return trimmedArray;
     }
 
     public static int radiusToZoom(double radius){
         return (int) Math.round(14-Math.log(radius)/Math.log(2));
     }
-
-        /*
-    public static ArrayList<LatLng> parseStepsPolyline(String json){
-        //GeoCodedWaypoints->Routes->Legs-> foreach(Step s : Steps) ->PolyLine->points
-        ArrayList<LatLng> points = new ArrayList<LatLng>();
-        try {
-            //Read points from JSON
-            JSONObject root = new JSONObject(json);
-            JSONArray routesArray = root.getJSONArray("routes");
-            JSONObject route = routesArray.getJSONObject(0);
-            JSONArray legsArray = route.getJSONArray("legs");
-            JSONObject leg = legsArray.getJSONObject(0);
-            JSONArray stepsArray = leg.getJSONArray("steps");
-
-            String encodedPoints = "";
-
-            for(int i = 0; i<stepsArray.length(); i++){
-                JSONObject polyline = stepsArray.getJSONObject(i).getJSONObject("polyline");
-                encodedPoints = polyline.getString("points");
-                points.addAll(decodePoly(encodedPoints));
-            }
-
-            //points = decodePoly(encodedPoints);
-
-            return points;
-
-        } catch (JSONException e){
-            e.printStackTrace();
-        }
-
-        return points;
-    }
-    */
 
 }

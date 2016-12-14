@@ -33,7 +33,6 @@ public class updateUserServlet extends HttpServlet {
 
         //Get user based on email (id)
         user = userDao.readUser(request.getParameter("uid"));
-        System.out.println(user.toString());
 
         //Update user
         user.setName(request.getParameter("name"));
